@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "genomic-benchmarks-data"
+version = "0.0.1"
+readme = "README.md"
+description = "Agent-safe access to quality-curated genomic benchmarks datasets. "
+requires-python = ">=3.12"
+
+dependencies = [  
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["genomic_benchmarks_data4agents"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"../shared/core" = "genomic_benchmarks_data4agents/_core"
