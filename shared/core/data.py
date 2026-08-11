@@ -2,11 +2,10 @@ import hashlib
 from pathlib import Path
 from urllib.parse import urlparse
 
+import pandas as pd
 import requests
 from platformdirs import user_cache_dir
 from tqdm import tqdm
-
-import pandas as pd
 
 from .metadata import _get_dataset
 
@@ -50,24 +49,20 @@ def download_dataset(
 
     filename = Path(urlparse(url).path).name
 
-    # Use the platform-standard cache directory rather than storing
-    # downloaded data inside the package or directly under the user's home.
+    # Cache files by checksum rather than dataset name.
+    # This allows datasets or splits that reference the same underlying file
+    # to share a single cached copy.
     cache_dir = (
         Path(user_cache_dir(_PACKAGE_NAME))
-        / collection
-        / dataset_name
+        / "files"
+        / expected_sha256
     )
     cache_dir.mkdir(parents=True, exist_ok=True)
 
     destination = cache_dir / filename
 
-    # The checksum in the packaged metadata defines the exact dataset
-    # version expected by this package. A cached file is reused only
-    # when it matches that checksum.
-    #
-    # If metadata is updated to describe a new dataset version, its
-    # checksum changes. The old cached file will then fail this check,
-    # be removed, and the new version will be downloaded automatically.
+    # The checksum in the packaged metadata defines the exact file expected
+    # by this package. Reuse a cached copy only if its contents still match.
     if destination.exists() and not force:
         if _sha256(destination) == expected_sha256:
             return destination
@@ -94,9 +89,8 @@ def download_dataset(
                     f.write(chunk)
                     progress.update(len(chunk))
 
-    # Validate every new download against the metadata. If the upstream
-    # file changes without a corresponding metadata update, do not keep
-    # or expose the unexpected file.
+    # If the upstream file changes without a corresponding metadata update,
+    # reject it rather than exposing data inconsistent with the metadata.
     if _sha256(destination) != expected_sha256:
         destination.unlink()
         raise ValueError(
@@ -114,15 +108,30 @@ def load_dataset(
     split: str,
     show_head: bool = False,
 ) -> pd.DataFrame:
-    """Load a dataset split into memory."""
+    """Load a dataset split from the user cache into memory."""
     path = download_dataset(collection, dataset_name, split)
 
-    dataset = pd.read_csv(path)
+    suffixes = path.suffixes
+
+    if ".parquet" in suffixes:
+        dataset = pd.read_parquet(path)
+
+    elif ".tsv" in suffixes:
+        dataset = pd.read_csv(path, sep="\t")
+
+    elif ".csv" in suffixes:
+        dataset = pd.read_csv(path)
+
+    else:
+        raise ValueError(
+            f"Unsupported dataset format: {path.name}"
+        )
 
     if show_head:
         print(dataset.head())
 
     return dataset
+
 
 
 # check dataset specific loading / splits needed if dataset at dataset_path is not a single csv file
