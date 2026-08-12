@@ -44,7 +44,7 @@ def download_dataset(
         )
 
     info = split_metadata[split]
-    url = info["dataset_path"]
+    url = info["dataset_url"]
     expected_sha256 = info["sha256"]
 
     filename = Path(urlparse(url).path).name
