@@ -127,6 +127,15 @@ def load_dataset(
             f"Unsupported dataset format: {path.name}"
         )
 
+    if collection == "mRNABench":
+        from .transforms.mrna_bench import prepare_dataset
+
+        dataset = prepare_dataset(
+            dataset=dataset,
+            dataset_name=dataset_name,
+            split=split,
+        )
+
     if show_head:
         print(dataset.head())
 
