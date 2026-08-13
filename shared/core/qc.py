@@ -5,6 +5,7 @@ import requests
 from platformdirs import user_cache_dir
 from tqdm import tqdm
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from .metadata import _get_dataset
 
@@ -389,5 +390,123 @@ def filter_datasets_by_qc(
 
     return matching
 
+_FLAG_RANK = {
+    "Pass": 0,
+    "Warning": 1,
+    "Fail": 2,
+}
 
-# use dict to visualise some summary qc metrics
+
+def _dataset_qc_flag(
+    dataset_results: dict,
+    qc_type: str,
+    check: str | None = None,
+) -> str | None:
+    """Return the worst QC flag for a dataset."""
+    flags = []
+
+    if qc_type == "class":
+        for split_results in dataset_results.values():
+            for check_name, values in split_results.items():
+                if check is None or check_name == check:
+                    flags.append(values["flag"])
+
+    elif qc_type == "split":
+        for train_results in dataset_results.values():
+            for test_results in train_results.values():
+                for check_name, values in test_results.items():
+                    if check is None or check_name == check:
+                        flags.append(values["flag"])
+
+    else:
+        raise ValueError(
+            f"Unknown QC type {qc_type!r}. "
+            "Expected 'class' or 'split'."
+        )
+
+    flags = [flag for flag in flags if flag is not None]
+
+    if not flags:
+        return None
+
+    return max(flags, key=lambda flag: _FLAG_RANK[flag])
+
+FAIL_COLOR = "#c62828"
+WARN_COLOR = "#f57f17"
+PASS_COLOR = "#2e7d32"
+
+def plot_qc_summary(
+    qc_type: str,
+    check: str | None = None,
+    force: bool = False,
+):
+    """Plot the proportion of datasets by QC flag for each collection."""
+    results = load_qc_results(qc_type, force=force)
+
+    if check is not None:
+        available_checks = set(_get_qc_metrics(results, qc_type))
+
+        if check not in available_checks:
+            raise ValueError(
+                f"Unknown QC check {check!r}. "
+                f"Available checks: {sorted(available_checks)}."
+            )
+
+    rows = []
+
+    for collection_name, collection_results in results.items():
+        counts = {
+            "Pass": 0,
+            "Warning": 0,
+            "Fail": 0,
+        }
+
+        for dataset_results in collection_results.values():
+            flag = _dataset_qc_flag(
+                dataset_results,
+                qc_type,
+                check=check,
+            )
+
+            if flag is not None:
+                counts[flag] += 1
+
+        total = sum(counts.values())
+
+        if total == 0:
+            continue
+
+        rows.append({
+            "collection": collection_name,
+            "Pass": counts["Pass"] / total,
+            "Warning": counts["Warning"] / total,
+            "Fail": counts["Fail"] / total,
+        })
+
+    if not rows:
+        raise ValueError("No QC results available to plot.")
+
+    summary = pd.DataFrame(rows).set_index("collection")
+
+    ax = summary.plot(
+        kind="bar",
+        stacked=True,
+        color={
+            "Pass": PASS_COLOR,
+            "Warning": WARN_COLOR,
+            "Fail": FAIL_COLOR,
+        },
+    )
+
+    ax.set_xlabel("Collection")
+    ax.set_ylabel("Proportion of datasets")
+    ax.set_ylim(0, 1)
+
+    title = f"{qc_type.capitalize()} QC summary"
+    if check is not None:
+        title += f": {check}"
+
+    ax.set_title(title)
+    ax.legend(title="QC flag")
+
+    return ax
