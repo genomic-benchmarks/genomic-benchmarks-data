@@ -1,3 +1,4 @@
+import logging
 from abc import ABC, abstractmethod
 import hashlib
 from pathlib import Path
@@ -11,6 +12,7 @@ from platformdirs import user_cache_dir
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
+logger = logging.getLogger(__name__)
 
 _PACKAGE_NAME = __package__.split(".")[0]
 
@@ -58,10 +60,32 @@ def _download_homology_maps(
         or _sha256(archive_path) != HOMOLOGY_MAP_SHA256
     )
 
+    if not needs_download:
+        logger.debug(
+            "Using cached homology map archive: %s",
+            archive_path,
+        )
+
     if needs_download:
         if archive_path.exists():
+            if force:
+                logger.debug(
+                    "Replacing cached homology map archive due to forced refresh: %s",
+                    archive_path,
+                )
+            else:
+                logger.warning(
+                    "Cached homology map archive failed checksum validation "
+                    "and will be replaced: %s",
+                    archive_path,
+                )
+
             archive_path.unlink()
 
+        logger.info(
+            "Downloading homology map archive from %s",
+            HOMOLOGY_MAP_URL,
+        )
         with requests.get(HOMOLOGY_MAP_URL, stream=True) as response:
             response.raise_for_status()
 
@@ -87,8 +111,24 @@ def _download_homology_maps(
                 "Checksum mismatch for homology map archive."
             )
 
+        logger.info(
+            "Downloaded homology map archive to %s",
+            archive_path,
+        )
+
+    if not force and homology_map.exists():
+        logger.debug(
+            "Using cached homology map for species %r: %s",
+            species,
+            homology_map,
+        )
+
     # Extract the archive if the required species map is not available.
     if force or not homology_map.exists():
+        logger.info(
+            "Extracting homology maps from %s",
+            archive_path,
+        )
         with zipfile.ZipFile(archive_path, "r") as zip_ref:
             for file in zip_ref.namelist():
                 if not file.endswith("/"):
@@ -103,6 +143,12 @@ def _download_homology_maps(
             f"Homology map for species {species!r} "
             "was not found in the archive."
         )
+
+    logger.debug(
+        "Homology map available for species %r: %s",
+        species,
+        homology_map,
+    )
 
     return cache_dir
 

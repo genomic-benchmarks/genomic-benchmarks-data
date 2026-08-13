@@ -1,3 +1,4 @@
+import logging
 import hashlib
 from pathlib import Path
 from urllib.parse import urlparse
@@ -9,6 +10,7 @@ from tqdm import tqdm
 
 from .metadata import _get_dataset
 
+logger = logging.getLogger(__name__)
 
 # The shared core is bundled under either genomic_benchmarks_data
 # or genomic_benchmarks_data4agents. Using the parent package name
@@ -65,8 +67,13 @@ def download_dataset(
     # by this package. Reuse a cached copy only if its contents still match.
     if destination.exists() and not force:
         if _sha256(destination) == expected_sha256:
+            logger.debug("Using cached dataset file: %s", destination)
             return destination
 
+        logger.warning(
+            "Cached file failed checksum validation and will be replaced: %s",
+            destination,
+        )
         destination.unlink()
 
     # Stream the download so large datasets are not loaded into memory.
@@ -99,6 +106,8 @@ def download_dataset(
             "by the package metadata."
         )
 
+    logger.info("Downloaded dataset file to %s", destination)
+
     return destination
 
 
@@ -106,7 +115,6 @@ def load_dataset(
     collection: str,
     dataset_name: str,
     split: str,
-    show_head: bool = False,
 ) -> pd.DataFrame:
     """Load a dataset split from the user cache into memory."""
     path = download_dataset(collection, dataset_name, split)
@@ -135,9 +143,6 @@ def load_dataset(
             dataset_name=dataset_name,
             split=split,
         )
-
-    if show_head:
-        print(dataset.head())
 
     return dataset
 

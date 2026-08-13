@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -8,6 +9,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from .metadata import _get_dataset
+
+logger = logging.getLogger(__name__)
 
 
 _PACKAGE_NAME = __package__.split(".")[0]
@@ -124,8 +127,10 @@ def download_split_qc_report(
         force=force,
     )
 
-    print(f"QC report saved to: {path}")
-    print("Open this file in a web browser to view the report.")
+    logger.info(
+        "QC report saved to %s. Open this file in a web browser to view it.",
+        path,
+    )
 
     return path
 
