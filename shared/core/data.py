@@ -54,7 +54,7 @@ def download_dataset(
     # to share a single cached copy.
     cache_dir = (
         Path(user_cache_dir(_PACKAGE_NAME))
-        / "files"
+        / "data"
         / expected_sha256
     )
     cache_dir.mkdir(parents=True, exist_ok=True)
@@ -141,6 +141,3 @@ def load_dataset(
 
     return dataset
 
-
-
-# check dataset specific loading / splits needed if dataset at dataset_path is not a single csv file
