@@ -5,6 +5,8 @@ from urllib.parse import urlparse
 import requests
 from platformdirs import user_cache_dir
 from tqdm import tqdm
+import shutil
+import zipfile
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -16,9 +18,17 @@ logger = logging.getLogger(__name__)
 _PACKAGE_NAME = __package__.split(".")[0]
 
 
+_QC_ZENODO_RECORD_ID = "21915933"
+_QC_ZENODO_BASE_URL = (f"https://zenodo.org/records/{_QC_ZENODO_RECORD_ID}/files")
 _QC_CSV_URLS = {
-    "split": "", # "https://zenodo.org/records/21915933/files/combined_qc_results_splits.csv?download=1",
-    "class": "", # "https://zenodo.org/records/21915933/files/combined_qc_results_classes.csv?download=1",
+    "split": (
+        f"{_QC_ZENODO_BASE_URL}/"
+        "combined_qc_results_splits.csv?download=1"
+    ),
+    "class": (
+        f"{_QC_ZENODO_BASE_URL}/"
+        "combined_qc_results_classes.csv?download=1"
+    ),
 }
 
 
@@ -84,109 +94,159 @@ def download_qc_csv(
     )
 
 
-def download_split_qc_report(
+def _get_qc_report_dir(
+    collection: str,
+    dataset_name: str,
+    force: bool = False,
+) -> Path:
+    """Ensure dataset QC reports are cached and return their directory."""
+    filename = f"{collection}-{dataset_name}.zip"
+    url = f"{_QC_ZENODO_BASE_URL}/{filename}?download=1"
+
+    cache_dir = (
+        Path(user_cache_dir(_PACKAGE_NAME))
+        / "qc"
+        / "reports"
+    )
+    cache_dir.mkdir(parents=True, exist_ok=True)
+
+    archive_path = cache_dir / filename
+    report_dir = cache_dir / collection / dataset_name
+
+    # Reuse already-extracted reports unless explicitly refreshed.
+    if report_dir.exists() and not force:
+        logger.debug("Using cached QC reports: %s", report_dir)
+        return report_dir
+
+    if force and report_dir.exists():
+        shutil.rmtree(report_dir)
+
+    if not archive_path.exists() or force:
+        logger.info(
+            "Downloading QC reports for %s/%s",
+            collection,
+            dataset_name,
+        )
+
+        _download_qc_file(
+            url=url,
+            destination=archive_path,
+            force=force,
+        )
+
+    logger.info(
+        "Extracting QC reports for %s/%s",
+        collection,
+        dataset_name,
+    )
+
+    with zipfile.ZipFile(archive_path, "r") as zip_ref:
+        zip_ref.extractall(cache_dir)
+
+    if not report_dir.exists():
+        raise FileNotFoundError(
+            f"Expected QC report directory not found after extraction: "
+            f"{report_dir}"
+        )
+
+    return report_dir
+
+
+def get_split_qc_report(
     collection: str,
     dataset_name: str,
     split_a: str,
     split_b: str,
     force: bool = False,
 ) -> Path:
-    """Download a split QC HTML report comparing two dataset splits."""
+    """Return the QC report comparing two dataset splits."""
     dataset = _get_dataset(collection, dataset_name)
-    reports = dataset.get("split_qc_reports") or {}
+    available_splits = set(dataset.get("splits") or [])
 
-    key = f"{split_a}_{split_b}"
+    if split_a not in available_splits:
+        raise KeyError(
+            f"Split {split_a!r} not found for dataset {dataset_name!r}."
+        )
 
-    if key not in reports:
-        reverse_key = f"{split_b}_{split_a}"
+    if split_b not in available_splits:
+        raise KeyError(
+            f"Split {split_b!r} not found for dataset {dataset_name!r}."
+        )
 
-        if reverse_key in reports:
-            key = reverse_key
-        else:
-            raise ValueError(
-                f"No split QC report is available for "
-                f"{collection!r}/{dataset_name!r} comparing "
-                f"{split_a!r} and {split_b!r}."
-            )
-
-    url = reports[key]
-
-    destination = (
-        Path(user_cache_dir(_PACKAGE_NAME))
-        / "qc"
-        / "reports"
-        / collection
-        / dataset_name
-        / "split"
-        / f"{key}.html"
-    )
-
-    path = _download_qc_file(
-        url=url,
-        destination=destination,
+    report_dir = _get_qc_report_dir(
+        collection,
+        dataset_name,
         force=force,
     )
 
+    report = report_dir / "split" / f"{split_a}_{split_b}.html"
+
+    # Split-pair filenames may use either ordering.
+    if not report.exists():
+        report = report_dir / "split" / f"{split_b}_{split_a}.html"
+
+    if not report.exists():
+        raise FileNotFoundError(
+            f"No split QC report found for {split_a!r} and {split_b!r} "
+            f"in {collection!r}/{dataset_name!r}."
+        )
+
     logger.info(
-        "QC report saved to %s. Open this file in a web browser to view it.",
-        path,
+        "QC report available at %s. Open it in a web browser to view it.",
+        report,
     )
 
-    return path
+    return report
 
 
-def download_class_qc_report(
+def get_class_qc_report(
     collection: str,
     dataset_name: str,
     split: str,
     seq_col: str,
     force: bool = False,
 ) -> Path:
-    """Download a class QC HTML report for one sequence column."""
+    """Return the class QC report for a split and sequence column."""
     dataset = _get_dataset(collection, dataset_name)
-    split_metadata = dataset.get("split_metadata") or {}
 
-    if split not in split_metadata:
+    available_splits = set(dataset.get("splits") or [])
+    if split not in available_splits:
         raise KeyError(
-            f"Split {split!r} not found for dataset "
-            f"{dataset_name!r}."
+            f"Split {split!r} not found for dataset {dataset_name!r}."
         )
 
-    reports = (
-        split_metadata[split].get("class_qc_reports")
-        or {}
+    available_seq_cols = set(dataset.get("seq_col") or [])
+    if seq_col not in available_seq_cols:
+        raise KeyError(
+            f"Sequence column {seq_col!r} not found for "
+            f"dataset {dataset_name!r}."
+        )
+
+    report_dir = _get_qc_report_dir(
+        collection,
+        dataset_name,
+        force=force,
     )
 
-    if seq_col not in reports:
-        raise ValueError(
-            f"No class QC report is available for "
-            f"{collection!r}/{dataset_name!r}, "
-            f"split {split!r}, sequence column {seq_col!r}."
-        )
-
-    url = reports[seq_col]
-
-    destination = (
-        Path(user_cache_dir(_PACKAGE_NAME))
-        / "qc"
-        / "reports"
-        / collection
-        / dataset_name
+    report = (
+        report_dir
         / "class"
         / split
         / f"{seq_col}.html"
     )
 
-    path = _download_qc_file(
-        url=url,
-        destination=destination,
-        force=force,
+    if not report.exists():
+        raise FileNotFoundError(
+            f"No class QC report found for {collection!r}/{dataset_name!r}, "
+            f"split {split!r}, sequence column {seq_col!r}."
+        )
+
+    logger.info(
+        "QC report available at %s. Open it in a web browser to view it.",
+        report,
     )
 
-    print(f"QC report saved to: {path}")
-    print("Open this file in a web browser to view the report.")
-
-    return path
+    return report
 
 
 def _clean_qc_value(value):
