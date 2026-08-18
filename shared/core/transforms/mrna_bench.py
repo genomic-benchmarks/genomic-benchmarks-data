@@ -23,10 +23,11 @@ SPLIT_TYPE = {
 }
 
 DATASET_SPECIES = {
-    "eclip-binding-k562": "human",
-    "eclip-binding-hepg2": "human",
+    "rnahl-human": "human",
+    "rnahl-mouse": "mouse",
 
-    # Add every homology-split dataset explicitly.
+    "translation-efficiency-human": "human",
+    "translation-efficiency-mouse": "mouse",
 }
 
 _EGFP_TARGET_COLUMNS = {
