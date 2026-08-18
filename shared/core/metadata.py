@@ -125,8 +125,7 @@ def get_dataset_info(collection: str, dataset_name: str) -> dict:
 
     excluded_fields = {
         "split_metadata",
-        "path_to_qc_csv",
-        "path_to_qc_html",
+        "split_qc_reports",
         "excluded",
     }
 
@@ -153,5 +152,5 @@ def get_split_info(
     return {
         key: value
         for key, value in split_metadata[split].items()
-        if key != "dataset_path"
+        if key != "dataset_url"
     }
