@@ -136,9 +136,9 @@ def load_dataset(
         )
 
     if collection == "mRNABench":
-        from .transforms.mrna_bench import prepare_dataset
+        from .transforms.mrna_bench import _prepare_dataset
 
-        dataset = prepare_dataset(
+        dataset = _prepare_dataset(
             dataset=dataset,
             dataset_name=dataset_name,
             split=split,

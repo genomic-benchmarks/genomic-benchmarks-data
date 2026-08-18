@@ -119,7 +119,7 @@ def _select_task(
     return dataset.copy()
 
 
-def prepare_dataset(
+def _prepare_dataset(
     dataset: pd.DataFrame,
     dataset_name: str,
     split: str,
