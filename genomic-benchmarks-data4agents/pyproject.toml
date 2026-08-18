@@ -23,7 +23,7 @@ dependencies = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["genomic-benchmarks-data4agents"]
+packages = ["genomic_benchmarks_data4agents"]
 
 [tool.hatch.build.targets.wheel.force-include]
-"../shared/core" = "genomic-benchmarks-data4agents/_core"
+"../shared/core" = "genomic_benchmarks_data4agents/_core"

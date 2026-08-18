@@ -17,8 +17,8 @@ _PACKAGE_NAME = __package__.split(".")[0]
 
 
 _QC_CSV_URLS = {
-    "split": "...",
-    "class": "...",
+    "split": "", # "https://zenodo.org/records/21915933/files/combined_qc_results_splits.csv?download=1",
+    "class": "", # "https://zenodo.org/records/21915933/files/combined_qc_results_classes.csv?download=1",
 }
 
 

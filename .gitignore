@@ -1,2 +1,4 @@
 metadata/
 sandbox/
+.venv-test/
+__pycache__/
