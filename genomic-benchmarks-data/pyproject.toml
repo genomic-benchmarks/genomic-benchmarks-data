@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "genomic-benchmarks-data"
 version = "0.0.1"
 readme = "README.md"
-license = "MIT"
+license = "Apache-2.0"
 license-files = ["LICENSE"]
 description = "Access to quality-curated genomic benchmark datasets. "
 requires-python = ">=3.12"

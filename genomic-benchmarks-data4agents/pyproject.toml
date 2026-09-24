@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "genomic-benchmarks-data4agents"
 version = "0.0.1"
 readme = "README.md"
-license = "MIT"
+license = "Apache-2.0"
 license-files = ["LICENSE"]
 description = "Agent-safe access to quality-curated genomic benchmarks datasets. "
 requires-python = ">=3.12"
