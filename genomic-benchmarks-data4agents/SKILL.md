@@ -1,0 +1,1 @@
+# this should be similar to json schema but in skill format for agents (shoudl explain metric)
