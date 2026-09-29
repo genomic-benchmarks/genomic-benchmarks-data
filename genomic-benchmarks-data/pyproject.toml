@@ -27,4 +27,3 @@ packages = ["genomic_benchmarks_data"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "../shared/core" = "genomic_benchmarks_data/_core"
-"genomic_benchmarks_data/metadata" = "genomic_benchmarks_data/metadata"

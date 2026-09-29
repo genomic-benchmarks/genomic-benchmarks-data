@@ -8,7 +8,7 @@ def load_metadata() -> dict:
 
     collections = {}
 
-    for path in sorted(metadata_dir.glob("*.json")):
+    for path in sorted(metadata_dir.glob("*_metadata.json")):
         with path.open(encoding="utf-8") as f:
             metadata = json.load(f)
 
