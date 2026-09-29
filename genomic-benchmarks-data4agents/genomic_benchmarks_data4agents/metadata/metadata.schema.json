@@ -1,0 +1,515 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/genbench2/packages/genomic-benchmarks-data4agents/metadata.schema.json",
+  "title": "genomic-benchmarks-data4agents Package Metadata",
+  "description": "Schema for included collection metadata distributed with the genomic-benchmarks-data4agents package. Local dataset_path values and held-out test split metadata are intentionally omitted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "collection",
+    "collection_doi",
+    "licence",
+    "datasets"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "The version of this schema the document claims to conform to. Pinned with const rather than a pattern so that the number and the shape it names cannot drift apart: changing the schema means changing this value and all seven collection files in one commit, and a file left behind fails validation rather than quietly claiming a version it no longer matches. It is here because a consumer cannot version someone else's schema - genomic-benchmarks-leaderboard pins the versions it understands, so its contract test fails with 'metadata schema moved from 1.0 to 1.1' instead of a KeyError three calls deep. Bump the major when a reader written for the previous major can misread a document: a field removed, renamed or retyped, the meaning of an existing field changed, or a value added to task_type or molecular_level - those two are the fields a consumer switches on, and the leaderboard derives public_metric from task_type. Bump the minor when it cannot: a field added, or a constraint tightened so that only documents which were already wrong begin to fail."
+    },
+    "collection": {
+      "type": "string",
+      "description": "Name of the dataset collection (for example: BEACON, GUE_v2, genomic-benchmarks)."
+    },
+    "collection_doi": {
+      "type": "string",
+      "description": "Primary publication or source DOI for the collection."
+    },
+    "licence": {
+      "$ref": "#/$defs/licence",
+      "description": "The collection's licence, and specifically whether its split files may be republished. Required, because publish_datasets.py has to decide whether a split's file may be uploaded or must be left at its original source, and a missing value must fail rather than default. A dataset entry may override it where a collection mixes licences."
+    },
+    "datasets": {
+      "type": "array",
+      "description": "List of dataset entries that belong to this collection.",
+      "items": {
+        "$ref": "#/$defs/datasetEntry"
+      }
+    }
+  },
+  "$defs": {
+    "licence": {
+      "type": "object",
+      "description": "A licence, and what it permits. Held at collection level and optionally overridden per dataset, because one collection mixes them: three mRNABench datasets are CC BY 4.0 and the rest are published with no licence stated.",
+      "additionalProperties": false,
+      "required": [
+        "redistribution"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nullableString",
+          "description": "SPDX-style or common name of the licence, for example CC BY 4.0. Null where the source states none, which is not the same as permissive: an absent licence grants nothing."
+        },
+        "url": {
+          "$ref": "#/$defs/nullableString",
+          "description": "Where the licence text was read from."
+        },
+        "redistribution": {
+          "type": "string",
+          "enum": [
+            "permitted",
+            "denied",
+            "unknown"
+          ],
+          "description": "Whether this repository may republish the split files. The one field publish_datasets.py branches on: permitted uploads the file, and denied or unknown leave it to be fetched from its original source, with only dataset_url and sha256 naming it. unknown is kept distinct from denied on purpose - an unanswered licence is not a refusal, and answering one flips a collection over in a single edit."
+        },
+        "note": {
+          "$ref": "#/$defs/nullableString",
+          "description": "Why the redistribution value is what it is - the evidence, not a restatement. A denial should name who declined and when."
+        }
+      }
+    },
+    "nullableString": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullableNumber": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "visibleSplitArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "not": {
+          "enum": [
+            "test",
+            "test_leftout"
+          ]
+        }
+      }
+    },
+    "stringToStringMap": {
+      "type": "object",
+      "description": "Generic map from string keys to string values.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "numberSummary": {
+      "type": "object",
+      "description": "Summary statistics for numeric labels.",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max",
+        "median"
+      ],
+      "properties": {
+        "min": {
+          "$ref": "#/$defs/nullableNumber",
+          "description": "Minimum observed label value in the split."
+        },
+        "max": {
+          "$ref": "#/$defs/nullableNumber",
+          "description": "Maximum observed label value in the split."
+        },
+        "median": {
+          "$ref": "#/$defs/nullableNumber",
+          "description": "Median observed label value in the split."
+        }
+      }
+    },
+    "seqAlphabet": {
+      "type": "object",
+      "description": "Map from sequence column names to the set of observed symbols in that column.",
+      "additionalProperties": {
+        "$ref": "#/$defs/stringArray"
+      }
+    },
+    "seqLengthSummary": {
+      "type": "object",
+      "description": "Summary statistics for observed sequence lengths.",
+      "additionalProperties": false,
+      "required": [
+        "min",
+        "max",
+        "median"
+      ],
+      "properties": {
+        "min": {
+          "type": "number",
+          "description": "Minimum observed sequence length in the split."
+        },
+        "max": {
+          "type": "number",
+          "description": "Maximum observed sequence length in the split."
+        },
+        "median": {
+          "type": "number",
+          "description": "Median observed sequence length in the split."
+        }
+      }
+    },
+    "seqLength": {
+      "type": "object",
+      "description": "Map from sequence column names to length summaries for that column.",
+      "additionalProperties": {
+        "$ref": "#/$defs/seqLengthSummary"
+      }
+    },
+    "classRatio": {
+      "description": "Class distribution for classification tasks. TODO: confirm whether values are exact proportions or rounded summaries.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "labelsField": {
+      "description": "Label metadata for a split: either categorical labels (array) or numeric summary (object).",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        {
+          "$ref": "#/$defs/numberSummary"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "splitMetadataEntry": {
+      "type": "object",
+      "description": "Metadata for one visible split (for example train, val, or validation).",
+      "additionalProperties": false,
+      "required": [
+        "seq_alphabet",
+        "labels",
+        "dataset_size",
+        "class_ratio",
+        "all_columns",
+        "dataset_url",
+        "sha256"
+      ],
+      "properties": {
+        "seq_length": {
+          "$ref": "#/$defs/seqLength",
+          "description": "Observed length summary for each sequence input column, if available."
+        },
+        "seq_alphabet": {
+          "$ref": "#/$defs/seqAlphabet",
+          "description": "Observed alphabet for each sequence input column."
+        },
+        "labels": {
+          "$ref": "#/$defs/labelsField",
+          "description": "Label values or label summary for this split."
+        },
+        "dataset_size": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of rows/examples in this split."
+        },
+        "class_ratio": {
+          "$ref": "#/$defs/classRatio",
+          "description": "Class proportions for this split, if applicable to the task."
+        },
+        "all_columns": {
+          "$ref": "#/$defs/stringArray",
+          "description": "All columns present in the released split file, including the id and row_index columns when materialised by the publisher."
+        },
+        "dataset_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Download URL for the split dataset file."
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "SHA256 checksum of the split dataset file used to verify file integrity."
+        }
+      }
+    },
+    "splitMetadata": {
+      "description": "Mapping from visible split names to split-specific metadata. Held-out test and test_leftout entries are forbidden.",
+      "oneOf": [
+        {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "test",
+                "test_leftout"
+              ]
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/splitMetadataEntry"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "datasetEntry": {
+      "type": "object",
+      "description": "Metadata for one included dataset/task within the collection. Excluded source datasets are omitted from this package.",
+      "additionalProperties": false,
+      "required": [
+        "dataset_name",
+        "task_description",
+        "species",
+        "task_type",
+        "seq_col",
+        "label_col",
+        "splits"
+      ],
+      "properties": {
+        "dataset_name": {
+          "type": "string",
+          "description": "Dataset identifier/name."
+        },
+        "major_version": {
+          "type": "string",
+          "pattern": "^v[0-9]+$",
+          "description": "The major version of this dataset's data - not of the schema, which is schema_version, and not a version of this document. It is the third field of every sequence ID in the dataset (<collection>:<dataset>:<major version>:<split>:<index>) and the path prefix its published files sit under, so it is the one part of an identity that says whether a result computed last year still refers to the same sequences. Written by the collection's curation notebook from DEFAULT_MAJOR_VERSION in curation/utils.py, the same constant write_split stamps into the IDs it mints, so this field and the files cannot claim different versions of the same rows. Recorded here because a consumer cannot otherwise learn it for every split: one this project may republish carries its IDs in the file and can be asked, but one whose licence bars re-upload is served by its original source without them and has its index composed from row order. Bumped when a dataset's sequences change: indices restart at zero, the files move to a new prefix rather than being rewritten in place, and every previously published result keeps naming the old version."
+        },
+        "task_description": {
+          "type": "string",
+          "description": "Human-readable summary of the prediction task."
+        },
+        "species": {
+          "$ref": "#/$defs/nullableString",
+          "description": "Species covered by the dataset. Multiple species may be encoded as a pipe-separated string. TODO: confirm canonical encoding for multi-species metadata."
+        },
+        "task_type": {
+          "type": "string",
+          "enum": [
+            "Binary classification",
+            "Multi-class classification",
+            "Multi-label classification",
+            "Multi-label classification (nucleotide-level)",
+            "Multi-label regression",
+            "Multi-label regression (nucleotide-level)",
+            "Multi-variable regression",
+            "Regression",
+            "Regression (nucleotide-level)",
+            "Token classification",
+            "Token regression"
+          ],
+          "description": "Task type, from a closed vocabulary in sentence case. Enumerated because it was not: two collections wrote Title Case, which split Binary classification into two task types and cost 20 of the 75 binary datasets to anyone grouping on the raw string. A genuinely new task type is added here first, deliberately, as for molecular_level."
+        },
+        "seq_col": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/stringArray"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Sequence input column name(s) used by the task."
+        },
+        "label_col": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/stringArray"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Label column name(s) in the dataset file(s)."
+        },
+        "label_categories": {
+          "description": "Map from label ID/key to class description. Null for non-categorical tasks. A retained dataset whose task_type contains 'classification' must carry at least two entries - see the conditional below. Nothing enforced it before, and one of the 75 binary datasets was null while its nine siblings were not.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/stringToStringMap"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "splits": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/visibleSplitArray"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Available non-held-out split names. test and test_leftout are omitted from this package."
+        },
+        "split_metadata": {
+          "$ref": "#/$defs/splitMetadata",
+          "description": "Per-split metadata for included datasets."
+        },
+        "task_category": {
+          "type": "string",
+          "description": "High-level biological or benchmark task category."
+        },
+        "molecular_level": {
+          "type": "string",
+          "enum": [
+            "DNA",
+            "RNA",
+            "Protein"
+          ],
+          "description": "Molecular level represented by the dataset."
+        },
+        "positive_label": {
+          "$ref": "#/$defs/nullableString",
+          "description": "Label value treated as the positive class for scoring, or null when the task has no positive class."
+        },
+        "scoring_splits": {
+          "description": "Split names used by the original benchmark for scoring, or null when the dataset is not scored. This may name a held-out split omitted from splits and split_metadata.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/stringArray"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scoring_metric": {
+          "$ref": "#/$defs/nullableString",
+          "description": "Metric used for benchmark scoring, or null when no scoring metric is specified."
+        },
+        "dataset_doi": {
+          "type": "string",
+          "description": "Primary publication or source DOI for the dataset in the collection."
+        },
+        "licence": {
+          "$ref": "#/$defs/licence",
+          "description": "This dataset's licence, where it differs from its collection's. Present only as an override; absent means the collection's applies."
+        }
+      },
+      "allOf": [
+        {
+          "if": true,
+          "then": {
+            "required": [
+              "major_version",
+              "task_description",
+              "species",
+              "task_type",
+              "label_col",
+              "splits",
+              "split_metadata"
+            ],
+            "properties": {
+              "task_description": {
+                "type": "string"
+              },
+              "species": {
+                "type": "string"
+              },
+              "task_type": {
+                "type": "string"
+              },
+              "seq_col": {
+                "$ref": "#/$defs/stringArray"
+              },
+              "label_col": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/stringArray"
+                  }
+                ]
+              },
+              "splits": {
+                "$ref": "#/$defs/visibleSplitArray"
+              },
+              "split_metadata": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/splitMetadata"
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "task_type"
+            ],
+            "properties": {
+              "task_type": {
+                "pattern": "classification"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "label_categories"
+            ],
+            "properties": {
+              "label_categories": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/stringToStringMap"
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 2
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

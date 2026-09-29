@@ -1,0 +1,1629 @@
+{
+    "schema_version": "1.0",
+    "collection": "nucleotide_benchmarks",
+    "collection_doi": "https://doi.org/10.1038/s41592-024-02523-z",
+    "licence": {
+        "name": "CC BY-NC-SA 4.0",
+        "url": "https://github.com/instadeepai/nucleotide-transformer/blob/main/LICENSE.md",
+        "redistribution": "denied",
+        "note": "The dataset card states no licence; the Nucleotide Transformer project repository is CC BY-NC-SA 4.0. InstaDeep were asked and declined permission to re-upload (September 2026). These 32 splits are not republished; the files stay at InstaDeepAI/nucleotide_transformer_downstream_tasks_revised, which is what dataset_url names for them."
+    },
+    "datasets": [
+        {
+            "dataset_name": "H3K4me3",
+            "task_description": "Prediction of H3K4me3 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 17468,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K4me3/train.parquet",
+                    "sha256": "9c74d7116c5738781cc1eb6d068a402f9fd4f50f22e90f3c779a903b1a59cc8a"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 776,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K4me3/test.parquet",
+                    "sha256": "4f9d1a7846d577b0639c2d0cbae5f1fc999b1c32cb5d76260539a473cb0e8175"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K4me1",
+            "task_description": "Prediction of H3K4me1 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K4me1/train.parquet",
+                    "sha256": "97c3e6951974bbd4b8e012f1290fdb0ef22755b3d98cead2da9320a85b505a57"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K4me1/test.parquet",
+                    "sha256": "44217939f3e43d6ec34bbbd2113e48e3688d2c0675d5b67c3540785692468fbd"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K4me2",
+            "task_description": "Prediction of H3K4me2 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K4me2/train.parquet",
+                    "sha256": "1b76d1a700ae3f61c37970a85059cf39cd9d862c53a6708ca7db885504844f54"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2138,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K4me2/test.parquet",
+                    "sha256": "57268b700f5c5633b00de66031774404b9f490529dae97747c684ed423194b2f"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K9ac",
+            "task_description": "Prediction of H3K9ac histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 23274,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K9ac/train.parquet",
+                    "sha256": "847c2f9c1ec5bc500ee8d2b543cdb3d398a62cda96527c0d3f4561233e0fa1a6"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1004,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K9ac/test.parquet",
+                    "sha256": "3f0062689676624099d345bfb5ada08bc6a19f55740510dbe69339f62197c822"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K9me3",
+            "task_description": "Prediction of H3K9me3 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 27438,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K9me3/train.parquet",
+                    "sha256": "03e807af342a512e790854ae51f9fbf7b6e718f8e91b5b5d44d80b26621bd339"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 850,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K9me3/test.parquet",
+                    "sha256": "1bddf91ba43f0115abce6386816822d648f8ee8cea2dbfcb0c62550155f2876a"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K27me3",
+            "task_description": "Prediction of H3K27me3 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K27me3/train.parquet",
+                    "sha256": "3c758abc84bca648c70112fe3496db06ecef513a6f0bcb1a3b1e6c25bced0a9a"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K27me3/test.parquet",
+                    "sha256": "1cf930d81d27725534092f01e5771900e9794014be4e3fca7e2bad1b38e24a1d"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K27ac",
+            "task_description": "Prediction of H3K27ac histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K27ac/train.parquet",
+                    "sha256": "8d5e53a8b0b80a619e69151fdf18031e79cdeb0a2cc7a93e313b0546b663ce0e"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1616,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K27ac/test.parquet",
+                    "sha256": "6c364e85446f4a53971a7b1e2da787b94b885e661e7b0720c59d86f7c5cfc623"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H3K36me3",
+            "task_description": "Prediction of H3K36me3 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K36me3/train.parquet",
+                    "sha256": "1bbb087b1b48a41dbc84f0e35867bb803fc7661eca4e160c8278e3ff9ffae2a6"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H3K36me3/test.parquet",
+                    "sha256": "8d0c2cf3a14669bd11d29319ff1d9aa8936da5555d497dd050c21cd8ebb29c94"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H4K20me1",
+            "task_description": "Prediction of H4K20me1 histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H4K20me1/train.parquet",
+                    "sha256": "5d909d52afa95c0b6109aef099db1901595c8fc0c102efe187d432bfb49232a3"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2270,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H4K20me1/test.parquet",
+                    "sha256": "2059e8d3aef211cf130da099d87ae07d374d5b5d3fbfe3b83bf7bf80e4511051"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "H2AFZ",
+            "task_description": "Prediction of H2AFZ histone mark presence in a sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H2AFZ/train.parquet",
+                    "sha256": "1cd62c3ecfbf04e13ca9db01ed04a5452843084845caa98a78e248f0719b0a01"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/H2AFZ/test.parquet",
+                    "sha256": "f40490e8530959a5fdbb6e431dc3ab9002ebd96098a057c1236eb1b309a8baee"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "enhancers",
+            "task_description": "Prediction of the presence of enhancer elements in the sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/enhancers/train.parquet",
+                    "sha256": "ee43317726a5f3340809ec09a90acea7737748c7fcbd50e8ccb8916835355577"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/enhancers/test.parquet",
+                    "sha256": "fa97226c8e06da73e4e865098ae704d7bb766c9a32442d239a715c01b9557fef"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "promoter_all",
+            "task_description": "Prediction of the presence of any promoter element in the sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/promoter_all/train.parquet",
+                    "sha256": "9ff9dce44d53dc66eff810cdff2187f98e9b9c9c2e52a05fe17d4eb9240b8b14"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1584,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/promoter_all/test.parquet",
+                    "sha256": "f13c2264a759cb7c11010b5854fa818c114c7855f8e1e52dfb2988ef8428c8c1"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "promoter_tata",
+            "task_description": "Prediction of the presence of a promoter with a TATA-box motif in the sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5062,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/promoter_tata/train.parquet",
+                    "sha256": "e314c9e2fb43bdd703a15936d51a4bbf9f8b5b8037521788ed2973dde9f731a8"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 212,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/promoter_tata/test.parquet",
+                    "sha256": "065c08e8fb4b7d55563ca90d2acaab6b91c1224e9a6f86b7fab767a653125dfa"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "promoter_no_tata",
+            "task_description": "Prediction of the presence of a promoter without a TATA-box motif in the sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/promoter_no_tata/train.parquet",
+                    "sha256": "db4d640c95f679ddc6a0be0dd153f56e9dc67497b37a1f5fd4e50442a2d5ed45"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1372,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/promoter_no_tata/test.parquet",
+                    "sha256": "2abef022f9d142255056b27286da875b02eae883203a785815e74282e713832c"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "splice_sites_acceptors",
+            "task_description": "Prediction of splice acceptor sites.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 600,
+                            "max": 600,
+                            "median": 600
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/splice_sites_acceptors/train.parquet",
+                    "sha256": "6cd196d979f96098a61a0bbb318831c6fdf43bdf7814dab2a0d8aaaa5ed4aa36"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 600,
+                            "max": 600,
+                            "median": 600
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/splice_sites_acceptors/test.parquet",
+                    "sha256": "fd49a389c983a3a266338f56ac85be53792eb51e6fdb96c0cb4211489971f64e"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "splice_sites_donors",
+            "task_description": "Prediction of splice donor sites.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 600,
+                            "max": 600,
+                            "median": 600
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/splice_sites_donors/train.parquet",
+                    "sha256": "68871ba32db06c1bdb5fb91941429c5dca0645c4276269eb70a7c6d9c31a5e48"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 600,
+                            "max": 600,
+                            "median": 600
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label",
+                        "task"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/InstaDeepAI/nucleotide_transformer_downstream_tasks_revised/resolve/851f9946252e90c665cdb3cc3eedb78f1f26197c/splice_sites_donors/test.parquet",
+                    "sha256": "27dc3dea6da3901f149e885693e06a0a02130544b22ee1f0650f542cbde24e54"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        }
+    ]
+}

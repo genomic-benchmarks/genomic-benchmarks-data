@@ -1,0 +1,699 @@
+{
+    "schema_version": "1.0",
+    "collection": "genomic-benchmarks",
+    "collection_doi": "https://doi.org/10.1186/s12863-023-01123-8",
+    "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "redistribution": "permitted",
+        "note": "Zenodo record 15324459 (doi:10.5281/zenodo.15324459), this project's own release of the collection, records cc-by-4.0. The ML-Bioinfo-CEITEC/genomic_benchmarks repository is Apache-2.0, but that covers the code; the Zenodo record is the release the data was published under. Attribution is required; the collection DOI carries it."
+    },
+    "datasets": [
+        {
+            "dataset_name": "demo_coding_vs_intergenomic_seqs",
+            "task_description": "Prediction of protein coding vs non-coding transcripts (computationally generated)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "coding",
+                "1": "intergenomic"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 200,
+                            "max": 200,
+                            "median": 200
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 75000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/demo_coding_vs_intergenomic_seqs/demo_coding_vs_intergenomic_seqs_train.csv.gz",
+                    "sha256": "e6faefb84b9e7e5f793862a449c21a65c4c2d12bd406634e6002958b8129a6dd"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 200,
+                            "max": 200,
+                            "median": 200
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 25000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/demo_coding_vs_intergenomic_seqs/demo_coding_vs_intergenomic_seqs_test.csv.gz",
+                    "sha256": "214480f6e9e1d82cc3a6794cb14d1cb8ba3e6406e2e73b3dcb399f2b7663c903"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "human_nontata_promoters",
+            "task_description": "Prediction of non-TATA promoters",
+            "dataset_doi": "https://doi.org/10.1371/journal.pone.0171410",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 251,
+                            "max": 251,
+                            "median": 251
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 27097,
+                    "class_ratio": {
+                        "0": 0.46,
+                        "1": 0.54
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_nontata_promoters/human_nontata_promoters_train.csv.gz",
+                    "sha256": "b4183948118723573fd438452e3f813e386e73aecad5f48352c109f04be2ab52"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 251,
+                            "max": 251,
+                            "median": 251
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 9034,
+                    "class_ratio": {
+                        "0": 0.46,
+                        "1": 0.54
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_nontata_promoters/human_nontata_promoters_test.csv.gz",
+                    "sha256": "fdcaa3931d715f491083170f1756a4c93dec28b57e12ed45f8fd3b133575f325"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "drosophila_enhancers_stark",
+            "task_description": "Prediction of enhancers",
+            "dataset_doi": "collection_doi",
+            "species": "Drosophila melanogaster",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 236,
+                            "max": 3237,
+                            "median": 2142
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5184,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/drosophila_enhancers_stark/drosophila_enhancers_stark_train.csv.gz",
+                    "sha256": "086d8c6d62d3ca7b81dcc69c6dd1a7780d19fcd8c79f67c70ef395064bcb6482"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 258,
+                            "max": 3061,
+                            "median": 2143
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1730,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/drosophila_enhancers_stark/drosophila_enhancers_stark_test.csv.gz",
+                    "sha256": "ab9695cc2039270f4e978a4f18d349eb4a5cbfb3de5483c64b63b9b9272d82eb"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "demo_human_or_worm",
+            "task_description": "Prediction of human or worm sequences (computationally generated)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens|Caenorhabditis elegans",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "worm",
+                "1": "human"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 200,
+                            "max": 200,
+                            "median": 200
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 75000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/demo_human_or_worm/demo_human_or_worm_train.csv.gz",
+                    "sha256": "c0370831eb537f37056ad3c89d87386a33cbd70cd87ffaf766f09cbc0b4c8aae"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 200,
+                            "max": 200,
+                            "median": 200
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 25000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/demo_human_or_worm/demo_human_or_worm_test.csv.gz",
+                    "sha256": "d6faaf9172322d70dc54dd2eb61f40daeb5bab1dc43de297ee6b1ddaf4272a87"
+                }
+            },
+            "task_category": "Species Classification",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "human_ocr_ensembl",
+            "task_description": "Prediction of open chromatin regions (OCRs)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 71,
+                            "max": 593,
+                            "median": 315
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 139804,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_ocr_ensembl/human_ocr_ensembl_train.csv.gz",
+                    "sha256": "25f45e2f61f9d64effcf7241c2ac597580ca25c371293c9b72fd4fb299f98d9d"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 84,
+                            "max": 593,
+                            "median": 315
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 34952,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_ocr_ensembl/human_ocr_ensembl_test.csv.gz",
+                    "sha256": "e571df6c21012350f115ef74e07c8ce2b241a89306e405e6bdbc7ecd757a86f5"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "human_enhancers_cohn",
+            "task_description": "Prediction of enhancers",
+            "dataset_doi": "https://doi.org/10.1101/264200",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 20843,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_enhancers_cohn/human_enhancers_cohn_train.csv.gz",
+                    "sha256": "3d119e13b3d54ed4ea57b104e44c9321d412db58c43e2485a9c80f4e7b96c52a"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 6948,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_enhancers_cohn/human_enhancers_cohn_test.csv.gz",
+                    "sha256": "70d23184d72891ae2353d8cb09d45dc0c0bc241ceb490561b0ca0462c01ad946"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "human_enhancers_ensembl",
+            "task_description": "Prediction of enhancers",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 2,
+                            "max": 573,
+                            "median": 269
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 123872,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_enhancers_ensembl/human_enhancers_ensembl_train.csv.gz",
+                    "sha256": "f76698e68b51518c2fb73befedabe82e7c6210a2f330040d267588fb0f55eaaf"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 2,
+                            "max": 573,
+                            "median": 267
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30970,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/genomic-benchmarks/resolve/b34495fb23f26518c74eec4af66295c63331f3f1/v1/human_enhancers_ensembl/human_enhancers_ensembl_test.csv.gz",
+                    "sha256": "4d32b32478fdbd60311e7f26aaf50ea1b223781cae0a9e0f8f029c3bebf39689"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        }
+    ]
+}

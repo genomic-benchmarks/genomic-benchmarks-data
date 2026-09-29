@@ -1,0 +1,1561 @@
+{
+    "schema_version": "1.0",
+    "collection": "mRNABench",
+    "collection_doi": "https://doi.org/10.1101/2025.07.05.662870",
+    "licence": {
+        "name": null,
+        "url": null,
+        "redistribution": "unknown",
+        "note": "morrislab publishes these datasets on Hugging Face with license: unknown, so the collection release grants nothing and this fallback stays unknown. Not a refusal - unasked. Every retained dataset now carries its own override resolved at its true upstream: three are CC BY 4.0 tagged at morrislab, two rest on Zheng et al.'s \"without restriction\" statement, and six on GEO deposition under NCBI's no-restrictions intake policy."
+    },
+    "datasets": [
+        {
+            "dataset_name": "mrl-sugimoto",
+            "task_description": "Prediction of mean ribosome load (MRL) from sequence (isoform-resolved).",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "CC BY 4.0",
+                "url": "https://creativecommons.org/licenses/by/4.0/",
+                "redistribution": "permitted",
+                "note": "Hugging Face morrislab/mrl-sugimoto is tagged cc-by-4.0."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 100,
+                            "max": 12163,
+                            "median": 2004
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 1.8850898742675781,
+                        "max": 6.77964448928833,
+                        "median": 4.4859459400177
+                    },
+                    "dataset_size": 8186,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sugimoto/mrl-sugimoto_train.csv.gz",
+                    "sha256": "376f8fe1fd26fa8e89920863e65cfb4dfa508fe53e5bf13a38c6c8bc29c5bafb"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 195,
+                            "max": 12134,
+                            "median": 1895
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 2.1217923164367676,
+                        "max": 6.639439105987549,
+                        "median": 4.395181179046631
+                    },
+                    "dataset_size": 1753,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sugimoto/mrl-sugimoto_val.csv.gz",
+                    "sha256": "9d28c92ef894ee1a9c200065a0033c2d563814d2352b60d8846a262bc98000be"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 150,
+                            "max": 12275,
+                            "median": 1946
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 2.1081900596618652,
+                        "max": 6.54083776473999,
+                        "median": 4.368711471557617
+                    },
+                    "dataset_size": 1754,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sugimoto/mrl-sugimoto_test.csv.gz",
+                    "sha256": "4f2f99db2bfb023ee78be3211be10da224ff40c242c550b983411d214efd5db3"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "mrl-sample-mcherry",
+            "task_description": "Prediction of mean ribosome load (MRL) from 5' UTR sequence (within an mCherry reporter construct).",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target_mrl_mcherry",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (GEO deposition)",
+                "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+                "redistribution": "permitted",
+                "note": "mRNABench collected this data from GEO, series GSE114002 (Sample et al. 2019), which is public. NCBI's data usage policy states: \"NCBI itself places no restrictions on the use or distribution of the data contained therein. Nor do we accept data when the submitter has requested restrictions on reuse or redistribution.\" Deposition is therefore evidence that no redistribution restriction was requested. Recorded with the qualification that this is an inference from the repository's intake policy rather than a grant from the authors: the same policy notes submitters may still hold copyright, and NCBI cannot give permission on their behalf. The paper states no data availability terms of its own."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 10.0,
+                        "median": 4.4344574165649995
+                    },
+                    "dataset_size": 134257,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_mcherry"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-mcherry/mrl-sample-mcherry_train.csv.gz",
+                    "sha256": "1517fa074e8fae469aceb05230b2edfe7ed19da95455ce094b3e08bd04e11189"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 10.0,
+                        "median": 4.4410155759575005
+                    },
+                    "dataset_size": 28770,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_mcherry"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-mcherry/mrl-sample-mcherry_val.csv.gz",
+                    "sha256": "ff44bef213d4d436d657010718a2e9781a4c141337d8c1155340542060cd245b"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 10.0,
+                        "median": 4.438802414785
+                    },
+                    "dataset_size": 28770,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_mcherry"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-mcherry/mrl-sample-mcherry_test.csv.gz",
+                    "sha256": "de083c864dd988128e734a65e382008cf38e175b47752ac5785d186e19450de9"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "mrl-sample-designed",
+            "task_description": "Prediction of mean ribosome load (MRL) from algorithmically designed 5' UTR sequence (within an eGFP reporter construct).",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target_mrl_designed",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (GEO deposition)",
+                "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+                "redistribution": "permitted",
+                "note": "mRNABench collected this data from GEO, series GSE114002 (Sample et al. 2019), which is public. NCBI's data usage policy states: \"NCBI itself places no restrictions on the use or distribution of the data contained therein. Nor do we accept data when the submitter has requested restrictions on reuse or redistribution.\" Deposition is therefore evidence that no redistribution restriction was requested. Recorded with the qualification that this is an inference from the repository's intake policy rather than a grant from the authors: the same policy notes submitters may still hold copyright, and NCBI cannot give permission on their behalf. The paper states no data availability terms of its own."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.32637645462,
+                        "max": 9.87649427367,
+                        "median": 6.15096295973
+                    },
+                    "dataset_size": 70011,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_designed"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-designed/mrl-sample-designed_train.csv.gz",
+                    "sha256": "385560e9898cdede0970d0263079397a850ae6ad5d058f4468f37e12f81c19fe"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.663939511086,
+                        "max": 9.66302215289,
+                        "median": 6.18779035041
+                    },
+                    "dataset_size": 15003,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_designed"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-designed/mrl-sample-designed_val.csv.gz",
+                    "sha256": "f73c35ecb5a2f257decc757d95e89d83404560a4966d6b9bdae71ad79a993d24"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.542211101309,
+                        "max": 9.26770803767,
+                        "median": 6.13615778987
+                    },
+                    "dataset_size": 15003,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_designed"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-designed/mrl-sample-designed_test.csv.gz",
+                    "sha256": "86fdadfcbe507b41be76f822472cc1c87235a7710f827a9a066eb53a4fce5d65"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "mrl-sample-varying",
+            "task_description": "Prediction of mean ribosome load (MRL) from variable length 5' UTR sequence (within an eGFP reporter construct).",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target_mrl_varying_length",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (GEO deposition)",
+                "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+                "redistribution": "permitted",
+                "note": "mRNABench collected this data from GEO, series GSE114002 (Sample et al. 2019), which is public. NCBI's data usage policy states: \"NCBI itself places no restrictions on the use or distribution of the data contained therein. Nor do we accept data when the submitter has requested restrictions on reuse or redistribution.\" Deposition is therefore evidence that no redistribution restriction was requested. Recorded with the qualification that this is an inference from the repository's intake policy rather than a grant from the authors: the same policy notes submitters may still hold copyright, and NCBI cannot give permission on their behalf. The paper states no data availability terms of its own."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 830,
+                            "max": 905,
+                            "median": 866
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 11.0,
+                        "median": 5.65360287279
+                    },
+                    "dataset_size": 74571,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_varying_length"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-varying/mrl-sample-varying_train.csv.gz",
+                    "sha256": "cb1893ab8da117ccd70af21f9ff4efae7e74413b518694b5b9510981f6b1f7cb"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 830,
+                            "max": 905,
+                            "median": 866
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 11.0,
+                        "median": 5.64393359815
+                    },
+                    "dataset_size": 15979,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_varying_length"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-varying/mrl-sample-varying_val.csv.gz",
+                    "sha256": "f9dc2df83d09ab9b047c3c2312aba01aebb6b3a839a0bb77e9e66236ce368baf"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 830,
+                            "max": 905,
+                            "median": 866
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 11.0,
+                        "median": 5.653109759385
+                    },
+                    "dataset_size": 15980,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_varying_length"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-varying/mrl-sample-varying_test.csv.gz",
+                    "sha256": "886c2504415214a4a877af6475f0a57d1f55de12cd9f2e0d12ee6879e38ee9b6"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "translation-efficiency-human",
+            "task_description": "Prediction of translation efficiency from sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (author statement)",
+                "url": "https://doi.org/10.1038/s41587-025-02712-x",
+                "redistribution": "permitted",
+                "note": "Zheng et al., the group that generated these measurements, state in the paper's Data availability section: \"We provide the processed data without restriction in supplementary tables herein.\" That is a grant from the rights holder over the processed data, which is what is redistributed here. It outranks the license: unknown tag on the Hugging Face mirror morrislab/translation-efficiency-*, which is a redistributor rather than the source. No named licence was invoked, so the card publishes as `other` with these terms in its body."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 303,
+                            "max": 17497,
+                            "median": 3445
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -2.639472007751465,
+                        "max": 3.4892032146453857,
+                        "median": 0.24160628020763397
+                    },
+                    "dataset_size": 7196,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "transcript_id",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/translation-efficiency-human/translation-efficiency-human_train.csv.gz",
+                    "sha256": "2bb9b510737678a43a6db225bc0f54cfc96cabf61f68da4aadb0d8b51ad5b8b4"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 426,
+                            "max": 12903,
+                            "median": 3318
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -2.122661590576172,
+                        "max": 2.6388297080993652,
+                        "median": 0.2568601071834564
+                    },
+                    "dataset_size": 1543,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "transcript_id",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/translation-efficiency-human/translation-efficiency-human_val.csv.gz",
+                    "sha256": "86056da588388e9f8c97fd3f8f5e91af414180ce712f124245408c973cf4683f"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 305,
+                            "max": 15159,
+                            "median": 3224
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -1.81804621219635,
+                        "max": 3.3099982738494873,
+                        "median": 0.25347740948200226
+                    },
+                    "dataset_size": 1542,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "transcript_id",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/translation-efficiency-human/translation-efficiency-human_test.csv.gz",
+                    "sha256": "27759f0a7512a809915204725c1859812f73c99003670fae9bf75ec10d4bee6e"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "translation-efficiency-mouse",
+            "task_description": "Prediction of translation efficiency from sequence.",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (author statement)",
+                "url": "https://doi.org/10.1038/s41587-025-02712-x",
+                "redistribution": "permitted",
+                "note": "Zheng et al., the group that generated these measurements, state in the paper's Data availability section: \"We provide the processed data without restriction in supplementary tables herein.\" That is a grant from the rights holder over the processed data, which is what is redistributed here. It outranks the license: unknown tag on the Hugging Face mirror morrislab/translation-efficiency-*, which is a redistributor rather than the source. No named licence was invoked, so the card publishes as `other` with these terms in its body."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 311,
+                            "max": 12252,
+                            "median": 3085
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -2.0212738513946533,
+                        "max": 3.156687021255493,
+                        "median": 0.34909623861312866
+                    },
+                    "dataset_size": 7597,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "transcript_id",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/translation-efficiency-mouse/translation-efficiency-mouse_train.csv.gz",
+                    "sha256": "d38b47783e9bf33339da23b7316074bbd0150c8df3d4ddebe1644e8ef6b2b9ba"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 383,
+                            "max": 11971,
+                            "median": 3186
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -1.77683687210083,
+                        "max": 2.8156139850616455,
+                        "median": 0.33834949135780334
+                    },
+                    "dataset_size": 1628,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "transcript_id",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/translation-efficiency-mouse/translation-efficiency-mouse_val.csv.gz",
+                    "sha256": "fb3708897c9dec388073fc6898dd4934112d5f48c30ceb83971e6b8b4d4eb0e4"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 394,
+                            "max": 11876,
+                            "median": 3122
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -1.7521103620529175,
+                        "max": 2.279662609100342,
+                        "median": 0.33101238310337067
+                    },
+                    "dataset_size": 1628,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "transcript_id",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/translation-efficiency-mouse/translation-efficiency-mouse_test.csv.gz",
+                    "sha256": "3d532839205846a993f43a17371faf7dcb4edc67f0229834602a0a1f9206c130"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "rnahl-human",
+            "task_description": "Prediction of mRNA half-life from sequence. Target is first PCA component of half-life measurments across 39 human aggregated datasets. ",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "CC BY 4.0",
+                "url": "https://creativecommons.org/licenses/by/4.0/",
+                "redistribution": "permitted",
+                "note": "Hugging Face morrislab/rnahl-saluki-human is tagged cc-by-4.0."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 401,
+                            "max": 12288,
+                            "median": 3180
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.564453125,
+                        "max": 3.77734375,
+                        "median": 0.0057220458984375
+                    },
+                    "dataset_size": 9057,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/rnahl-human/rnahl-human_train.csv.gz",
+                    "sha256": "7b20de46922559f253e816fce002c4a53341ac5f6e90eb93399bbfbffdb39496"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 384,
+                            "max": 12288,
+                            "median": 3006
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -2.900390625,
+                        "max": 3.28125,
+                        "median": 0.0531158447265625
+                    },
+                    "dataset_size": 1942,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/rnahl-human/rnahl-human_val.csv.gz",
+                    "sha256": "cc02228287af0b5f06401a0e289e680f0a16945c8781ad67804c9bfa5dca3e63"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 350,
+                            "max": 12288,
+                            "median": 2914
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.072265625,
+                        "max": 3.0,
+                        "median": 0.10711669921875
+                    },
+                    "dataset_size": 1940,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/rnahl-human/rnahl-human_test.csv.gz",
+                    "sha256": "08cb44392ed201cf88f0d859cec3ba10561fad4a2ae32c42af2053f91c4d3a8e"
+                }
+            },
+            "task_category": "RNA Stability Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "rnahl-mouse",
+            "task_description": "Prediction of mRNA half-life from sequence. Target is first PCA component of half-life measurments across 27 mouse aggregated datasets.",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "CC BY 4.0",
+                "url": "https://creativecommons.org/licenses/by/4.0/",
+                "redistribution": "permitted",
+                "note": "Hugging Face morrislab/rnahl-saluki-mouse is tagged cc-by-4.0."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 345,
+                            "max": 12288,
+                            "median": 2874
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.48046875,
+                        "max": 4.125,
+                        "median": 0.0414886474609375
+                    },
+                    "dataset_size": 9606,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/rnahl-mouse/rnahl-mouse_train.csv.gz",
+                    "sha256": "a31bb103c4bc32d3dc0ce43a0317ad13d6ad4d511c1dbeb535fde18778fdbf64"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 341,
+                            "max": 12288,
+                            "median": 2838
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.640625,
+                        "max": 3.060546875,
+                        "median": 0.012363433837890625
+                    },
+                    "dataset_size": 2058,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/rnahl-mouse/rnahl-mouse_val.csv.gz",
+                    "sha256": "bfc1fd7b6a9777d2ea75afb9403d501304030a3c9276a3f8ecfa1ca6673f3651"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 317,
+                            "max": 12288,
+                            "median": 2868
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -2.984375,
+                        "max": 3.5625,
+                        "median": 0.027496337890625
+                    },
+                    "dataset_size": 2059,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "chromosome",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/rnahl-mouse/rnahl-mouse_test.csv.gz",
+                    "sha256": "7df87014626b99022d70a44646e11e3d7ba8df9e4ae80b756b96c0edcae490f1"
+                }
+            },
+            "task_category": "RNA Stability Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "mrl-sample-egfp-pseudo",
+            "task_description": "Prediction of mean ribosome load (MRL) from 5' UTR sequence (within an eGFP reporter construct), using alternative RNA biology: pseudouridine.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target_mrl_egfp_pseudo",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (GEO deposition)",
+                "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+                "redistribution": "permitted",
+                "note": "mRNABench collected this data from GEO, series GSE114002 (Sample et al. 2019), which is public. NCBI's data usage policy states: \"NCBI itself places no restrictions on the use or distribution of the data contained therein. Nor do we accept data when the submitter has requested restrictions on reuse or redistribution.\" Deposition is therefore evidence that no redistribution restriction was requested. Recorded with the qualification that this is an inference from the repository's intake policy rather than a grant from the authors: the same policy notes submitters may still hold copyright, and NCBI cannot give permission on their behalf. The paper states no data availability terms of its own."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 12.0,
+                        "median": 5.890341626230001
+                    },
+                    "dataset_size": 222927,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_pseudo",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-pseudo/mrl-sample-egfp-pseudo_train.csv.gz",
+                    "sha256": "f5aa2c47979ddb665ab41cf1267673ad4fc325f5d73ab30433e3b53a52c4b671"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.20176306864,
+                        "max": 11.5026359547,
+                        "median": 5.9001817671725
+                    },
+                    "dataset_size": 47770,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_pseudo",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-pseudo/mrl-sample-egfp-pseudo_val.csv.gz",
+                    "sha256": "ae4ad015eed9fae3591533175eaa08cd6334a86b348fe16b0fa0b4da10cd355d"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.1448878193695,
+                        "max": 10.778949344505001,
+                        "median": 5.89588256907
+                    },
+                    "dataset_size": 47771,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_pseudo",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-pseudo/mrl-sample-egfp-pseudo_test.csv.gz",
+                    "sha256": "8000e33b71aba69e038c1d952e2aa64c4b7a8b3307356b5e65659572c49db5d5"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "mrl-sample-egfp-m1pseudo",
+            "task_description": "Prediction of mean ribosome load (MRL) from 5' UTR sequence (within an eGFP reporter construct), using alternative RNA biology: 1-methylpseudouridine.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target_mrl_egfp_m1pseudo",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (GEO deposition)",
+                "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+                "redistribution": "permitted",
+                "note": "mRNABench collected this data from GEO, series GSE114002 (Sample et al. 2019), which is public. NCBI's data usage policy states: \"NCBI itself places no restrictions on the use or distribution of the data contained therein. Nor do we accept data when the submitter has requested restrictions on reuse or redistribution.\" Deposition is therefore evidence that no redistribution restriction was requested. Recorded with the qualification that this is an inference from the repository's intake policy rather than a grant from the authors: the same policy notes submitters may still hold copyright, and NCBI cannot give permission on their behalf. The paper states no data availability terms of its own."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 12.0,
+                        "median": 6.137748582115
+                    },
+                    "dataset_size": 222927,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_m1pseudo",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-m1pseudo/mrl-sample-egfp-m1pseudo_train.csv.gz",
+                    "sha256": "5767cd7a75db276e17514c9ec61d52c8c9471e42962bbe8ee7d882554478e3ff"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.25,
+                        "max": 12.0,
+                        "median": 6.1529596682175
+                    },
+                    "dataset_size": 47770,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_m1pseudo",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-m1pseudo/mrl-sample-egfp-m1pseudo_val.csv.gz",
+                    "sha256": "d1e78af6ea91d5a9a04c223ebbce5283dc7237d6d34b1d1502ea7c47759b7cb5"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 12.0,
+                        "median": 6.14572328374
+                    },
+                    "dataset_size": 47771,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_m1pseudo",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-m1pseudo/mrl-sample-egfp-m1pseudo_test.csv.gz",
+                    "sha256": "86143a4640c1483cf580a91469a85c11be4c3126cf91b483c396d7d977d43f5f"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "mrl-sample-egfp-unmod",
+            "task_description": "Prediction of mean ribosome load (MRL) from 5' UTR sequence (within an eGFP reporter construct), using unmodified RNA biology.",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "target_mrl_egfp_unmod",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "licence": {
+                "name": "No restrictions (GEO deposition)",
+                "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+                "redistribution": "permitted",
+                "note": "mRNABench collected this data from GEO, series GSE114002 (Sample et al. 2019), which is public. NCBI's data usage policy states: \"NCBI itself places no restrictions on the use or distribution of the data contained therein. Nor do we accept data when the submitter has requested restrictions on reuse or redistribution.\" Deposition is therefore evidence that no redistribution restriction was requested. Recorded with the qualification that this is an inference from the repository's intake policy rather than a grant from the authors: the same policy notes submitters may still hold copyright, and NCBI cannot give permission on their behalf. The paper states no data availability terms of its own."
+            },
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 12.5,
+                        "median": 6.614861033525
+                    },
+                    "dataset_size": 222927,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_unmod",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-unmod/mrl-sample-egfp-unmod_train.csv.gz",
+                    "sha256": "177c70ac62d8628facc7918a12d5d3ccdc2e749321cddaa65422d687bb433fc4"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 11.25,
+                        "median": 6.622774339535
+                    },
+                    "dataset_size": 47770,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_unmod",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-unmod/mrl-sample-egfp-unmod_val.csv.gz",
+                    "sha256": "4e3cd7522dfe8fedbeb8b5e31ce9554ae63c25b6a0e894b456be4072c64565f3"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 855,
+                            "max": 855,
+                            "median": 855
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0,
+                        "max": 12.0,
+                        "median": 6.629405647555
+                    },
+                    "dataset_size": 47771,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "cds",
+                        "splice",
+                        "target_mrl_egfp_unmod",
+                        "u_start",
+                        "u_oof_start",
+                        "kozak_quality"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/mRNABench/resolve/d2fd198c62746770a52a71617a684b26695b97fc/v1/mrl-sample-egfp-unmod/mrl-sample-egfp-unmod_test.csv.gz",
+                    "sha256": "5aa43de5dcd1f44ea6a5f3009ecbea361cf30e07d34c0d2ca05d7606c64b3ad2"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        }
+    ]
+}

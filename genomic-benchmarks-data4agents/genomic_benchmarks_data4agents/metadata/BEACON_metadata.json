@@ -1,0 +1,290 @@
+{
+    "schema_version": "1.0",
+    "collection": "BEACON",
+    "collection_doi": "https://doi.org/10.52202/079017-2949",
+    "licence": {
+        "name": "Apache-2.0",
+        "url": "https://github.com/terry-r123/RNABenchmark/blob/main/LICENSE",
+        "redistribution": "permitted",
+        "note": "The paper states that the datasets and the source code of the benchmark are available at github.com/terry-r123/RNABenchmark, and that repository is Apache-2.0, so the release the authors point at is the licensed one. Recorded with the qualification that the files themselves are served from the Google Drive folder the repository links (19ddrwI8ycvIxkgSV3gDo_VunLofYd4-6), which carries no terms of its own; neither the paper nor its NeurIPS datasheet states a licence for the data separately. Apache-2.0 permits redistribution provided the licence and the attribution notices are kept."
+    },
+    "datasets": [
+        {
+            "dataset_name": "Isoform",
+            "task_description": "Prediction of usage ratio of the proximal polyadenylation site (PAS) in the 3' UTR for each variant.",
+            "dataset_doi": "https://doi.org/10.1016/j.cell.2019.04.046",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "proximal_isoform_proportion",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 186,
+                            "max": 186,
+                            "median": 186
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T",
+                            "X"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0015748031496062,
+                        "max": 1.0,
+                        "median": 0.4769230769230769
+                    },
+                    "dataset_size": 145463,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "library",
+                        "seq",
+                        "proximal_isoform_proportion",
+                        "library_index"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/BEACON/resolve/adb095d6b0c629167c15866582bc2c72e28dfb90/v1/Isoform/Isoform_train.csv.gz",
+                    "sha256": "2523aac887d9d6c8098311c04570f15121043ce95abdd5e84029653d2674c6a9"
+                },
+                "val": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 186,
+                            "max": 186,
+                            "median": 186
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T",
+                            "X"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0043478260869565,
+                        "max": 1.0,
+                        "median": 0.5161290322580645
+                    },
+                    "dataset_size": 33170,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "library",
+                        "seq",
+                        "proximal_isoform_proportion",
+                        "library_index"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/BEACON/resolve/adb095d6b0c629167c15866582bc2c72e28dfb90/v1/Isoform/Isoform_val.csv.gz",
+                    "sha256": "7ce4308cf373daa049ef682967e644f6ad4d86cfbad5c59d9302095341453c98"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "MeanRibosomeLoading",
+            "task_description": "Prediction of the mean ribosome loading (MRL) of mRNA sequences, representing the level of mRNA translation actiivity into proteins.",
+            "dataset_doi": "https://doi.org/10.1038/s41587-019-0164-5",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 25,
+                            "max": 100,
+                            "median": 61
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.3961112555802204,
+                        "max": 3.5656350339241007,
+                        "median": 0.2826180523062412
+                    },
+                    "dataset_size": 76319,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/BEACON/resolve/adb095d6b0c629167c15866582bc2c72e28dfb90/v1/MeanRibosomeLoading/MeanRibosomeLoading_train.csv.gz",
+                    "sha256": "9d85f887c856cc410dd07370ae04ac28c4174616a99a2ea655701efd7cd91abc"
+                },
+                "val": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 25,
+                            "max": 100,
+                            "median": 62
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -2.9309208096048494,
+                        "max": 2.055728807254205,
+                        "median": 0.3139413326735074
+                    },
+                    "dataset_size": 7600,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/BEACON/resolve/adb095d6b0c629167c15866582bc2c72e28dfb90/v1/MeanRibosomeLoading/MeanRibosomeLoading_val.csv.gz",
+                    "sha256": "3468eebec29747a4869d4d694b50645c1589d2c425238dbc9b2ca09570d5374c"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "CRISPROnTarget",
+            "task_description": "Prediction of the knockout efficacy of single-guide RNA (sgRNA) directed by Cas proteins in gene editing within specific target sites.",
+            "dataset_doi": "https://doi.org/10.1186/s13059-018-1459-4",
+            "species": "Homo sapiens",
+            "task_type": "Regression",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "val"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 23,
+                            "max": 23,
+                            "median": 23
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0277828845416346,
+                        "max": 0.692699498961697,
+                        "median": 0.216143386109033
+                    },
+                    "dataset_size": 1453,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/BEACON/resolve/adb095d6b0c629167c15866582bc2c72e28dfb90/v1/CRISPROnTarget/CRISPROnTarget_train.csv.gz",
+                    "sha256": "66cf1af39463cfb3acb9aca56c13fde6e2c31cd170470e874e761d52d6e19db5"
+                },
+                "val": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 23,
+                            "max": 23,
+                            "median": 23
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": 0.0282258939460234,
+                        "max": 0.55142413846013,
+                        "median": 0.216666917873199
+                    },
+                    "dataset_size": 207,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/BEACON/resolve/adb095d6b0c629167c15866582bc2c72e28dfb90/v1/CRISPROnTarget/CRISPROnTarget_val.csv.gz",
+                    "sha256": "0e21e3f7b58487289173c8b1ee692175ee661cd85528c44ff84a200b06ab1549"
+                }
+            },
+            "task_category": "Engineering Prediction",
+            "molecular_level": "DNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        }
+    ]
+}

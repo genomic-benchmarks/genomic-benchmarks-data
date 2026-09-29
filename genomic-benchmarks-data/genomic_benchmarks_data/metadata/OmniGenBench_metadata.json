@@ -1,0 +1,2143 @@
+{
+    "schema_version": "1.0",
+    "collection": "OmniGenBench",
+    "collection_doi": "https://doi.org/10.48550/arXiv.2505.14402",
+    "licence": {
+        "name": "MIT",
+        "url": "https://huggingface.co/spaces/yangheng/OmniGenBenchLeaderboard/blob/main/README.md",
+        "redistribution": "permitted",
+        "note": "The PGB and RGB files were downloaded from the Hugging Face Space yangheng/OmniGenBenchLeaderboard, whose card metadata declares license: mit. The COLA-Laboratory/OmniGenBench code repository is Apache-2.0 separately; the Space is the artifact the data came from. MIT permits redistribution provided the licence notice is kept."
+    },
+    "datasets": [
+        {
+            "dataset_name": "te_prediction_arabidopsis",
+            "task_description": "Prediction of high vs low translational efficiency on 5' UTRs in Arabidopsis",
+            "dataset_doi": "https://doi.org/10.1038/s42256-024-00946-z",
+            "species": "Arabidopsis thaliana",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "low",
+                "1": "high"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 27,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3399,
+                    "class_ratio": {
+                        "0": 0.45,
+                        "1": 0.55
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/te_prediction_arabidopsis/te_prediction_arabidopsis_train.csv.gz",
+                    "sha256": "91c8e26b145b3f1a74534e5b7458b8a19eb31b8610607f36cb476892fd57cd5b"
+                },
+                "val": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 424,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/te_prediction_arabidopsis/te_prediction_arabidopsis_val.csv.gz",
+                    "sha256": "52f06e88240eb5d4687876e15c86b7d21f0bdcad2e36ac897cc99939af0d0419"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 426,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/te_prediction_arabidopsis/te_prediction_arabidopsis_test.csv.gz",
+                    "sha256": "c795d99493dc017d6601eb1d83814119dce699b2ebc48d8448c80a3f8136341a"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "te_prediction_rice",
+            "task_description": "Prediction of high vs low translational efficiency on 5' UTRs in Rice",
+            "dataset_doi": "https://doi.org/10.1038/s42256-024-00946-z",
+            "species": "Oryza sativa",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "seq"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "low",
+                "1": "high"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 4697,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/te_prediction_rice/te_prediction_rice_train.csv.gz",
+                    "sha256": "88cb21a7acce083fb17ce905181282557978ed1c1156d6d40f232866c23dd2f7"
+                },
+                "val": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 587,
+                    "class_ratio": {
+                        "0": 0.44,
+                        "1": 0.56
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/te_prediction_rice/te_prediction_rice_val.csv.gz",
+                    "sha256": "9d4ad35ed15030cb70e0a1f98eb95b056d7670c493680a70016c089e8e8babf6"
+                },
+                "test": {
+                    "seq_length": {
+                        "seq": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "seq": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 588,
+                    "class_ratio": {
+                        "0": 0.44,
+                        "1": 0.56
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "seq",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/te_prediction_rice/te_prediction_rice_test.csv.gz",
+                    "sha256": "48652d728d1f2fc47a9e0bfcf8533866535a02d3989237e0eb727995bee4e4bd"
+                }
+            },
+            "task_category": "Translation Efficiency Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "lncrna_m_esculenta",
+            "task_description": "Prediction of long non-coding RNA in Manihot esculenta (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Manihot esculenta",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 108,
+                            "max": 2534,
+                            "median": 592
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 4934,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_m_esculenta/lncrna_m_esculenta_train.csv.gz",
+                    "sha256": "a4dba556c8aabb474c388a0f7a65daefb7cfb361ec87d6e01dd00b19b6e892fd"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 138,
+                            "max": 1719,
+                            "median": 580
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 360,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_m_esculenta/lncrna_m_esculenta_test.csv.gz",
+                    "sha256": "46d4b377d409679ff9a62a042b0d7e7b1755a9584dd523275623c4460046fbf9"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "lncrna_z_mays",
+            "task_description": "Prediction of long non-coding RNA in Zea mays (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Zea mays",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 201,
+                            "max": 2600,
+                            "median": 496
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_z_mays/lncrna_z_mays_train.csv.gz",
+                    "sha256": "85bf1284e4e888474659aa7c4eb590cceef35ff28031cf9f857fff309050dc0a"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 201,
+                            "max": 2467,
+                            "median": 453
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.44,
+                        "1": 0.56
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_z_mays/lncrna_z_mays_test.csv.gz",
+                    "sha256": "71fffc99a0a3a8ec7778385cad78288badc57a1e1afc641cb3332e5f6c336a28"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "lncrna_g_max",
+            "task_description": "Prediction of long non-coding RNA in Glycine max (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Glycine max",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 102,
+                            "max": 1740,
+                            "median": 621
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_g_max/lncrna_g_max_train.csv.gz",
+                    "sha256": "c2f7b45049a062f708ca777e786990c56400afd7ea76d108614bcfa44aae4f78"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 120,
+                            "max": 1644,
+                            "median": 600
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 490,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_g_max/lncrna_g_max_test.csv.gz",
+                    "sha256": "fb18f244f21900886b656780dfe582473df56430e3b78671cfd14545db3dd1a2"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "lncrna_s_lycopersicum",
+            "task_description": "Prediction of long non-coding RNA in Solanum lycopersicum (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Solanum lycopersicum",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 105,
+                            "max": 5964,
+                            "median": 331
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 7274,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_s_lycopersicum/lncrna_s_lycopersicum_train.csv.gz",
+                    "sha256": "1131c59dd1ab49b818bae24e854eafecf15192881a93f8d5f32713ff8bb6e3b0"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 111,
+                            "max": 6000,
+                            "median": 339
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_s_lycopersicum/lncrna_s_lycopersicum_test.csv.gz",
+                    "sha256": "da9146859da733b05d4a8b355861ad8efc000c55e18ad56fb69ab2eff61918f5"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "lncrna_t_aestivum",
+            "task_description": "Prediction of long non-coding RNA in Triticum aestivum (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Triticum aestivum",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 108,
+                            "max": 4880,
+                            "median": 330
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_t_aestivum/lncrna_t_aestivum_train.csv.gz",
+                    "sha256": "834c193d588133268a24eb10eb99de777020d6e5e3cb61017c8c6250175c9174"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 111,
+                            "max": 4073,
+                            "median": 321
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_t_aestivum/lncrna_t_aestivum_test.csv.gz",
+                    "sha256": "2f197a59dbb5687a05888ad940b929f3caf51bf7eeb5ab2c58c66dd6c8d2cd23"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "lncrna_s_bicolor",
+            "task_description": "Prediction of long non-coding RNA in Sorghum bicolor (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Sorghum bicolor",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 117,
+                            "max": 5971,
+                            "median": 802
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_s_bicolor/lncrna_s_bicolor_train.csv.gz",
+                    "sha256": "9d8acaa3b184e970bd1848b6c1a8947987d0fcc8d3e5ba26c71a36acdeb354b6"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 171,
+                            "max": 5473,
+                            "median": 908
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 734,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/lncrna_s_bicolor/lncrna_s_bicolor_test.csv.gz",
+                    "sha256": "4e93b42c1b17e850bcef651f4f72b28e4c18e46888e11c3ab23023f77cdfabb9"
+                }
+            },
+            "task_category": "RNA / Transcript Classification",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "poly_a_arabidopsis_thaliana",
+            "task_description": "Prediction of polyadenylation sites in Arabidopsis thaliana (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Arabidopsis thaliana",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.66,
+                        "1": 0.34
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_arabidopsis_thaliana/poly_a_arabidopsis_thaliana_train.csv.gz",
+                    "sha256": "362a4591f6b6ba81b4dc9e7198bdf34cf406b6f3d908d53d8fa177c9aad46d6d"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.64,
+                        "1": 0.36
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_arabidopsis_thaliana/poly_a_arabidopsis_thaliana_test.csv.gz",
+                    "sha256": "bd394d6b0d89b18c54058780b85522dee4f466925ae2a05fe6003c1bbc07b0d6"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "poly_a_oryza_sativa_indica_group",
+            "task_description": "Prediction of polyadenylation sites in Oryza sativa indica (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Oryza sativa",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.66,
+                        "1": 0.34
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_oryza_sativa_indica_group/poly_a_oryza_sativa_indica_group_train.csv.gz",
+                    "sha256": "86bd8bd9ec311a384f13b0e2a81ed33970f8d5e746cbda48f74370ef757ad2b2"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.66,
+                        "1": 0.34
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_oryza_sativa_indica_group/poly_a_oryza_sativa_indica_group_test.csv.gz",
+                    "sha256": "2b547a90848d57bfb138037e05135c7553c35d5012aa86f4f0c45dd5e58afab4"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "poly_a_trifolium_pratense",
+            "task_description": "Prediction of polyadenylation sites in Trifolium pratense (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Trifolium pratense",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.67,
+                        "1": 0.33
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_trifolium_pratense/poly_a_trifolium_pratense_train.csv.gz",
+                    "sha256": "5f83fdc5cd1ca68921546c457227d57c83a209b8b90c75b549e9b2386a0ab2dd"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.65,
+                        "1": 0.35
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_trifolium_pratense/poly_a_trifolium_pratense_test.csv.gz",
+                    "sha256": "d254989d6ba055c88079cc0cacd9956018003ee219a18bea89cd6ab44ef3dd7c"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "poly_a_medicago_truncatula",
+            "task_description": "Prediction of polyadenylation sites in Medicago truncatula (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Medicago truncatula",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.67,
+                        "1": 0.33
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_medicago_truncatula/poly_a_medicago_truncatula_train.csv.gz",
+                    "sha256": "e0f9541342758c79f94a72f4728486c7d455a671947786845d3a6ea9bcde22bf"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.66,
+                        "1": 0.34
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_medicago_truncatula/poly_a_medicago_truncatula_test.csv.gz",
+                    "sha256": "f93b67b6a2c012194d2fc2b7babec2e5600fcbffdb06a8de1fd4ec6400f365df"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "poly_a_chlamydomonas_reinhardtii",
+            "task_description": "Prediction of polyadenylation sites in Chlamydomonas reinhardtii (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Chlamydomonas reinhardtii",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.67,
+                        "1": 0.33
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_chlamydomonas_reinhardtii/poly_a_chlamydomonas_reinhardtii_train.csv.gz",
+                    "sha256": "549c2705da7d4c61644f144dd75e769f964cf58b274e90ad2a3a8914e8333486"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.65,
+                        "1": 0.35
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_chlamydomonas_reinhardtii/poly_a_chlamydomonas_reinhardtii_test.csv.gz",
+                    "sha256": "529490d378a70edd7e651038d370c2041bf0e39eb6fca65143dd6f077563224b"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "poly_a_oryza_sativa_japonica_group",
+            "task_description": "Prediction of polyadenylation sites in Oryza sativa japonica (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Oryza sativa",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.67,
+                        "1": 0.33
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_oryza_sativa_japonica_group/poly_a_oryza_sativa_japonica_group_train.csv.gz",
+                    "sha256": "c3c3289441e5e1182572688dba5f688b0457b93aa8c1bbe5d8dd5e7d9d2cd302"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 400,
+                            "max": 400,
+                            "median": 400
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.69,
+                        "1": 0.32
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/poly_a_oryza_sativa_japonica_group/poly_a_oryza_sativa_japonica_group_test.csv.gz",
+                    "sha256": "9c7a15f559c86c4647eea8b5db8747d309df6b5ab8604d04915aee522e5e5803"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "pro_seq_m_esculenta",
+            "task_description": "Prediction of enhancer elements in Manihot esculenta seedlings (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Manihot esculenta",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/pro_seq_m_esculenta/pro_seq_m_esculenta_train.csv.gz",
+                    "sha256": "11599fab0eae3a1311a0e1f7400773b79d5ef0084120e7a4d3e3a849efbbc7a3"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 1000,
+                            "max": 1000,
+                            "median": 1000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 812,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/pro_seq_m_esculenta/pro_seq_m_esculenta_test.csv.gz",
+                    "sha256": "5e7503e8ce00111c8af32eadefc29bdce36da1d1a741a590e1919c32aabec0ce"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "promoter_strength_leaf",
+            "task_description": "Prediction of promoter strength in leaf tissue (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Nicotiana tabacum",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -4.3744649887,
+                        "max": 5.1592421532,
+                        "median": 0.9741330147
+                    },
+                    "dataset_size": 8000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/promoter_strength_leaf/promoter_strength_leaf_train.csv.gz",
+                    "sha256": "9e8bf5e30c4b90df78e7520117dd5a485220b04ab6af43104ac5436c8bd36390"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.8293364048000003,
+                        "max": 5.3175988197,
+                        "median": 0.8837240636
+                    },
+                    "dataset_size": 1000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/promoter_strength_leaf/promoter_strength_leaf_test.csv.gz",
+                    "sha256": "2e0a6a5714635e9d25fec1e2c98ae04b4b67e6ab4caee1479373bcd52c5a1409"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "promoter_strength_protoplast",
+            "task_description": "Prediction of promoter strength in protoplasts (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Zea mays",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -4.5865321159,
+                        "max": 4.4492254257,
+                        "median": -0.2792313695
+                    },
+                    "dataset_size": 8000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/promoter_strength_protoplast/promoter_strength_protoplast_train.csv.gz",
+                    "sha256": "f6f15898463ce7622655ff7b945313d49f1bd163e8c98f6acd5a6736de63f1fe"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -4.7575125694,
+                        "max": 3.7787706852,
+                        "median": -0.18113671985000002
+                    },
+                    "dataset_size": 1000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/promoter_strength_protoplast/promoter_strength_protoplast_test.csv.gz",
+                    "sha256": "bef04423a79f7bb9bf4c05c52b55a5d9512fb4878f264d8385995932ebfaaa1e"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "splicing_arabidopsis_thaliana_donor",
+            "task_description": "Prediction of splice donor sites in Arabidopsis thaliana (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Arabidopsis thaliana",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 398,
+                            "max": 398,
+                            "median": 398
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/splicing_arabidopsis_thaliana_donor/splicing_arabidopsis_thaliana_donor_train.csv.gz",
+                    "sha256": "85ed958cea1cf89f0e8617c74929f98641a39508ce8c70329d21b06efe27bdfc"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 398,
+                            "max": 398,
+                            "median": 398
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/splicing_arabidopsis_thaliana_donor/splicing_arabidopsis_thaliana_donor_test.csv.gz",
+                    "sha256": "2a0d8ef0c5568b04231a7b037ddf433eb43f327a58eee5242f5016ad18c292e7"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "splicing_arabidopsis_thaliana_acceptor",
+            "task_description": "Prediction of splice acceptor sites in Arabidopsis thaliana (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Arabidopsis thaliana",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 398,
+                            "max": 398,
+                            "median": 398
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/splicing_arabidopsis_thaliana_acceptor/splicing_arabidopsis_thaliana_acceptor_train.csv.gz",
+                    "sha256": "7cbca2317386bca0f5f9863ccf54c52bac86bab65ecea895ce8dd66539873a17"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 398,
+                            "max": 398,
+                            "median": 398
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/splicing_arabidopsis_thaliana_acceptor/splicing_arabidopsis_thaliana_acceptor_test.csv.gz",
+                    "sha256": "d54dfd1263a818b63d0c680eaf6995771d72d818146e8d24e58d9ead4ad2ffdb"
+                }
+            },
+            "task_category": "RNA Processing Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score"
+        },
+        {
+            "dataset_name": "terminator_strength_leaf",
+            "task_description": "Prediction of terminator strength in leaf tissue (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Nicotiana tabacum",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -6.1418619156,
+                        "max": 0.0800649896,
+                        "median": -3.4766187667999997
+                    },
+                    "dataset_size": 8000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/terminator_strength_leaf/terminator_strength_leaf_train.csv.gz",
+                    "sha256": "b6a98426317b2fd950491bc2c1d9edf1799feaf3be54ac0f23bd07d2459a9ba2"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -5.2695832253,
+                        "max": -0.3980841637,
+                        "median": -3.4671332836
+                    },
+                    "dataset_size": 1000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/terminator_strength_leaf/terminator_strength_leaf_test.csv.gz",
+                    "sha256": "54f3bdc9ce7df1fc7179d84259cb3c7b9b9681a283f003ca86fac0ee94dfa66f"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        },
+        {
+            "dataset_name": "terminator_strength_protoplast",
+            "task_description": "Prediction of terminator strength in protoplasts (plant)",
+            "dataset_doi": "https://doi.org/10.1126/science.ado9336",
+            "species": "Zea mays",
+            "task_type": "Regression",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": null,
+            "splits": [
+                "train",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.5004365444000003,
+                        "max": -0.039726451,
+                        "median": -1.99826437235
+                    },
+                    "dataset_size": 8000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/terminator_strength_protoplast/terminator_strength_protoplast_train.csv.gz",
+                    "sha256": "79c6e1ffe6db26ff57e0145dd8a77a1f6fb28546ca04a5eabdb134743fdb5987"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 170,
+                            "max": 170,
+                            "median": 170
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": {
+                        "min": -3.5410215855000002,
+                        "max": 0.0205871966,
+                        "median": -1.9980075955499998
+                    },
+                    "dataset_size": 1000,
+                    "class_ratio": null,
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "name",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/OmniGenBench/resolve/0f604fe6a90d401a74e192cb9f13dae80e718415/v1/terminator_strength_protoplast/terminator_strength_protoplast_test.csv.gz",
+                    "sha256": "3a15a4b050f1152009dea9d0284e25b8e2d9dd76e8bcd56c3fb9a2cb9fd1f9b6"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": null,
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Spearman correlation"
+        }
+    ]
+}
