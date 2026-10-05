@@ -12,12 +12,6 @@ def load_metadata() -> dict:
         with path.open(encoding="utf-8") as f:
             metadata = json.load(f)
 
-        metadata["datasets"] = [
-            dataset
-            for dataset in metadata["datasets"]
-            if dataset.get("excluded") is None
-        ]
-
         collections[metadata["collection"]] = metadata
 
     return collections
@@ -123,16 +117,14 @@ def get_dataset_info(collection: str, dataset_name: str) -> dict:
     """Return dataset-level metadata."""
     dataset = _get_dataset(collection, dataset_name)
 
-    excluded_fields = {
+    private_fields = {
         "split_metadata",
-        "split_qc_reports",
-        "excluded",
     }
 
     return {
         key: value
         for key, value in dataset.items()
-        if key not in excluded_fields
+        if key not in private_fields
     }
 
 def get_split_info(

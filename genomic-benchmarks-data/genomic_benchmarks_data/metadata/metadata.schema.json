@@ -267,7 +267,7 @@
     },
     "datasetEntry": {
       "type": "object",
-      "description": "Metadata for one included dataset/task within the collection. Excluded source datasets are omitted from this package.",
+      "description": "Metadata for one dataset/task within the collection.",
       "additionalProperties": false,
       "required": [
         "dataset_name",

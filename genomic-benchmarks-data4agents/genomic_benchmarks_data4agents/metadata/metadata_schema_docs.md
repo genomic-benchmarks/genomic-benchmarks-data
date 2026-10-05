@@ -1,8 +1,7 @@
 # Dataset Metadata Field Documentation
 
 This document describes the collection metadata distributed in this data package,
-for example `BEACON_metadata.json` and `genomic-benchmarks_metadata.json`. Source
-datasets marked as excluded in the source metadata are omitted, and local
+for example `BEACON_metadata.json` and `genomic-benchmarks_metadata.json`. Local
 `dataset_path` values are not published. This agent-facing projection also omits
 `test` and `test_leftout` from `splits` and `split_metadata`; a dataset with no
 remaining split is omitted entirely.
