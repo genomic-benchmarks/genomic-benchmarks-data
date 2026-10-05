@@ -15,11 +15,10 @@ from ._core.metadata import (
     list_task_types,
     load_metadata,
 )
-from ._core.qc import (
+from .qc import (
     download_qc_csv,
     filter_datasets_by_qc,
     get_class_qc_report,
-    get_split_qc_report,
     list_qc_metrics,
     load_qc_results,
     plot_qc_summary,
@@ -33,7 +32,6 @@ __all__ = [
     "get_class_qc_report",
     "get_dataset_info",
     "get_split_info",
-    "get_split_qc_report",
     "list_collections",
     "list_datasets",
     "list_molecular_levels",

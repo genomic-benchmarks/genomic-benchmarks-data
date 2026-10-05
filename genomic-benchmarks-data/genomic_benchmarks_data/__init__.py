@@ -15,7 +15,7 @@ from ._core.metadata import (
     list_task_types,
     load_metadata,
 )
-from ._core.qc import (
+from .qc import (
     download_qc_csv,
     filter_datasets_by_qc,
     get_class_qc_report,
