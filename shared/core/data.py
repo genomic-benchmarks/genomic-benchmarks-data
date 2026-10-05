@@ -18,6 +18,18 @@ logger = logging.getLogger(__name__)
 _PACKAGE_NAME = __package__.split(".")[0]
 
 
+def _cache_component(value: str, field: str) -> str:
+    """Return a metadata value that is safe to use as one path component."""
+    value = str(value)
+
+    if not value or value in {".", ".."} or "/" in value or "\\" in value:
+        raise ValueError(
+            f"Cannot use {field} {value!r} in the dataset cache path."
+        )
+
+    return value
+
+
 def _sha256(path: Path) -> str:
     """Return the SHA-256 checksum of a file."""
     digest = hashlib.sha256()
@@ -48,15 +60,23 @@ def download_dataset(
     info = split_metadata[split]
     url = info["dataset_url"]
     expected_sha256 = info["sha256"]
+    major_version = dataset["major_version"]
 
-    filename = Path(urlparse(url).path).name
+    filename = _cache_component(
+        Path(urlparse(url).path).name,
+        "dataset filename",
+    )
 
-    # Cache files by checksum rather than dataset name.
-    # This allows datasets or splits that reference the same underlying file
-    # to share a single cached copy.
+    # Keep the cache human-readable while retaining the source checksum as the
+    # exact artifact identity. Dataset major_version comes from metadata and is
+    # also the version encoded in sequence IDs.
     cache_dir = (
         Path(user_cache_dir(_PACKAGE_NAME))
         / "data"
+        / _cache_component(collection, "collection")
+        / _cache_component(dataset_name, "dataset_name")
+        / _cache_component(major_version, "major_version")
+        / _cache_component(split, "split")
         / expected_sha256
     )
     cache_dir.mkdir(parents=True, exist_ok=True)
