@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import shutil
 import zipfile
 from pathlib import Path
@@ -18,6 +19,7 @@ from .metadata import _get_dataset
 logger = logging.getLogger(__name__)
 
 _PACKAGE_NAME = __package__.split(".")[0]
+_ZENODO_TOKEN_ENV_VAR = f"{_PACKAGE_NAME.upper()}_QC_ZENODO_TOKEN"
 _CLASS_RESULTS_FILENAME = "combined_classes_results.csv"
 _SPLIT_RESULTS_FILENAME = "combined_splits_results.csv"
 
@@ -36,8 +38,17 @@ _FLAG_COLORS = {
 
 
 def _zenodo_file_url(record_id: str, filename: str) -> str:
-    """Return the public download URL for a file in a Zenodo record."""
-    return f"https://zenodo.org/records/{record_id}/files/{filename}?download=1"
+    """Return the download URL for a file in a Zenodo record."""
+    return f"https://zenodo.org/records/{record_id}/files/{filename}"
+
+
+def _zenodo_request_params() -> dict[str, str]:
+    """Return public-download parameters, with optional preview access."""
+    params = {"download": "1"}
+    token = os.environ.get(_ZENODO_TOKEN_ENV_VAR)
+    if token:
+        params.update(preview="1", token=token)
+    return params
 
 
 def _qc_cache_root(record_id: str) -> Path:
@@ -58,8 +69,19 @@ def _download_qc_file(
         return destination
 
     url = _zenodo_file_url(record_id, filename)
-    with requests.get(url, stream=True) as response:
-        response.raise_for_status()
+    with requests.get(
+        url,
+        params=_zenodo_request_params(),
+        stream=True,
+    ) as response:
+        try:
+            response.raise_for_status()
+        except requests.HTTPError:
+            # Avoid including the preview token from response.url in an error.
+            raise requests.HTTPError(
+                f"Zenodo returned HTTP {response.status_code} while "
+                f"downloading {filename!r} from record {record_id!r}."
+            ) from None
         total = int(response.headers.get("content-length", 0))
 
         with (
@@ -295,7 +317,7 @@ def _worst_flag(flags) -> str | None:
     return max(values, key=lambda value: _FLAG_RANK[value])
 
 
-def _plot_flag_summary(rows: list[dict], title: str):
+def _plot_flag_summary(rows: list[dict], title: str, ylabel: str):
     """Plot already-aggregated per-collection QC flag proportions."""
     if not rows:
         raise ValueError("No QC results available to plot.")
@@ -308,7 +330,7 @@ def _plot_flag_summary(rows: list[dict], title: str):
         color={flag: _FLAG_COLORS[flag] for flag in columns},
     )
     axis.set_xlabel("Collection")
-    axis.set_ylabel("Proportion of datasets")
+    axis.set_ylabel(ylabel)
     axis.set_ylim(0, 1)
     axis.set_title(title)
     axis.legend(title="QC flag")
@@ -320,7 +342,7 @@ def plot_class_qc_summary(
     check: str | None = None,
     force: bool = False,
 ):
-    """Plot class-QC dataset flags for each collection."""
+    """Plot class-QC result proportions for each collection."""
     results = load_class_qc_results(record_id, force=force)
 
     if check is not None:
@@ -335,14 +357,13 @@ def plot_class_qc_summary(
     for collection_name, collection_results in results.items():
         counts = {flag: 0 for flag in _FLAG_RANK}
         for dataset_results in collection_results.values():
-            flag = _worst_flag(
-                values["flag"]
-                for split_results in dataset_results.values()
-                for check_name, values in split_results.items()
-                if check is None or check_name == check
-            )
-            if flag is not None:
-                counts[flag] += 1
+            for split_results in dataset_results.values():
+                for check_name, values in split_results.items():
+                    if check is not None and check_name != check:
+                        continue
+                    flag = values["flag"]
+                    if flag is not None:
+                        counts[flag] += 1
 
         total = sum(counts.values())
         if total:
@@ -354,7 +375,11 @@ def plot_class_qc_summary(
     title = "Class QC summary"
     if check is not None:
         title += f": {check}"
-    return _plot_flag_summary(rows, title)
+    return _plot_flag_summary(
+        rows,
+        title,
+        "Proportion of class-QC results",
+    )
 
 
 def download_split_qc_csv(
@@ -552,7 +577,7 @@ def plot_split_qc_summary(
     check: str | None = None,
     force: bool = False,
 ):
-    """Plot the supplied overall split-QC flags for each collection."""
+    """Plot detailed split-QC comparison proportions by collection."""
     results = load_split_qc_results(record_id, force=force)
     _validate_split_checks(results, check)
 
@@ -560,9 +585,14 @@ def plot_split_qc_summary(
     for collection_name, collection_results in results.items():
         counts = {flag: 0 for flag in _FLAG_RANK}
         for dataset_results in collection_results.values():
-            flag = _overall_split_flag(dataset_results)
-            if flag is not None:
-                counts[flag] += 1
+            for first_split_results in dataset_results["comparisons"].values():
+                for second_split_results in first_split_results.values():
+                    for check_name, values in second_split_results.items():
+                        if check is not None and check_name != check:
+                            continue
+                        flag = values["flag"]
+                        if flag is not None:
+                            counts[flag] += 1
 
         total = sum(counts.values())
         if total:
@@ -574,4 +604,8 @@ def plot_split_qc_summary(
     title = "Split QC summary"
     if check is not None:
         title += f": {check}"
-    return _plot_flag_summary(rows, title)
+    return _plot_flag_summary(
+        rows,
+        title,
+        "Proportion of split-QC comparisons",
+    )
