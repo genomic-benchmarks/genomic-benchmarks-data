@@ -64,6 +64,11 @@ train = gbd.load_dataset(
 )
 ```
 
+`load_dataset(...)` returns the sequence and label columns by default. For
+`test` and `test_leftout`, it also returns `id` and `row_index` as the
+first two columns. Pass `columns="all"` to retain every column in the dataset
+file.
+
 `download_dataset(...)` returns the exact path of the cached file. On Linux,
 the package caches are under `~/.cache/genomic_benchmarks_data` and
 `~/.cache/genomic_benchmarks_data4agents`; other operating systems use their

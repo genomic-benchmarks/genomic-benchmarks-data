@@ -22,6 +22,8 @@ _PACKAGE_NAME = __package__.split(".")[0]
 
 # Only prepared copies of these non-redistributable sources may be cached.
 _COLLECTIONS_REQUIRING_GENERATED_IDS = frozenset({"nucleotide_benchmarks"})
+_TEST_SPLITS = frozenset({"test", "test_leftout"})
+_LOAD_COLUMN_MODES = frozenset({"default", "all"})
 
 
 def _cache_component(value: str, field: str) -> str:
@@ -300,24 +302,62 @@ def load_dataset(
     collection: str,
     dataset_name: str,
     split: str,
+    columns: str = "default",
 ) -> pd.DataFrame:
-    """Load a dataset split from the user cache into memory."""
+    """Load a dataset split, selecting task columns unless all are requested."""
+    if columns not in _LOAD_COLUMN_MODES:
+        raise ValueError(
+            f"Unknown columns mode {columns!r}. Expected 'default' or 'all'."
+        )
+
+    metadata = _get_dataset(collection, dataset_name)
     path = download_dataset(collection, dataset_name, split)
+
+    selected_columns = None
+    if columns == "default":
+        seq_columns = metadata.get("seq_col") or []
+        if isinstance(seq_columns, str):
+            seq_columns = [seq_columns]
+
+        label_columns = metadata.get("label_col") or []
+        if isinstance(label_columns, str):
+            label_columns = [label_columns]
+
+        selected_columns = [
+            *(["id", "row_index"] if split in _TEST_SPLITS else []),
+            *seq_columns,
+            *label_columns,
+        ]
+        # Preserve the defined order while avoiding duplicate columns.
+        selected_columns = list(dict.fromkeys(selected_columns))
 
     suffixes = path.suffixes
 
     if ".parquet" in suffixes:
-        dataset = pd.read_parquet(path)
+        dataset = pd.read_parquet(
+            path,
+            columns=selected_columns or None,
+        )
 
     elif ".tsv" in suffixes:
-        dataset = pd.read_csv(path, sep="\t")
+        dataset = pd.read_csv(
+            path,
+            sep="\t",
+            usecols=selected_columns or None,
+        )
 
     elif ".csv" in suffixes:
-        dataset = pd.read_csv(path)
+        dataset = pd.read_csv(
+            path,
+            usecols=selected_columns or None,
+        )
 
     else:
         raise ValueError(
             f"Unsupported dataset format: {path.name}"
         )
+
+    if selected_columns is not None:
+        dataset = dataset.loc[:, selected_columns]
 
     return dataset

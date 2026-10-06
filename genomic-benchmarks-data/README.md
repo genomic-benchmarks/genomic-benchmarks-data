@@ -27,6 +27,10 @@ Dataset discovery and access:
 - `download_dataset()` downloads a split and returns its cached path;
 - `load_dataset()` returns a split as a pandas DataFrame.
 
+By default, `load_dataset()` selects the sequence and label columns. For
+`test` and `test_leftout` splits, it also puts `id` and `row_index`
+first. Pass `columns="all"` to load every column in its original order.
+
 Downloaded tables begin with the stable `id` and zero-based `row_index`
 columns. Their remaining columns are dataset-specific.
 

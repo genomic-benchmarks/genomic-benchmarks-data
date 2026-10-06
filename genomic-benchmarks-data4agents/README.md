@@ -30,6 +30,9 @@ Dataset discovery and access:
   returns its cached path;
 - `load_dataset()` returns an available split as a pandas DataFrame.
 
+By default, `load_dataset()` selects the sequence and label columns. Pass
+`columns="all"` to load every column in its original order.
+
 Downloaded tables begin with the stable `id` and zero-based `row_index`
 columns. Their remaining columns are dataset-specific.
 
