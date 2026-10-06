@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-import os
 import shutil
 import zipfile
 from pathlib import Path
@@ -19,7 +18,6 @@ from .metadata import _get_dataset
 logger = logging.getLogger(__name__)
 
 _PACKAGE_NAME = __package__.split(".")[0]
-_ZENODO_TOKEN_ENV_VAR = f"{_PACKAGE_NAME.upper()}_QC_ZENODO_TOKEN"
 _CLASS_RESULTS_FILENAME = "combined_classes_results.csv"
 _SPLIT_RESULTS_FILENAME = "combined_splits_results.csv"
 
@@ -38,17 +36,8 @@ _FLAG_COLORS = {
 
 
 def _zenodo_file_url(record_id: str, filename: str) -> str:
-    """Return the download URL for a file in a Zenodo record."""
-    return f"https://zenodo.org/records/{record_id}/files/{filename}"
-
-
-def _zenodo_request_params() -> dict[str, str]:
-    """Return public-download parameters, with optional preview access."""
-    params = {"download": "1"}
-    token = os.environ.get(_ZENODO_TOKEN_ENV_VAR)
-    if token:
-        params.update(preview="1", token=token)
-    return params
+    """Return the public download URL for a file in a Zenodo record."""
+    return f"https://zenodo.org/records/{record_id}/files/{filename}?download=1"
 
 
 def _qc_cache_root(record_id: str) -> Path:
@@ -69,19 +58,8 @@ def _download_qc_file(
         return destination
 
     url = _zenodo_file_url(record_id, filename)
-    with requests.get(
-        url,
-        params=_zenodo_request_params(),
-        stream=True,
-    ) as response:
-        try:
-            response.raise_for_status()
-        except requests.HTTPError:
-            # Avoid including the preview token from response.url in an error.
-            raise requests.HTTPError(
-                f"Zenodo returned HTTP {response.status_code} while "
-                f"downloading {filename!r} from record {record_id!r}."
-            ) from None
+    with requests.get(url, stream=True) as response:
+        response.raise_for_status()
         total = int(response.headers.get("content-length", 0))
 
         with (
