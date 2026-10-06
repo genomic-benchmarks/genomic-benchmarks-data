@@ -2,20 +2,22 @@
 
 from ._core.qc import (
     download_class_qc_csv,
-    filter_class_datasets_by_qc,
-    get_class_qc_report as _get_class_qc_report,
-    list_class_qc_metrics,
-    load_class_qc_results,
-    plot_class_qc_summary,
-)
-from ._qc_config import QC_CLASS_REPORT_SPLITS, QC_ZENODO_RECORD_ID
-from ._split_qc import (
     download_split_qc_csv,
+    filter_class_datasets_by_qc,
     filter_split_datasets_by_qc,
+    get_class_qc_report as _get_class_qc_report,
     get_split_qc_report as _get_split_qc_report,
+    list_class_qc_metrics,
     list_split_qc_metrics,
+    load_class_qc_results,
     load_split_qc_results,
+    plot_class_qc_summary,
     plot_split_qc_summary,
+)
+from ._qc_config import (
+    QC_CLASS_REPORT_SPLITS,
+    QC_SPLIT_REPORT_PAIRS,
+    QC_ZENODO_RECORD_ID,
 )
 
 
@@ -119,4 +121,5 @@ def get_split_qc_report(
         split_a,
         split_b,
         force=force,
+        allowed_report_pairs=QC_SPLIT_REPORT_PAIRS,
     )

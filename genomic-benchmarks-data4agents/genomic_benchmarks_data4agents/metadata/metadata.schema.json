@@ -214,7 +214,7 @@
     },
     "splitMetadataEntry": {
       "type": "object",
-      "description": "Metadata for one visible split (for example train, val, or validation).",
+      "description": "Metadata for one visible split (for example train or val).",
       "additionalProperties": false,
       "required": [
         "seq_alphabet",

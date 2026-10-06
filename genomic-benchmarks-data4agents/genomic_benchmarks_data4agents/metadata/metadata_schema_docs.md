@@ -56,8 +56,8 @@ The corresponding JSON Schema is `metadata.schema.json`.
     level of the same document, which JSON Schema cannot cross-reference, so
     `workflows/dataset_qc/bin/validate_metadata.py` does it — see "Cross-document
     checks" below.
-- `splits`: Available non-held-out split names (for example `train`, `val`, or
-  `validation`). Must be a non-empty array and cannot contain `test` or
+- `splits`: Available non-held-out split names (`train` and, where present,
+  `val`). Must be a non-empty array and cannot contain `test` or
   `test_leftout`.
 - `task_category`: High-level label describing the biological scope of the benchmark task
 - `molecular_level`: Label for tasks at the molecule scale, specifically involving DNA, RNA, or protein sequences.

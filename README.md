@@ -8,11 +8,11 @@ machine-learning datasets, their metadata, and quality-control (QC) results.
 | Package | Data access | QC access |
 | --- | --- | --- |
 | [`genomic-benchmarks-data`](genomic-benchmarks-data/) | All published splits, including test splits | Class and split QC |
-| [`genomic-benchmarks-data4agents`](genomic-benchmarks-data4agents/) | Train and validation splits where available; no test splits | Class QC for training data |
+| [`genomic-benchmarks-data4agents`](genomic-benchmarks-data4agents/) | Train and validation (`val`) splits where available; no test splits | Class QC for train and `val`; train–`val` split QC |
 
 Use `genomic-benchmarks-data` for ordinary model development and evaluation.
 Use `genomic-benchmarks-data4agents` when an agent must be able to work with
-train and validation data without being given test data or split-QC
+train and validation data without being given test data or test-related QC
 information.
 
 ## What you can do
@@ -25,8 +25,9 @@ Both packages let you:
 - inspect, filter, and plot the QC results available to that package; and
 - retrieve self-contained HTML class-QC reports.
 
-The full package additionally exposes test splits and provides split-QC
-results and HTML reports that compare dataset splits.
+The full package additionally exposes test splits and split QC for all
+available comparisons. The agents package limits split QC to train–`val`
+comparisons, so datasets without a `val` split have no split-QC result there.
 
 Downloaded dataset tables have two common leading columns:
 

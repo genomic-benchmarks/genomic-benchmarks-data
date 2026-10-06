@@ -201,7 +201,7 @@
     },
     "splitMetadataEntry": {
       "type": "object",
-      "description": "Metadata for one split (for example train/val/test/validation).",
+      "description": "Metadata for one split (for example train/val/test).",
       "additionalProperties": false,
       "required": [
         "seq_alphabet",
@@ -251,7 +251,7 @@
       }
     },
     "splitMetadata": {
-      "description": "Mapping from split name (for example train, val, validation, test) to split-specific metadata.",
+      "description": "Mapping from split name (for example train, val, or test) to split-specific metadata.",
       "oneOf": [
         {
           "type": "object",
