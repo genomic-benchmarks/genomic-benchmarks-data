@@ -40,6 +40,9 @@ The cache is in the operating system's standard user cache directory. On
 Linux it is `~/.cache/genomic_benchmarks_data4agents`. The download functions
 return the exact cached paths.
 
+For a complete introductory workflow, see the
+[`genomic-benchmarks-data4agents` example notebook](https://github.com/genomic-benchmarks/genomic-benchmarks-data/blob/main/examples/genomic-benchmarks-data4agents.ipynb).
+
 ## Quality control
 
 Pass `"class"` or `"split"` as `qc_type` to:

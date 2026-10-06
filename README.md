@@ -80,10 +80,16 @@ QC results are produced by
 See the individual package READMEs for the QC available in each package and
 the corresponding Zenodo record.
 
+## Examples
+
+- [Full-package notebook](examples/genomic-benchmarks-data.ipynb)
+- [Agent-safe package notebook](examples/genomic-benchmarks-data4agents.ipynb)
+
 ## Repository layout
 
 - `genomic-benchmarks-data/`: the full package;
 - `genomic-benchmarks-data4agents/`: the package that excludes test data;
+- `examples/`: package-specific example notebooks;
 - `shared/core/`: implementation bundled into both wheels;
 - `scripts/`: metadata validation and installed-wheel checks.
 
