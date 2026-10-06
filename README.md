@@ -7,12 +7,13 @@ machine-learning datasets, their metadata, and quality-control (QC) results.
 
 | Package | Data access | QC access |
 | --- | --- | --- |
-| [`genomic-benchmarks-data`](genomic-benchmarks-data/) | Training and held-out splits | Class and split QC |
-| [`genomic-benchmarks-data4agents`](genomic-benchmarks-data4agents/) | Training splits only | Class QC for training data |
+| [`genomic-benchmarks-data`](genomic-benchmarks-data/) | All published splits, including test splits | Class and split QC |
+| [`genomic-benchmarks-data4agents`](genomic-benchmarks-data4agents/) | Train and validation splits where available; no test splits | Class QC for training data |
 
 Use `genomic-benchmarks-data` for ordinary model development and evaluation.
 Use `genomic-benchmarks-data4agents` when an agent must be able to work with
-training data without being given held-out data or split-QC information.
+train and validation data without being given test data or split-QC
+information.
 
 ## What you can do
 
@@ -24,8 +25,8 @@ Both packages let you:
 - inspect, filter, and plot the QC results available to that package; and
 - retrieve self-contained HTML class-QC reports.
 
-The full package additionally provides split-QC results and HTML reports that
-compare training and held-out splits.
+The full package additionally exposes test splits and provides split-QC
+results and HTML reports that compare dataset splits.
 
 Downloaded dataset tables have two common leading columns:
 
@@ -76,7 +77,7 @@ the corresponding Zenodo record.
 ## Repository layout
 
 - `genomic-benchmarks-data/`: the full package;
-- `genomic-benchmarks-data4agents/`: the training-only package;
+- `genomic-benchmarks-data4agents/`: the package that excludes test data;
 - `shared/core/`: implementation bundled into both wheels;
 - `scripts/`: metadata validation and installed-wheel checks.
 

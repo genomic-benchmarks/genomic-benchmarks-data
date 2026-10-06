@@ -1,8 +1,9 @@
 # genomic-benchmarks-data
 
 `genomic-benchmarks-data` provides access to curated genomic benchmark
-datasets, including training and held-out splits, their metadata, and class
-and split quality-control results. For an overview and quick start, see the
+datasets, including all published splits and test data, their metadata, and
+class and split quality-control results. For an overview and quick start, see
+the
 [project README](https://github.com/genomic-benchmarks/genomic-benchmarks-data).
 
 ## Install

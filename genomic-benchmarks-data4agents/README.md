@@ -1,9 +1,11 @@
 # genomic-benchmarks-data4agents
 
 `genomic-benchmarks-data4agents` provides agent-safe access to curated genomic
-benchmark datasets. It exposes training data and its class quality-control
-results without exposing held-out data or split-QC information. For an
-overview and quick start, see the
+benchmark datasets. It exposes train splits and, where supplied by the
+benchmark, validation splits. Test and `test_leftout` splits are excluded.
+The package currently provides class quality-control results for training
+data, without exposing split-QC information. For an overview and quick start,
+see the
 [project README](https://github.com/genomic-benchmarks/genomic-benchmarks-data).
 
 ## Install
@@ -24,8 +26,9 @@ Dataset discovery and access:
 - `list_molecular_levels()`, `list_task_categories()`, `list_task_types()`,
   and `list_species()` list metadata values within a collection;
 - `get_dataset_info()` and `get_split_info()` inspect metadata;
-- `download_dataset()` downloads a training split and returns its cached path;
-- `load_dataset()` returns a training split as a pandas DataFrame.
+- `download_dataset()` downloads an available train or validation split and
+  returns its cached path;
+- `load_dataset()` returns an available split as a pandas DataFrame.
 
 Downloaded tables begin with the stable `id` and zero-based `row_index`
 columns. Their remaining columns are dataset-specific.
