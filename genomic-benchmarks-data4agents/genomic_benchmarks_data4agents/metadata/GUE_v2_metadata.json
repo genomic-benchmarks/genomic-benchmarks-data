@@ -104,7 +104,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "core_promoter_detection_notata",
@@ -201,7 +202,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "core_promoter_detection_tata",
@@ -298,7 +300,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_detection_300_all",
@@ -396,7 +399,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_detection_300_notata",
@@ -494,7 +498,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_detection_300_tata",
@@ -591,7 +596,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_human_0",
@@ -688,7 +694,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_human_1",
@@ -785,7 +792,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_human_2",
@@ -882,7 +890,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_human_3",
@@ -979,7 +988,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_human_4",
@@ -1076,7 +1086,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_mouse_0",
@@ -1173,7 +1184,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_mouse_1",
@@ -1271,7 +1283,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_mouse_2",
@@ -1368,7 +1381,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_mouse_3",
@@ -1465,7 +1479,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "transcription_factor_prediction_mouse_4",
@@ -1562,7 +1577,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": true
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3",
@@ -1659,7 +1675,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K14ac",
@@ -1756,7 +1773,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K36me3",
@@ -1853,7 +1871,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K4me1",
@@ -1950,7 +1969,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K4me2",
@@ -2047,7 +2067,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K4me3",
@@ -2144,7 +2165,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": true
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K79me3",
@@ -2241,7 +2263,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H3K9ac",
@@ -2338,7 +2361,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H4",
@@ -2435,7 +2459,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "epigenetic_marks_prediction_H4ac",
@@ -2532,7 +2557,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancer_promoter_interaction_GM12878",
@@ -2654,7 +2680,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancer_promoter_interaction_HeLa_S3",
@@ -2776,7 +2803,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancer_promoter_interaction_HUVEC",
@@ -2899,7 +2927,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancer_promoter_interaction_IMR90",
@@ -3023,7 +3052,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancer_promoter_interaction_K562",
@@ -3145,7 +3175,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancer_promoter_interaction_NHEK",
@@ -3268,7 +3299,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         }
     ]
 }

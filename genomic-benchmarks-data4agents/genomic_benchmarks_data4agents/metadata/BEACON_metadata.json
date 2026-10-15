@@ -104,7 +104,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "MeanRibosomeLoading",
@@ -194,7 +195,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "CRISPROnTarget",
@@ -284,7 +286,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": true
         }
     ]
 }

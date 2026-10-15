@@ -108,7 +108,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K4me1",
@@ -209,7 +210,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K4me2",
@@ -310,7 +312,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K9ac",
@@ -411,7 +414,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K9me3",
@@ -512,7 +516,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K27me3",
@@ -613,7 +618,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K27ac",
@@ -714,7 +720,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H3K36me3",
@@ -815,7 +822,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H4K20me1",
@@ -916,7 +924,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "H2AFZ",
@@ -1017,7 +1026,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "enhancers",
@@ -1118,7 +1128,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_all",
@@ -1219,7 +1230,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_tata",
@@ -1320,7 +1332,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_no_tata",
@@ -1421,7 +1434,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "splice_sites_acceptors",
@@ -1522,7 +1536,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "splice_sites_donors",
@@ -1623,7 +1638,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         }
     ]
 }

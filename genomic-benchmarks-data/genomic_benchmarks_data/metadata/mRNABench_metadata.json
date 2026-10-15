@@ -148,7 +148,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "mrl-sample-mcherry",
@@ -283,7 +284,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "mrl-sample-designed",
@@ -418,7 +420,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "mrl-sample-varying",
@@ -553,7 +556,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "translation-efficiency-human",
@@ -697,7 +701,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": true
         },
         {
             "dataset_name": "translation-efficiency-mouse",
@@ -841,7 +846,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "rnahl-human",
@@ -982,7 +988,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": true
         },
         {
             "dataset_name": "rnahl-mouse",
@@ -1123,7 +1130,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "mrl-sample-egfp-pseudo",
@@ -1267,7 +1275,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "mrl-sample-egfp-m1pseudo",
@@ -1411,7 +1420,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "mrl-sample-egfp-unmod",
@@ -1555,7 +1565,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         }
     ]
 }

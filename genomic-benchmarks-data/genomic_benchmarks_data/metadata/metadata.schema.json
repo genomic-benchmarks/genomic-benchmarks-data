@@ -251,7 +251,7 @@
       }
     },
     "splitMetadata": {
-      "description": "Mapping from split name (for example train, val, or test) to split-specific metadata.",
+      "description": "Mapping from split name (for example train, val, test) to split-specific metadata.",
       "oneOf": [
         {
           "type": "object",
@@ -267,10 +267,11 @@
     },
     "datasetEntry": {
       "type": "object",
-      "description": "Metadata for one dataset/task within the collection.",
+      "description": "Metadata for one included dataset/task within the collection. Excluded source datasets are omitted from this package.",
       "additionalProperties": false,
       "required": [
         "dataset_name",
+        "core_set",
         "task_description",
         "species",
         "task_type",
@@ -282,6 +283,10 @@
         "dataset_name": {
           "type": "string",
           "description": "Dataset identifier/name."
+        },
+        "core_set": {
+          "type": "boolean",
+          "description": "Whether this dataset belongs to the benchmark core set."
         },
         "major_version": {
           "type": "string",

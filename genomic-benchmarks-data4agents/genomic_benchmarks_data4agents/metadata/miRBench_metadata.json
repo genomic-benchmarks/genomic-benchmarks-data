@@ -97,7 +97,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "AGO2_eCLIP_Manakov2022",
@@ -188,7 +189,8 @@
                 "test",
                 "test_leftout"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": true
         }
     ]
 }

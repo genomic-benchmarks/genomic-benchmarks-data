@@ -104,7 +104,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "te_prediction_rice",
@@ -203,7 +204,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "lncrna_m_esculenta",
@@ -266,7 +268,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "lncrna_z_mays",
@@ -329,7 +332,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "lncrna_g_max",
@@ -392,7 +396,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "lncrna_s_lycopersicum",
@@ -456,7 +461,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "lncrna_t_aestivum",
@@ -520,7 +526,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "lncrna_s_bicolor",
@@ -583,7 +590,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "poly_a_arabidopsis_thaliana",
@@ -646,7 +654,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "poly_a_oryza_sativa_indica_group",
@@ -710,7 +719,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "poly_a_trifolium_pratense",
@@ -774,7 +784,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "poly_a_medicago_truncatula",
@@ -838,7 +849,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "poly_a_chlamydomonas_reinhardtii",
@@ -902,7 +914,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "poly_a_oryza_sativa_japonica_group",
@@ -965,7 +978,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "pro_seq_m_esculenta",
@@ -1028,7 +1042,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": true
         },
         {
             "dataset_name": "promoter_strength_leaf",
@@ -1086,7 +1101,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "promoter_strength_protoplast",
@@ -1144,7 +1160,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": true
         },
         {
             "dataset_name": "splicing_arabidopsis_thaliana_donor",
@@ -1207,7 +1224,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "splicing_arabidopsis_thaliana_acceptor",
@@ -1270,7 +1288,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "terminator_strength_leaf",
@@ -1328,7 +1347,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         },
         {
             "dataset_name": "terminator_strength_protoplast",
@@ -1386,7 +1406,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Spearman correlation"
+            "scoring_metric": "Spearman correlation",
+            "core_set": false
         }
     ]
 }

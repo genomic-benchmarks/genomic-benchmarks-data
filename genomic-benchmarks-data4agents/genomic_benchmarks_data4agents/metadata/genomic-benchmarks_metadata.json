@@ -69,7 +69,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "human_nontata_promoters",
@@ -131,7 +132,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "drosophila_enhancers_stark",
@@ -193,7 +195,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": true
         },
         {
             "dataset_name": "demo_human_or_worm",
@@ -256,7 +259,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "human_ocr_ensembl",
@@ -319,7 +323,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "human_enhancers_cohn",
@@ -381,7 +386,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         },
         {
             "dataset_name": "human_enhancers_ensembl",
@@ -444,7 +450,8 @@
             "scoring_splits": [
                 "test"
             ],
-            "scoring_metric": "Average precision score"
+            "scoring_metric": "Average precision score",
+            "core_set": false
         }
     ]
 }

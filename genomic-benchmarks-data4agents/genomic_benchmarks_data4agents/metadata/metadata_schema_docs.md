@@ -1,7 +1,8 @@
 # Dataset Metadata Field Documentation
 
 This document describes the collection metadata distributed in this data package,
-for example `BEACON_metadata.json` and `genomic-benchmarks_metadata.json`. Local
+for example `BEACON_metadata.json` and `genomic-benchmarks_metadata.json`. Source
+datasets marked as excluded in the source metadata are omitted, and local
 `dataset_path` values are not published. This agent-facing projection also omits
 `test` and `test_leftout` from `splits` and `split_metadata`; a dataset with no
 remaining split is omitted entirely.
@@ -21,6 +22,8 @@ The corresponding JSON Schema is `metadata.schema.json`.
 ## Per-dataset fields (`datasets[]`)
 
 - `dataset_name`: Dataset/task identifier.
+- `core_set`: Whether the dataset belongs to the benchmark core set. Required,
+  with a boolean value of `true` or `false`.
 - `major_version`: The major version of this dataset's **data**, not of the schema
   (`schema_version`). A string matching `^v[0-9]+$`; every dataset is currently `v1`.
   - Required for every dataset in this package.
@@ -56,9 +59,8 @@ The corresponding JSON Schema is `metadata.schema.json`.
     level of the same document, which JSON Schema cannot cross-reference, so
     `workflows/dataset_qc/bin/validate_metadata.py` does it — see "Cross-document
     checks" below.
-- `splits`: Available non-held-out split names (`train` and, where present,
-  `val`). Must be a non-empty array and cannot contain `test` or
-  `test_leftout`.
+- `splits`: Available non-held-out split names (for example `train` or `val`).
+  Must be a non-empty array and cannot contain `test` or `test_leftout`.
 - `task_category`: High-level label describing the biological scope of the benchmark task
 - `molecular_level`: Label for tasks at the molecule scale, specifically involving DNA, RNA, or protein sequences.
 - `positive_label`: Label value treated as the positive class for scoring, stored as a string.

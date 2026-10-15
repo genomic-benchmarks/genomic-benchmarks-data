@@ -288,10 +288,11 @@
     },
     "datasetEntry": {
       "type": "object",
-      "description": "Metadata for one dataset/task within the collection.",
+      "description": "Metadata for one included dataset/task within the collection. Excluded source datasets are omitted from this package.",
       "additionalProperties": false,
       "required": [
         "dataset_name",
+        "core_set",
         "task_description",
         "species",
         "task_type",
@@ -303,6 +304,10 @@
         "dataset_name": {
           "type": "string",
           "description": "Dataset identifier/name."
+        },
+        "core_set": {
+          "type": "boolean",
+          "description": "Whether this dataset belongs to the benchmark core set."
         },
         "major_version": {
           "type": "string",
