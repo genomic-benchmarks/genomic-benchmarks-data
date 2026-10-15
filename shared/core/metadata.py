@@ -33,7 +33,7 @@ def list_datasets(
     task_category: str | None = None,
     task_type: str | None = None,
     species: str | None = None,
-    golden_set: bool | None = None,
+    core_set: bool | None = None,
 ) -> dict[str, dict[str, str]]:
     """Return datasets, optionally filtered by collection and metadata."""
     metadata = load_metadata()
@@ -49,7 +49,7 @@ def list_datasets(
         "task_category": task_category,
         "task_type": task_type,
         "species": species,
-        "golden_set": golden_set,
+        "core_set": core_set,
     }
 
     # TODO: Support matching individual species in multi-species values

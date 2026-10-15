@@ -52,6 +52,7 @@ The imports have the same shape; replace `genomic_benchmarks_data` with
 ```python
 import genomic_benchmarks_data as gbd
 
+core_datasets = gbd.list_datasets(core_set=True)
 datasets = gbd.list_datasets(task_type="Binary classification")
 info = gbd.get_dataset_info(
     "genomic-benchmarks",
@@ -63,6 +64,10 @@ train = gbd.load_dataset(
     "train",
 )
 ```
+
+`list_datasets(core_set=True)` selects the benchmark core set; use
+`core_set=False` for its complement. The filter can be combined with the other
+dataset filters.
 
 `load_dataset(...)` returns the sequence and label columns by default. For
 `test` and `test_leftout`, it also returns `id` and `row_index` as the

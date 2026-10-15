@@ -20,7 +20,8 @@ Python 3.12 or later is required. Import the package as
 Dataset discovery and access:
 
 - `load_metadata()` returns the complete packaged metadata;
-- `list_collections()` and `list_datasets()` discover available data;
+- `list_collections()` and `list_datasets()` discover available data; pass
+  `core_set=True` to `list_datasets()` to select the benchmark core set;
 - `list_molecular_levels()`, `list_task_categories()`, `list_task_types()`,
   and `list_species()` list metadata values within a collection;
 - `get_dataset_info()` and `get_split_info()` inspect metadata;

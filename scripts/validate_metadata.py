@@ -146,6 +146,42 @@ def _validate_metadata_directory(metadata_dir: Path) -> bool:
     return ok
 
 
+def _core_set_membership(metadata_dir: Path) -> dict[tuple[str, str], bool]:
+    """Return core-set membership keyed by collection and dataset."""
+    membership = {}
+    for path in sorted(metadata_dir.glob("*_metadata.json")):
+        document = _load_json(path)
+        collection = document["collection"]
+        for dataset in document["datasets"]:
+            membership[(collection, dataset["dataset_name"])] = (
+                dataset["core_set"]
+            )
+    return membership
+
+
+def _validate_core_set_parity() -> bool:
+    """Require shared datasets to have the same core-set designation."""
+    full = _core_set_membership(PACKAGE_METADATA[0])
+    agents = _core_set_membership(PACKAGE_METADATA[1])
+    mismatches = sorted(
+        key for key in full.keys() & agents.keys()
+        if full[key] != agents[key]
+    )
+    if mismatches:
+        print("  FAILED: core_set differs between packages:", file=sys.stderr)
+        for collection, dataset_name in mismatches:
+            print(
+                f"    - {collection}/{dataset_name}: "
+                f"data={full[(collection, dataset_name)]}, "
+                f"data4agents={agents[(collection, dataset_name)]}",
+                file=sys.stderr,
+            )
+        return False
+
+    print("  ok     shared datasets have matching core_set values")
+    return True
+
+
 def main() -> int:
     results = [
         _validate_metadata_directory(metadata_dir)
@@ -153,6 +189,9 @@ def main() -> int:
     ]
 
     if not all(results):
+        return 1
+
+    if not _validate_core_set_parity():
         return 1
 
     print("\nBoth packages' metadata passed schema validation.")
