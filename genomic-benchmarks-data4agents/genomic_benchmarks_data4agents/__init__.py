@@ -16,6 +16,7 @@ from ._core.metadata import (
     list_task_types,
     load_metadata,
 )
+from ._core.presentation import pretty
 from .qc import (
     download_qc_csv,
     filter_datasets_by_qc,
@@ -47,4 +48,5 @@ __all__ = [
     "load_metadata",
     "load_qc_results",
     "plot_qc_summary",
+    "pretty",
 ]

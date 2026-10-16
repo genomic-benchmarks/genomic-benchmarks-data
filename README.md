@@ -47,6 +47,7 @@ import genomic_benchmarks_data as gbd
 
 collections = gbd.list_collections()
 core_datasets = gbd.list_datasets(core_set=True)
+gbd.pretty(core_datasets)
 train = gbd.load_dataset("BEACON", "CRISPROnTarget", "train")
 train.head()
 ```
@@ -67,6 +68,7 @@ Both packages expose the same function names. The agents package applies its
 | `list_collections()` | Lists collection names and their source DOIs. | Same interface in both packages. |
 | `list_dataset_filters(collection=None)` | Lists the values accepted by each dataset filter. | Optionally limits metadata-derived values to one collection. |
 | `list_datasets(...)` | Lists datasets, with optional collection, metadata, and `core_set` filters. | Results reflect the datasets included in the package. |
+| `pretty(value)` | Presents dictionaries and lists readably in notebooks or terminals. | Presentation only; the original value is unchanged. |
 | `list_molecular_levels(collection)` | Lists molecular levels available in a collection. | Same interface in both packages. |
 | `list_task_categories(collection)` | Lists task categories available in a collection. | Same interface in both packages. |
 | `list_task_types(collection)` | Lists task types available in a collection. | Same interface in both packages. |

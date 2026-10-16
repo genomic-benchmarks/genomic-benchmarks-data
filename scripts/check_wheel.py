@@ -64,6 +64,24 @@ def main(module_name: str) -> int:
     metadata = package.load_metadata()
     metadata_dir = resources.files(module_name).joinpath("metadata")
 
+    sample = {
+        "unsafe": "<script>alert('x')</script>",
+        "values": ["first", "second"],
+        "nested": {"complete": True},
+    }
+    presented = package.pretty(sample)
+    rendered_html = presented._repr_html_()
+    if presented._value is not sample:
+        raise RuntimeError("pretty did not retain the original value")
+    if "<script>" in rendered_html or "&lt;script&gt;" not in rendered_html:
+        raise RuntimeError("pretty did not safely escape HTML")
+    if rendered_html.count("<li>") != 2:
+        raise RuntimeError("pretty did not render sequence values vertically")
+    if "<details>" not in rendered_html:
+        raise RuntimeError("pretty did not make nested mappings expandable")
+    if "'complete': True" not in str(presented):
+        raise RuntimeError("pretty terminal representation is incomplete")
+
     if set(metadata) != EXPECTED_COLLECTIONS:
         missing = sorted(EXPECTED_COLLECTIONS - set(metadata))
         unexpected = sorted(set(metadata) - EXPECTED_COLLECTIONS)
