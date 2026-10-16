@@ -78,7 +78,9 @@ Both packages expose the same function names. The agents package applies its
 | `download_dataset(collection, dataset_name, split)` | Downloads a split and returns its cached path. | The agents package cannot download `test` splits. |
 | `load_dataset(collection, dataset_name, split, ...)` | Loads a split as a pandas DataFrame. | The agents package cannot load `test` splits. |
 | `download_qc_csv(qc_type)` | Downloads the combined class- or split-QC CSV and returns its cached path. | The agents QC artifacts contain no `test`-related results. |
-| `load_qc_results(qc_type)` | Downloads and parses class- or split-QC results. | The agents split results contain `train`–`val` comparisons only. |
+| `load_all_qc_results(qc_type)` | Downloads and parses every result for one QC type. | The agents split results contain `train`–`val` comparisons only. |
+| `get_class_qc_results(collection, dataset_name, split)` | Returns all class-QC checks for one dataset split. | The agents package accepts `train` and `val` only. |
+| `get_split_qc_results(collection, dataset_name, split_a, split_b)` | Returns all detailed QC checks for one split pair. | The agents package accepts `train`–`val` only. |
 | `list_qc_metrics(qc_type)` | Lists the available checks for a QC type. | Results reflect the QC exposed by the package. |
 | `filter_datasets_by_qc(qc_type, ...)` | Selects datasets by QC check and outcome. | Results reflect the QC exposed by the package. |
 | `plot_qc_summary(qc_type, ...)` | Plots QC outcome proportions by collection. | Agents split plots include only collections with `train`–`val` comparisons. |

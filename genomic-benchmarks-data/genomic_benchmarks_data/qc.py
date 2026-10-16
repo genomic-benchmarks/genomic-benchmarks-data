@@ -5,7 +5,9 @@ from ._core.qc import (
     download_split_qc_csv,
     filter_class_datasets_by_qc,
     filter_split_datasets_by_qc,
+    get_class_qc_results as _get_class_qc_results,
     get_class_qc_report as _get_class_qc_report,
+    get_split_qc_results as _get_split_qc_results,
     get_split_qc_report as _get_split_qc_report,
     list_class_qc_metrics,
     list_split_qc_metrics,
@@ -44,13 +46,48 @@ def download_qc_csv(qc_type: str, force: bool = False):
     return function(_record_id(), force=force)
 
 
-def load_qc_results(qc_type: str, force: bool = False) -> dict:
+def load_all_qc_results(qc_type: str, force: bool = False) -> dict:
+    """Download and parse all results for one QC type."""
     function = _qc_function(
         qc_type,
         load_class_qc_results,
         load_split_qc_results,
     )
     return function(_record_id(), force=force)
+
+
+def get_class_qc_results(
+    collection: str,
+    dataset_name: str,
+    split: str,
+    force: bool = False,
+) -> dict:
+    """Return all class-QC checks for one dataset split."""
+    return _get_class_qc_results(
+        _record_id(),
+        collection,
+        dataset_name,
+        split,
+        force=force,
+    )
+
+
+def get_split_qc_results(
+    collection: str,
+    dataset_name: str,
+    split_a: str,
+    split_b: str,
+    force: bool = False,
+) -> dict:
+    """Return all detailed QC checks for one dataset split pair."""
+    return _get_split_qc_results(
+        _record_id(),
+        collection,
+        dataset_name,
+        split_a,
+        split_b,
+        force=force,
+    )
 
 
 def list_qc_metrics(qc_type: str, force: bool = False) -> list[str]:

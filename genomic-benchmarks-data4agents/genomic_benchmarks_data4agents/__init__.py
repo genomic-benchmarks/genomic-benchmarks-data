@@ -20,10 +20,12 @@ from ._core.presentation import pretty
 from .qc import (
     download_qc_csv,
     filter_datasets_by_qc,
+    get_class_qc_results,
     get_class_qc_report,
+    get_split_qc_results,
     get_split_qc_report,
     list_qc_metrics,
-    load_qc_results,
+    load_all_qc_results,
     plot_qc_summary,
 )
 
@@ -32,9 +34,11 @@ __all__ = [
     "download_dataset",
     "download_qc_csv",
     "filter_datasets_by_qc",
+    "get_class_qc_results",
     "get_class_qc_report",
     "get_dataset_info",
     "get_split_info",
+    "get_split_qc_results",
     "get_split_qc_report",
     "list_collections",
     "list_dataset_filters",
@@ -45,8 +49,8 @@ __all__ = [
     "list_task_categories",
     "list_task_types",
     "load_dataset",
+    "load_all_qc_results",
     "load_metadata",
-    "load_qc_results",
     "plot_qc_summary",
     "pretty",
 ]

@@ -224,6 +224,38 @@ def load_class_qc_results(
     return _parse_class_qc(pd.read_csv(path))
 
 
+def _select_qc_key(mapping: dict, key: str, what: str) -> dict:
+    """Select a QC result level with a useful missing-key error."""
+    if key not in mapping:
+        raise KeyError(
+            f"{what} {key!r} not found in QC results. "
+            f"Available values: {sorted(mapping)}."
+        )
+    return mapping[key]
+
+
+def get_class_qc_results(
+    record_id: str,
+    collection: str,
+    dataset_name: str,
+    split: str,
+    force: bool = False,
+) -> dict:
+    """Return all class-QC checks for one dataset split."""
+    results = load_class_qc_results(record_id, force=force)
+    collection_results = _select_qc_key(
+        results,
+        collection,
+        "Collection",
+    )
+    dataset_results = _select_qc_key(
+        collection_results,
+        dataset_name,
+        "Dataset",
+    )
+    return _select_qc_key(dataset_results, split, "Split")
+
+
 def _get_class_qc_metrics(results: dict) -> list[str]:
     """Return the class-QC check names present in parsed results."""
     checks = set()
@@ -472,6 +504,51 @@ def load_split_qc_results(
     """Download and parse combined split-QC results."""
     path = download_split_qc_csv(record_id, force=force)
     return _parse_split_qc(pd.read_csv(path))
+
+
+def get_split_qc_results(
+    record_id: str,
+    collection: str,
+    dataset_name: str,
+    split_a: str,
+    split_b: str,
+    force: bool = False,
+) -> dict:
+    """Return all detailed QC checks for one dataset split pair."""
+    results = load_split_qc_results(record_id, force=force)
+    collection_results = _select_qc_key(
+        results,
+        collection,
+        "Collection",
+    )
+    dataset_results = _select_qc_key(
+        collection_results,
+        dataset_name,
+        "Dataset",
+    )
+    comparisons = dataset_results["comparisons"]
+
+    if (
+        split_a in comparisons
+        and split_b in comparisons[split_a]
+    ):
+        return comparisons[split_a][split_b]
+    if (
+        split_b in comparisons
+        and split_a in comparisons[split_b]
+    ):
+        return comparisons[split_b][split_a]
+
+    available = sorted(
+        (first_split, second_split)
+        for first_split, first_results in comparisons.items()
+        for second_split in first_results
+    )
+    raise KeyError(
+        f"Split pair ({split_a!r}, {split_b!r}) not found in QC results "
+        f"for {collection!r}/{dataset_name!r}. "
+        f"Available pairs: {available}."
+    )
 
 
 def _get_split_qc_metrics(results: dict) -> list[str]:

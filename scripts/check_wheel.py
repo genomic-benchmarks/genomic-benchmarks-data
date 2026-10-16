@@ -64,6 +64,45 @@ def main(module_name: str) -> int:
     metadata = package.load_metadata()
     metadata_dir = resources.files(module_name).joinpath("metadata")
 
+    if hasattr(package, "load_qc_results"):
+        raise RuntimeError("obsolete load_qc_results is still public")
+    if not callable(package.load_all_qc_results):
+        raise RuntimeError("load_all_qc_results is not public")
+
+    core_qc = importlib.import_module(f"{module_name}._core.qc")
+    original_class_loader = core_qc.load_class_qc_results
+    original_split_loader = core_qc.load_split_qc_results
+    class_checks = {"Class check": {"flag": "Pass"}}
+    split_checks = {"Split check": {"flag": "Pass"}}
+    core_qc.load_class_qc_results = lambda record_id, force=False: {
+        "Collection": {"Dataset": {"train": class_checks}}
+    }
+    core_qc.load_split_qc_results = lambda record_id, force=False: {
+        "Collection": {
+            "Dataset": {
+                "overall": {"statistic": "example", "flag": "Pass"},
+                "comparisons": {"train": {"test": split_checks}},
+            }
+        }
+    }
+    try:
+        if package.get_class_qc_results(
+            "Collection",
+            "Dataset",
+            "train",
+        ) != class_checks:
+            raise RuntimeError("focused class-QC result selection failed")
+        if package.get_split_qc_results(
+            "Collection",
+            "Dataset",
+            "test",
+            "train",
+        ) != split_checks:
+            raise RuntimeError("order-independent split-QC selection failed")
+    finally:
+        core_qc.load_class_qc_results = original_class_loader
+        core_qc.load_split_qc_results = original_split_loader
+
     sample = {
         "unsafe": "<script>alert('x')</script>",
         "values": ["first", "second"],
