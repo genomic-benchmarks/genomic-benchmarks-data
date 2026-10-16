@@ -7,12 +7,12 @@ machine-learning datasets, their metadata, and quality-control (QC) results.
 
 | Package | Data access | QC access |
 | --- | --- | --- |
-| [`genomic-benchmarks-data`](genomic-benchmarks-data/) | All published splits, including test splits | Class and split QC |
-| [`genomic-benchmarks-data4agents`](genomic-benchmarks-data4agents/) | Train and validation (`val`) splits where available; no test splits | Class QC for train and `val`; train–`val` split QC |
+| [`genomic-benchmarks-data`](genomic-benchmarks-data/) | All published splits, including `test` splits | Class and split QC |
+| [`genomic-benchmarks-data4agents`](genomic-benchmarks-data4agents/) | `train` and `val` splits where available; no `test` splits | Class QC for `train` and `val`; `train`–`val` split QC |
 
 Use `genomic-benchmarks-data` for ordinary model development and evaluation.
 Use `genomic-benchmarks-data4agents` when an agent must be able to work with
-train and validation data without being given test data or test-related QC
+`train` and `val` data without being given `test` data or `test`-related QC
 information.
 
 ## What you can do
@@ -25,16 +25,9 @@ Both packages let you:
 - inspect, filter, and plot the QC results available to that package; and
 - retrieve self-contained HTML class-QC reports.
 
-The full package additionally exposes test splits and split QC for all
-available comparisons. The agents package limits split QC to train–`val`
+The full package additionally exposes `test` splits and split QC for all
+available comparisons. The agents package limits split QC to `train`–`val`
 comparisons, so datasets without a `val` split have no split-QC result there.
-
-Downloaded dataset tables have two common leading columns:
-
-- `id`: a stable identifier for the example;
-- `row_index`: the example's original zero-based row number.
-
-The remaining columns depend on the dataset and are described by its metadata.
 
 ## Quick start
 
@@ -52,49 +45,48 @@ The imports have the same shape; replace `genomic_benchmarks_data` with
 ```python
 import genomic_benchmarks_data as gbd
 
+collections = gbd.list_collections()
 core_datasets = gbd.list_datasets(core_set=True)
-datasets = gbd.list_datasets(task_type="Binary classification")
-info = gbd.get_dataset_info(
-    "genomic-benchmarks",
-    "demo_coding_vs_intergenomic_seqs",
-)
-train = gbd.load_dataset(
-    "genomic-benchmarks",
-    "demo_coding_vs_intergenomic_seqs",
-    "train",
-)
+train = gbd.load_dataset("BEACON", "CRISPROnTarget", "train")
+train.head()
 ```
 
-`list_datasets(core_set=True)` selects the benchmark core set; use
-`core_set=False` for its complement. The filter can be combined with the other
-dataset filters.
+## Tutorials
 
-`load_dataset(...)` returns the sequence and label columns by default. For
-`test` and `test_leftout`, it also returns `id` and `row_index` as the
-first two columns. Pass `columns="all"` to retain every column in the dataset
-file.
+- [Full-package tutorial](tutorials/genomic-benchmarks-data.ipynb)
+- [Agent-safe package tutorial](tutorials/genomic-benchmarks-data4agents.ipynb)
 
-`download_dataset(...)` returns the exact path of the cached file. On Linux,
-the package caches are under `~/.cache/genomic_benchmarks_data` and
-`~/.cache/genomic_benchmarks_data4agents`; other operating systems use their
-standard user cache directory. Dataset files and downloaded QC artifacts use
-the same package-specific cache.
+## Public API at a glance
 
-QC results are produced by
-[`genomic-benchmarks-qc`](https://github.com/genomic-benchmarks/genomic-benchmarks-qc).
-See the individual package READMEs for the QC available in each package and
-the corresponding Zenodo record.
+Both packages expose the same function names. The agents package applies its
+`train`/`val`-only boundary to dataset and QC functions.
 
-## Examples
-
-- [Full-package notebook](examples/genomic-benchmarks-data.ipynb)
-- [Agent-safe package notebook](examples/genomic-benchmarks-data4agents.ipynb)
+| Function | What it does | Package notes |
+| --- | --- | --- |
+| `load_metadata()` | Loads all packaged collection and dataset metadata. | The agents metadata omits unavailable `test` splits. |
+| `list_collections()` | Lists collection names and their source DOIs. | Same interface in both packages. |
+| `list_datasets(...)` | Lists datasets, with optional collection, metadata, and `core_set` filters. | Results reflect the datasets included in the package. |
+| `list_molecular_levels(collection)` | Lists molecular levels available in a collection. | Same interface in both packages. |
+| `list_task_categories(collection)` | Lists task categories available in a collection. | Same interface in both packages. |
+| `list_task_types(collection)` | Lists task types available in a collection. | Same interface in both packages. |
+| `list_species(collection)` | Lists species values available in a collection. | Same interface in both packages. |
+| `get_dataset_info(collection, dataset_name)` | Returns metadata for one dataset. | The agents result lists only accessible splits. |
+| `get_split_info(collection, dataset_name, split)` | Returns metadata for one split. | The agents package accepts only `train` and available `val` splits. |
+| `download_dataset(collection, dataset_name, split)` | Downloads a split and returns its cached path. | The agents package cannot download `test` splits. |
+| `load_dataset(collection, dataset_name, split, ...)` | Loads a split as a pandas DataFrame. | The agents package cannot load `test` splits. |
+| `download_qc_csv(qc_type)` | Downloads the combined class- or split-QC CSV and returns its cached path. | The agents QC artifacts contain no `test`-related results. |
+| `load_qc_results(qc_type)` | Downloads and parses class- or split-QC results. | The agents split results contain `train`–`val` comparisons only. |
+| `list_qc_metrics(qc_type)` | Lists the available checks for a QC type. | Results reflect the QC exposed by the package. |
+| `filter_datasets_by_qc(qc_type, ...)` | Selects datasets by QC check and outcome. | Results reflect the QC exposed by the package. |
+| `plot_qc_summary(qc_type, ...)` | Plots QC outcome proportions by collection. | Agents split plots include only collections with `train`–`val` comparisons. |
+| `get_class_qc_report(...)` | Retrieves a self-contained report for one dataset split. | The agents package supports `train` and `val` reports only. |
+| `get_split_qc_report(...)` | Retrieves a self-contained report comparing two splits. | The agents package supports `train`–`val` reports only. |
 
 ## Repository layout
 
 - `genomic-benchmarks-data/`: the full package;
-- `genomic-benchmarks-data4agents/`: the package that excludes test data;
-- `examples/`: package-specific example notebooks;
+- `genomic-benchmarks-data4agents/`: the package that excludes `test` data;
+- `tutorials/`: package-specific tutorial notebooks;
 - `shared/core/`: implementation bundled into both wheels;
 - `scripts/`: metadata validation and installed-wheel checks.
 
