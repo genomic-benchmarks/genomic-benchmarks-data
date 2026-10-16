@@ -35,7 +35,20 @@ def list_datasets(
     species: str | None = None,
     core_set: bool | None = None,
 ) -> dict[str, dict[str, str]]:
-    """Return datasets, optionally filtered by collection and metadata."""
+    """Return datasets, optionally filtered by collection and metadata.
+
+    Args:
+        collection: Collection name, or ``None`` to search all collections.
+        molecular_level: Exact molecular-level value to match.
+        task_category: Exact task-category value to match.
+        task_type: Exact task-type value to match.
+        species: Exact species value to match.
+        core_set: ``True`` for core datasets, ``False`` for non-core datasets,
+            or ``None`` to include both.
+
+    Use :func:`list_dataset_filters` to discover the currently available
+    values for these filters.
+    """
     metadata = load_metadata()
 
     collections = (
@@ -70,6 +83,47 @@ def list_datasets(
             result[collection_name] = datasets
 
     return result
+
+
+def list_dataset_filters(
+    collection: str | None = None,
+) -> dict[str, list[str] | list[bool]]:
+    """Return values accepted by each ``list_datasets`` filter.
+
+    Args:
+        collection: Limit metadata-derived values to one collection. If
+            omitted, values are gathered across all available collections.
+
+    Returns:
+        Filter names mapped to their available values. ``core_set`` always
+        contains the two Boolean choices.
+    """
+    metadata = load_metadata()
+    selected = (
+        {collection: metadata[collection]}
+        if collection is not None
+        else metadata
+    )
+    fields = (
+        "molecular_level",
+        "task_category",
+        "task_type",
+        "species",
+    )
+
+    return {
+        "collection": sorted(selected),
+        **{
+            field: sorted({
+                dataset[field]
+                for collection_data in selected.values()
+                for dataset in collection_data["datasets"]
+                if dataset.get(field) is not None
+            })
+            for field in fields
+        },
+        "core_set": [True, False],
+    }
 
 
 def _list_unique_values(collection: str, field: str) -> list[str]:

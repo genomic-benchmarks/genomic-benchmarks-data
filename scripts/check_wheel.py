@@ -40,6 +40,24 @@ def _select_datasets(
     return selected
 
 
+def _expected_filter_values(metadata: dict) -> dict:
+    """Collect expected filter values directly from packaged metadata."""
+    fields = ("molecular_level", "task_category", "task_type", "species")
+    return {
+        "collection": sorted(metadata),
+        **{
+            field: sorted({
+                dataset[field]
+                for collection in metadata.values()
+                for dataset in collection["datasets"]
+                if dataset.get(field) is not None
+            })
+            for field in fields
+        },
+        "core_set": [True, False],
+    }
+
+
 def main(module_name: str) -> int:
     package = importlib.import_module(module_name)
     package_path = Path(package.__file__).resolve()
@@ -52,6 +70,18 @@ def main(module_name: str) -> int:
         raise RuntimeError(
             f"unexpected collections; missing={missing}, "
             f"unexpected={unexpected}"
+        )
+
+    if package.list_dataset_filters() != _expected_filter_values(metadata):
+        raise RuntimeError("list_dataset_filters returned unexpected values")
+
+    selected_collection = "BEACON"
+    selected_metadata = {selected_collection: metadata[selected_collection]}
+    if package.list_dataset_filters(
+        selected_collection
+    ) != _expected_filter_values(selected_metadata):
+        raise RuntimeError(
+            "collection-specific list_dataset_filters returned unexpected values"
         )
 
     for collection in metadata.values():

@@ -65,6 +65,7 @@ Both packages expose the same function names. The agents package applies its
 | --- | --- | --- |
 | `load_metadata()` | Loads all packaged collection and dataset metadata. | The agents metadata omits unavailable `test` splits. |
 | `list_collections()` | Lists collection names and their source DOIs. | Same interface in both packages. |
+| `list_dataset_filters(collection=None)` | Lists the values accepted by each dataset filter. | Optionally limits metadata-derived values to one collection. |
 | `list_datasets(...)` | Lists datasets, with optional collection, metadata, and `core_set` filters. | Results reflect the datasets included in the package. |
 | `list_molecular_levels(collection)` | Lists molecular levels available in a collection. | Same interface in both packages. |
 | `list_task_categories(collection)` | Lists task categories available in a collection. | Same interface in both packages. |
