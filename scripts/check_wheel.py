@@ -3,10 +3,15 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib
+import json
 import sys
+import tempfile
 from importlib import resources
 from pathlib import Path
+
+import pandas as pd
 
 
 EXPECTED_COLLECTIONS = {
@@ -56,6 +61,83 @@ def _expected_filter_values(metadata: dict) -> dict:
         },
         "core_set": [True, False],
     }
+
+
+def _check_local_collection(package, test_hidden: bool) -> list[str]:
+    """Write a two-split collection to a temporary folder with write_split,
+    and read it back through add_local_collection. Returns its exposed splits.
+
+    It is the last check, because the registration outlives the folder.
+    """
+    rows = pd.DataFrame({"seq": ["ACGT", "GGCC", "TTAA"], "label": [0, 1, 0]})
+
+    with tempfile.TemporaryDirectory() as tmp:
+        folder = Path(tmp)
+        split_metadata = {}
+        for split in ("train", "test"):
+            path = folder / f"toy_{split}.csv.gz"
+            package.write_split(rows, path, "local_check", "toy", split)
+            split_metadata[split] = {
+                # Only the file name counts: the file is read from the folder.
+                "dataset_url": f"file:///elsewhere/{path.name}",
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            }
+        (folder / "local_check_metadata.json").write_text(json.dumps({
+            "collection": "local_check",
+            "collection_doi": None,
+            "datasets": [{
+                "dataset_name": "toy",
+                "task_description": "A local collection",
+                "task_type": "Binary classification",
+                "seq_col": ["seq"],
+                "label_col": "label",
+                "splits": ["train", "test"],
+                "major_version": "v1",
+                "core_set": False,
+                "split_metadata": split_metadata,
+            }],
+        }))
+
+        if package.add_local_collection(folder) != "local_check":
+            raise RuntimeError("add_local_collection returned the wrong name")
+        if "local_check" not in package.list_collections():
+            raise RuntimeError("a local collection is missing from list_collections")
+
+        loaded = package.load_dataset("local_check", "toy", "train", columns="all")
+        if (loaded["id"].iloc[0] != "local_check:toy:v1:train:0000000"
+                or loaded[["seq", "label"]].values.tolist() != rows.values.tolist()):
+            raise RuntimeError("a local split was not read back as written")
+
+        try:
+            package.load_dataset("local_check", "toy", "test")
+        except KeyError:
+            if not test_hidden:
+                raise RuntimeError("a local test split is missing") from None
+        else:
+            if test_hidden:
+                raise RuntimeError("a local test split is exposed")
+
+        (folder / "toy_train.csv.gz").write_bytes(b"changed")
+        try:
+            package.load_dataset("local_check", "toy", "train")
+        except ValueError:
+            pass
+        else:
+            raise RuntimeError("a changed local split was read")
+
+        clash = folder / "clash"
+        clash.mkdir()
+        (clash / "BEACON_metadata.json").write_text(
+            json.dumps({"collection": "BEACON", "datasets": []})
+        )
+        try:
+            package.add_local_collection(clash)
+        except ValueError:
+            pass
+        else:
+            raise RuntimeError("a local collection replaced a packaged one")
+
+        return package.get_dataset_info("local_check", "toy")["splits"]
 
 
 def main(module_name: str) -> int:
@@ -182,6 +264,11 @@ def main(module_name: str) -> int:
     if not schema.is_file():
         raise RuntimeError("installed package does not contain metadata.schema.json")
 
+    test_hidden = module_name.endswith("4agents")
+    local_splits = _check_local_collection(package, test_hidden)
+    if local_splits != (["train"] if test_hidden else ["train", "test"]):
+        raise RuntimeError(f"a local collection exposes the splits {local_splits}")
+
     print(f"ok: imported {module_name} from {package_path}")
     print(
         f"ok: loaded {len(metadata)} collections and found "
@@ -192,6 +279,7 @@ def main(module_name: str) -> int:
         f"{sum(map(len, expected_core.values()))} core and "
         f"{sum(map(len, expected_non_core.values()))} non-core datasets"
     )
+    print(f"ok: read a local collection back, with the splits {local_splits}")
     return 0
 
 

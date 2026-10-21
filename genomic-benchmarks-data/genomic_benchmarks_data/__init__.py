@@ -4,7 +4,9 @@ from ._core.data import (
     download_dataset,
     load_dataset,
 )
+from ._core.identity import write_split
 from ._core.metadata import (
+    add_local_collection,
     get_dataset_info,
     get_split_info,
     list_collections,
@@ -31,6 +33,7 @@ from .qc import (
 
 
 __all__ = [
+    "add_local_collection",
     "download_dataset",
     "download_qc_csv",
     "filter_datasets_by_qc",
@@ -53,4 +56,5 @@ __all__ = [
     "load_metadata",
     "plot_qc_summary",
     "pretty",
+    "write_split",
 ]

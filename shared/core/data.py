@@ -11,7 +11,7 @@ from platformdirs import user_cache_dir
 from tqdm import tqdm
 
 from .identity import write_split
-from .metadata import _get_dataset
+from .metadata import _get_dataset, _local_collection_folder
 
 logger = logging.getLogger(__name__)
 
@@ -198,7 +198,11 @@ def download_dataset(
     split: str,
     force: bool = False,
 ) -> Path:
-    """Download a dataset split to the user cache and return its path."""
+    """Download a dataset split to the user cache and return its path.
+
+    A split of a local collection is not copied: its path in the collection's
+    folder is returned, after a check against the metadata.
+    """
     dataset = _get_dataset(collection, dataset_name)
     split_metadata = dataset.get("split_metadata") or {}
 
@@ -216,6 +220,22 @@ def download_dataset(
         Path(urlparse(url).path).name,
         "dataset filename",
     )
+
+    local_folder = _local_collection_folder(collection)
+    if local_folder is not None:
+        path = local_folder / filename
+        if not path.is_file():
+            raise FileNotFoundError(
+                f"Split {split!r} of {dataset_name!r} is missing from the "
+                f"local collection: {path}"
+            )
+        if _sha256(path) != expected_sha256:
+            raise ValueError(
+                f"Checksum mismatch for {dataset_name!r} split {split!r}. "
+                f"The local file {path} does not match the version described "
+                "by the collection metadata."
+            )
+        return path
 
     # Keep the cache human-readable while retaining the source checksum as the
     # exact artifact identity. Dataset major_version comes from metadata and is

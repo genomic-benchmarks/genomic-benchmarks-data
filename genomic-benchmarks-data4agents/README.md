@@ -34,6 +34,10 @@ The cache is in the operating system's standard user cache directory. On
 Linux it is `~/.cache/genomic_benchmarks_data4agents`. Download functions
 return the exact cached paths.
 
+`add_local_collection(path)` adds a collection from a local folder, as in the
+full package, but leaves out its `test` and `test_leftout` splits, and any
+dataset that has no other split.
+
 ## Package-specific QC
 
 Class QC and reports are available for `train` and `val`. Split QC and reports

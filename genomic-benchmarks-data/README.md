@@ -36,6 +36,13 @@ The cache is in the operating system's standard user cache directory. On
 Linux it is `~/.cache/genomic_benchmarks_data`. Download functions return the
 exact cached paths.
 
+`add_local_collection(path)` adds a collection from a local folder, for the
+running process. The folder holds the collection's `*_metadata.json`, in the
+format of the packaged metadata, and its split files. A split is read in place
+from the file that the last component of its `dataset_url` names, after a
+check against its `sha256`; it is not copied to the cache. `write_split()`
+writes a split with `id` and `row_index`, as the packaged splits are written.
+
 ## Package-specific QC
 
 The package provides class QC for available splits and split QC between

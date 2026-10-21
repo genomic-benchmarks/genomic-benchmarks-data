@@ -2,8 +2,13 @@ import json
 from pathlib import Path
 
 
-def load_metadata() -> dict:
-    """Load metadata for all included dataset collections."""
+# Local collections registered with add_local_collection: the collection name
+# mapped to its folder and the splits that the package leaves out.
+_LOCAL_COLLECTIONS: dict[str, tuple[Path, frozenset[str]]] = {}
+
+
+def _load_packaged_metadata() -> dict:
+    """Load metadata for the collections included in the package."""
     metadata_dir = Path(__file__).parent.parent / "metadata"
 
     collections = {}
@@ -13,6 +18,89 @@ def load_metadata() -> dict:
             metadata = json.load(f)
 
         collections[metadata["collection"]] = metadata
+
+    return collections
+
+
+def _load_local_metadata(folder: Path, exclude_splits: frozenset[str]) -> dict:
+    """Load a local collection's metadata without the excluded splits.
+
+    A dataset left without splits is left out, as in the packaged metadata.
+    """
+    paths = sorted(folder.glob("*_metadata.json"))
+    if len(paths) != 1:
+        raise ValueError(
+            "A local collection folder must hold exactly one "
+            f"'*_metadata.json' file; {folder} holds {len(paths)}."
+        )
+
+    with paths[0].open(encoding="utf-8") as f:
+        metadata = json.load(f)
+
+    datasets = []
+    for dataset in metadata["datasets"]:
+        dataset["splits"] = [
+            split for split in dataset["splits"] if split not in exclude_splits
+        ]
+        dataset["split_metadata"] = {
+            split: info
+            for split, info in (dataset.get("split_metadata") or {}).items()
+            if split not in exclude_splits
+        }
+        if dataset["splits"]:
+            datasets.append(dataset)
+    metadata["datasets"] = datasets
+
+    return metadata
+
+
+def add_local_collection(
+    path: str | Path,
+    exclude_splits: frozenset[str] = frozenset(),
+) -> str:
+    """Make a collection in a local folder available to every function.
+
+    The folder holds the collection's ``*_metadata.json`` and its split files.
+    A split is read from the file that the last component of its
+    ``dataset_url`` names, in that folder, after a check against its
+    ``sha256``. Registering the same collection again replaces its folder.
+    The registration lasts for the running process.
+
+    Args:
+        path: The folder of the collection.
+        exclude_splits: Splits to leave out of the collection's metadata.
+
+    Returns:
+        The collection's name.
+    """
+    folder = Path(path).resolve()
+    exclude_splits = frozenset(exclude_splits)
+    name = _load_local_metadata(folder, exclude_splits)["collection"]
+
+    if name in _load_packaged_metadata():
+        raise ValueError(
+            f"Collection {name!r} is included in the package; a local "
+            "collection needs another name."
+        )
+
+    _LOCAL_COLLECTIONS[name] = (folder, exclude_splits)
+
+    return name
+
+
+def _local_collection_folder(collection: str) -> Path | None:
+    """Return the folder of a local collection, or None for any other."""
+    local = _LOCAL_COLLECTIONS.get(collection)
+
+    return local[0] if local else None
+
+
+def load_metadata() -> dict:
+    """Load metadata for all included and local dataset collections."""
+    collections = _load_packaged_metadata()
+
+    for name, (folder, exclude_splits) in _LOCAL_COLLECTIONS.items():
+        collections[name] = _load_local_metadata(folder, exclude_splits)
 
     return collections
 

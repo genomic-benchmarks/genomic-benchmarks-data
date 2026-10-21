@@ -77,6 +77,8 @@ Both packages expose the same function names. The agents package applies its
 | `get_split_info(collection, dataset_name, split)` | Returns metadata for one split. | The agents package accepts only `train` and available `val` splits. |
 | `download_dataset(collection, dataset_name, split)` | Downloads a split and returns its cached path. | The agents package cannot download `test` splits. |
 | `load_dataset(collection, dataset_name, split, ...)` | Loads a split as a pandas DataFrame. | The agents package cannot load `test` splits. |
+| `add_local_collection(path)` | Makes a collection in a local folder available to the functions above. | The agents package leaves out the collection's `test` splits. |
+| `write_split(df, out_path, collection, dataset_name, split, ...)` | Adds `id` and `row_index` and writes a split as gzipped CSV, as the packaged splits are written. | Same interface in both packages. |
 | `download_qc_csv(qc_type)` | Downloads the combined class- or split-QC CSV and returns its cached path. | The agents QC artifacts contain no `test`-related results. |
 | `load_all_qc_results(qc_type)` | Downloads and parses every result for one QC type. | The agents split results contain `train`–`val` comparisons only. |
 | `get_class_qc_results(collection, dataset_name, split)` | Returns all class-QC checks for one dataset split. | The agents package accepts `train` and `val` only. |
