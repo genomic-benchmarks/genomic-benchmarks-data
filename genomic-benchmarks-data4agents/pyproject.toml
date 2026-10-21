@@ -18,7 +18,6 @@ dependencies = [
     "platformdirs",
     "pyarrow",
     "requests",
-    "scikit-learn",
     "tqdm",
 ]
 
@@ -27,4 +26,3 @@ packages = ["genomic_benchmarks_data4agents"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "../shared/core" = "genomic_benchmarks_data4agents/_core"
-"genomic_benchmarks_data4agents/metadata" = "genomic_benchmarks_data4agents/metadata"

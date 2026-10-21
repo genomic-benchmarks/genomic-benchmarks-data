@@ -1,0 +1,66 @@
+name: Validate metadata
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install validation dependencies
+        run: python -m pip install -r requirements-ci.txt
+
+      - name: Validate packaged metadata
+        run: python scripts/validate_metadata.py
+
+  wheels:
+    name: Smoke-test ${{ matrix.package }} wheel
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: genomic-benchmarks-data
+            module: genomic_benchmarks_data
+          - package: genomic-benchmarks-data4agents
+            module: genomic_benchmarks_data4agents
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install wheel builder
+        run: python -m pip install build
+
+      - name: Build wheel
+        working-directory: ${{ matrix.package }}
+        run: python -m build --wheel --outdir ${{ runner.temp }}/dist .
+
+      - name: Install wheel
+        run: python -m pip install ${{ runner.temp }}/dist/*.whl
+
+      - name: Exercise installed metadata API
+        working-directory: ${{ runner.temp }}
+        run: >-
+          python ${{ github.workspace }}/scripts/check_wheel.py
+          ${{ matrix.module }}

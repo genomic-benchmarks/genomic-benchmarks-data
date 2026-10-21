@@ -1,0 +1,4500 @@
+{
+    "schema_version": "1.0",
+    "collection": "GUE_v2",
+    "collection_doi": "https://doi.org/10.48550/arXiv.2306.15006",
+    "licence": {
+        "name": "Apache-2.0",
+        "url": "https://github.com/MAGICS-LAB/DNABERT_2/blob/main/LICENSE",
+        "redistribution": "permitted",
+        "note": "DNABERT-2 releases the code, the data and the models at github.com/MAGICS-LAB/DNABERT_2, which is Apache-2.0, so the release the authors point at is the licensed one. Recorded with the qualification that the GUE_2 archive itself is served from the Google Drive file the README links (1uOrwlf07qGQuruXqGXWMpPn8avBoW7T-) and carries no terms of its own. GUE is assembled from public sources - EPDnew, ENCODE ChIP-seq via UCSC, Ensembl GRCh38 and a published yeast histone-mark set. The one GUE task with a redistribution problem of its own is covid_variant_classification, whose sequences come from GISAID EpiCoV, whose access agreement forbids redistribution; it is excluded on task format and so is not published here. Apache-2.0 permits redistribution provided the licence and the attribution notices are kept."
+    },
+    "datasets": [
+        {
+            "dataset_name": "core_promoter_detection_all",
+            "task_description": "Prediction of core promoter regions (all)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 47356,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_all/core_promoter_detection_all_train.csv.gz",
+                    "sha256": "51ec19cd50ecbd87eb26958c8f7fe7b8d63b39414e7437f2a5fd04e77d0bdf8a"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5920,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_all/core_promoter_detection_all_val.csv.gz",
+                    "sha256": "7f948f7ea2d69c836cca78af2f25a258b81aae519429d919d14c5c84c2fc14c6"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5920,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_all/core_promoter_detection_all_test.csv.gz",
+                    "sha256": "148689ed62bcccd2c9f46682dc57c58fca5229cdc9d92c6747d43683369c9d93"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "core_promoter_detection_notata",
+            "task_description": "Prediction of core promoter regions (non-TATA)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 42452,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_notata/core_promoter_detection_notata_train.csv.gz",
+                    "sha256": "85e5f78a50547cafbf03f8f6f877c11c9cff941935547b71d979e7abef6aad2b"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5307,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_notata/core_promoter_detection_notata_val.csv.gz",
+                    "sha256": "70fadc26fb4ef859df84134d627854b157324967813a916e1d7a0ebf2276aa62"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5307,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_notata/core_promoter_detection_notata_test.csv.gz",
+                    "sha256": "64ba3895693779a39f91b23cacf6de07f4c43e7bade1a55db1fdf19e1098267f"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "core_promoter_detection_tata",
+            "task_description": "Prediction of core promoter regions (TATA)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 4904,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_tata/core_promoter_detection_tata_train.csv.gz",
+                    "sha256": "8bff94abb1ffc828dda784acd31b8fac3b4c6cb5244ef7f651368323c0d447fc"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 613,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_tata/core_promoter_detection_tata_val.csv.gz",
+                    "sha256": "a37175cbe2fc5ca4f3f799c91527db7786909ffc87dc81c7f16da4fd1d303e56"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 70,
+                            "max": 70,
+                            "median": 70
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 613,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/core_promoter_detection_tata/core_promoter_detection_tata_test.csv.gz",
+                    "sha256": "6fd30467c97aa360a15f893d5030736ced35fd8b6f3c782d2872f7ba2b8cc826"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "promoter_detection_300_all",
+            "task_description": "Prediction of proximal promoter regions (300 bp, all)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 47356,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_all/promoter_detection_300_all_train.csv.gz",
+                    "sha256": "f2796ec6bd4a6f863ceab5acb813feda575b0da0965e9c442d982e6030d83bb2"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5920,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_all/promoter_detection_300_all_val.csv.gz",
+                    "sha256": "5d3762af242d3a8e17ecfac61bdb5ff0b16556b9134cc2da70983a5694280dcc"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5920,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_all/promoter_detection_300_all_test.csv.gz",
+                    "sha256": "7fab44e40666811568f8e968ce04c345abeb1d02a2fb47c2ed13532ba7bcd678"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "promoter_detection_300_notata",
+            "task_description": "Prediction of proximal promoter regions (300 bp, non-TATA)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 42452,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_notata/promoter_detection_300_notata_train.csv.gz",
+                    "sha256": "65d0dea8f3bf20ff49605b7b5362636cc11f4d67c2b0752a74c9b693d5f9a187"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5307,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_notata/promoter_detection_300_notata_val.csv.gz",
+                    "sha256": "59e609a118b5808bebc225e3646fdf701b30a30915cb722e3ba7a961c58956b2"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 5307,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_notata/promoter_detection_300_notata_test.csv.gz",
+                    "sha256": "820a74a9855a1d71a680a8c102f573f2e30aa41f2f95a93af10c2dea8545dc71"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "promoter_detection_300_tata",
+            "task_description": "Prediction of proximal promoter regions (300 bp, TATA)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 4904,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_tata/promoter_detection_300_tata_train.csv.gz",
+                    "sha256": "e3422571c688bc381a2f0e8bcb4e3b058eeffea27af6df73e0c1e85d8216f70b"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 613,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_tata/promoter_detection_300_tata_val.csv.gz",
+                    "sha256": "cd2ddfe7c280fa85ad126487b080643c4daaf6a7e19e437895c5a8ed56ae0c75"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 300,
+                            "max": 300,
+                            "median": 300
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 613,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/promoter_detection_300_tata/promoter_detection_300_tata_test.csv.gz",
+                    "sha256": "de7270fb58093d74ae683cf736548a20b4dc62614e8d6e1b6aa7c811f12a5f79"
+                }
+            },
+            "task_category": "Sequence Annotation",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_human_0",
+            "task_description": "Prediction of transcription factor binding sites (human, subset 0)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 32378,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_0/transcription_factor_prediction_human_0_train.csv.gz",
+                    "sha256": "fad893c0732aa10cac765233c1b23c753c328b67861fbdad60bf7201e7d15730"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.48,
+                        "1": 0.52
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_0/transcription_factor_prediction_human_0_val.csv.gz",
+                    "sha256": "921867c1b4abf7d5e54862ff87e174a352c9777a631e60de72c4599c2f89c5e5"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_0/transcription_factor_prediction_human_0_test.csv.gz",
+                    "sha256": "b656d93055125aa67f026e17e87aa92748c885b527a2a55c85575813e0532824"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_human_1",
+            "task_description": "Prediction of transcription factor binding sites (human, subset 1)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 30672,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_1/transcription_factor_prediction_human_1_train.csv.gz",
+                    "sha256": "94ebebb87c10d464d2e5ef0663e7e464d6855c57f5d880523bc79b501bf83cd0"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_1/transcription_factor_prediction_human_1_val.csv.gz",
+                    "sha256": "2764fb475aa839e6ee07cf4b3c65bb9beab517282ebd59b0a332e3868ce25e31"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_1/transcription_factor_prediction_human_1_test.csv.gz",
+                    "sha256": "2f3fe760c8f532adf8fce30f299442fc0848fbe1bcd398a7b283ac8c6700b3e8"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_human_2",
+            "task_description": "Prediction of transcription factor binding sites (human, subset 2)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 19000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_2/transcription_factor_prediction_human_2_train.csv.gz",
+                    "sha256": "88a1d10ddb1f28fd76252fd780e31f1f1f74a6795c8c6c505de1d88ce24c5d05"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_2/transcription_factor_prediction_human_2_val.csv.gz",
+                    "sha256": "dacb2ecf2fb8223405765059bdad4f12129332c5b97eb24b06637252166e1f94"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_2/transcription_factor_prediction_human_2_test.csv.gz",
+                    "sha256": "7bca961eb83fe108c8990db0a18630a7f49605954fb81002291cbe03b2c93ca4"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_human_3",
+            "task_description": "Prediction of transcription factor binding sites (human, subset 3)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 27294,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_3/transcription_factor_prediction_human_3_train.csv.gz",
+                    "sha256": "f55206e9750f89b332579cb26556b83e64a3a1fc4ac7b04eb57b2e35a18c628a"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.48,
+                        "1": 0.52
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_3/transcription_factor_prediction_human_3_val.csv.gz",
+                    "sha256": "03b64cbadf94d5646d1d68e824d2ab859a57da4cbdd2a8209d893a99b05339ca"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_3/transcription_factor_prediction_human_3_test.csv.gz",
+                    "sha256": "929601b066355f2972ac2e00aa5bd69dd9174933001ed9fcb394e8d5aba030f4"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_human_4",
+            "task_description": "Prediction of transcription factor binding sites (human, subset 4)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 19000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_4/transcription_factor_prediction_human_4_train.csv.gz",
+                    "sha256": "df9d8d4cb6459a8fb3ed5e3fcde0cee14b7285f5603fa307c00f8ba2d7468a78"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_4/transcription_factor_prediction_human_4_val.csv.gz",
+                    "sha256": "c4ca4a8623b598be4318a988f36895946a126cdd9abce9bd2b6f97379fc9562c"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1000,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_human_4/transcription_factor_prediction_human_4_test.csv.gz",
+                    "sha256": "1d1c2fad2e72a71889ebba255b256795a8c64d8c8c027d3166d80ae2c929a50e"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_mouse_0",
+            "task_description": "Prediction of transcription factor binding sites (mouse, subset 0)",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 6478,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_0/transcription_factor_prediction_mouse_0_train.csv.gz",
+                    "sha256": "1f859b2c6bfe6455db14b5812a0ee527d48bfb566842ffca4c7a425f1b68d0bf"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 810,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_0/transcription_factor_prediction_mouse_0_val.csv.gz",
+                    "sha256": "bc8d62dd32dea97d1f325b84089ace7a5fb7ea801472b6bd58d2687f36017e40"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 810,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_0/transcription_factor_prediction_mouse_0_test.csv.gz",
+                    "sha256": "52fa00bb6233b9c1396f0505e38ef274f53bb6f4a4d9b55d8ff6b8873aaa204a"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_mouse_1",
+            "task_description": "Prediction of transcription factor binding sites (mouse, subset 1)",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 53952,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_1/transcription_factor_prediction_mouse_1_train.csv.gz",
+                    "sha256": "c6973d071fd6978b062e176690866d58c808662e72072f1521e49c8dcccce20e"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 6745,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_1/transcription_factor_prediction_mouse_1_val.csv.gz",
+                    "sha256": "ceaf4ffdbeff8c71e24da65ed55287267175e0322a38b8352ecab27d82487efc"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 6745,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_1/transcription_factor_prediction_mouse_1_test.csv.gz",
+                    "sha256": "fad33e168d6d2961d1d152eaf8c867974632e704b982fc6f8545f98b77522cdf"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_mouse_2",
+            "task_description": "Prediction of transcription factor binding sites (mouse, subset 2)",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2620,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_2/transcription_factor_prediction_mouse_2_train.csv.gz",
+                    "sha256": "690ee2c47c2435329d585f6cbf7ae408fb3db55371bac8de414486b9ba98ed35"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 328,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_2/transcription_factor_prediction_mouse_2_val.csv.gz",
+                    "sha256": "89ee061709eff3ba855d4c8447b3f9a49837d84ac6a2237b268f0576271fc15c"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 328,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_2/transcription_factor_prediction_mouse_2_test.csv.gz",
+                    "sha256": "8bc8247b10d8dcc52470ecb5aee0d05b05e9a4a2c071eb217c8ff3734eddfaf8"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_mouse_3",
+            "task_description": "Prediction of transcription factor binding sites (mouse, subset 3)",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1904,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_3/transcription_factor_prediction_mouse_3_train.csv.gz",
+                    "sha256": "b3fb36190486b7503b19b251f385c82c85ed538fa49a34856c972bde6bd78337"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 239,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_3/transcription_factor_prediction_mouse_3_val.csv.gz",
+                    "sha256": "98646212b73c8e058552215591188d0757cde274d683a36ddd7af13ad5b5adf5"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 239,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_3/transcription_factor_prediction_mouse_3_test.csv.gz",
+                    "sha256": "683d5343869217124c41cb95adc13fa1afbc060863c7747a618c7859cb7d4df9"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "transcription_factor_prediction_mouse_4",
+            "task_description": "Prediction of transcription factor binding sites (mouse, subset 4)",
+            "dataset_doi": "collection_doi",
+            "species": "Mus musculus",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 15064,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_4/transcription_factor_prediction_mouse_4_train.csv.gz",
+                    "sha256": "f56b2f3ae697216f20a1d1ca8da620d674a77d67e00fecc4ddd215651d4d9b5c"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1883,
+                    "class_ratio": {
+                        "0": 0.48,
+                        "1": 0.52
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_4/transcription_factor_prediction_mouse_4_val.csv.gz",
+                    "sha256": "0012999578d3111a917814e8bc82ae1a69a0f512d250f3026ee7cb94d4bb548b"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 101,
+                            "max": 101,
+                            "median": 101
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1883,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/transcription_factor_prediction_mouse_4/transcription_factor_prediction_mouse_4_test.csv.gz",
+                    "sha256": "835d9bce474cb4336b16c62923210314e1d5961701eb52e845bd88a25ea00143"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": true
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3",
+            "task_description": "Prediction of epigenetic marks (H3 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 11971,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3/epigenetic_marks_prediction_H3_train.csv.gz",
+                    "sha256": "0f3abcc04351c5f774af6a83b9f7900a1d8ed75d1533b788023d86ddc4a4ec4a"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1497,
+                    "class_ratio": {
+                        "0": 0.49,
+                        "1": 0.51
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3/epigenetic_marks_prediction_H3_val.csv.gz",
+                    "sha256": "54ed9b75765d366e322ecf2504c7969edd9347eefa7544be4101ce3ef01e71bb"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1497,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3/epigenetic_marks_prediction_H3_test.csv.gz",
+                    "sha256": "66b2168769aa6b9eb53fc444cf8c68bc622578cc95e654ecf3784a7e31a06675"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K14ac",
+            "task_description": "Prediction of epigenetic marks (H3K14ac histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 310,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 26438,
+                    "class_ratio": {
+                        "0": 0.43,
+                        "1": 0.57
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K14ac/epigenetic_marks_prediction_H3K14ac_train.csv.gz",
+                    "sha256": "989481b516e9253d6f03bdc554a4c9754f908336fca14d8b6e2c7e5d3f4257ff"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3305,
+                    "class_ratio": {
+                        "0": 0.42,
+                        "1": 0.58
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K14ac/epigenetic_marks_prediction_H3K14ac_val.csv.gz",
+                    "sha256": "9d58791d452a3be17416f941fbbe6c79cccb9a17308da84637bcb1e41cd5edd3"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3305,
+                    "class_ratio": {
+                        "0": 0.43,
+                        "1": 0.57
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K14ac/epigenetic_marks_prediction_H3K14ac_test.csv.gz",
+                    "sha256": "c22c0569cdacce12cb47a415d9609619facad183aed7c2bf5d3caf0903d171f0"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K36me3",
+            "task_description": "Prediction of epigenetic marks (H3K36me3 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 310,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 27904,
+                    "class_ratio": {
+                        "0": 0.46,
+                        "1": 0.54
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K36me3/epigenetic_marks_prediction_H3K36me3_train.csv.gz",
+                    "sha256": "427e61e0c46cced601d3d348ee25c16b6edf6d5faba985ff8d03f2c247d9beb3"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3488,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K36me3/epigenetic_marks_prediction_H3K36me3_val.csv.gz",
+                    "sha256": "4a6908fbfb0995f24c518febc0dbffca45583f3e4fceded9e36431dba732de95"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3488,
+                    "class_ratio": {
+                        "0": 0.44,
+                        "1": 0.56
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K36me3/epigenetic_marks_prediction_H3K36me3_test.csv.gz",
+                    "sha256": "dc31d9f0c43f8364446bc38648d1ae1058e43a974100ea2e8bb80f9231597d8b"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K4me1",
+            "task_description": "Prediction of epigenetic marks (H3K4me1 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 310,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 25341,
+                    "class_ratio": {
+                        "0": 0.45,
+                        "1": 0.55
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me1/epigenetic_marks_prediction_H3K4me1_train.csv.gz",
+                    "sha256": "a0e907c2141e5024238e3984067581a581cb9fa1a79d676d13b4b5543e98a63a"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3168,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me1/epigenetic_marks_prediction_H3K4me1_val.csv.gz",
+                    "sha256": "77e61193ed55f837b8d7196bd105fd506309c6bf6b613b17a8f1a7fd5ea933a9"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3168,
+                    "class_ratio": {
+                        "0": 0.45,
+                        "1": 0.55
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me1/epigenetic_marks_prediction_H3K4me1_test.csv.gz",
+                    "sha256": "9d4240c756ac40ac2e5b26216d3df6e9fab10bc1d66eed0b56c9c4fc8b170168"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K4me2",
+            "task_description": "Prediction of epigenetic marks (H3K4me2 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 24545,
+                    "class_ratio": {
+                        "0": 0.41,
+                        "1": 0.59
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me2/epigenetic_marks_prediction_H3K4me2_train.csv.gz",
+                    "sha256": "5b7d35f39e4d04a76c90c9c9ec37adafa0d7b5eb3d54c2c4e04997ef18e876ea"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3069,
+                    "class_ratio": {
+                        "0": 0.41,
+                        "1": 0.59
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me2/epigenetic_marks_prediction_H3K4me2_val.csv.gz",
+                    "sha256": "5e21b2a453f15d4dca7d82ed2095f7cf5842acaa236432ed8e6693e6c75958d9"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3069,
+                    "class_ratio": {
+                        "0": 0.42,
+                        "1": 0.58
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me2/epigenetic_marks_prediction_H3K4me2_test.csv.gz",
+                    "sha256": "94fc682082c8c4c568861c276503581746ba0189730024b3b9fb165ee35e5416"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K4me3",
+            "task_description": "Prediction of epigenetic marks (H3K4me3 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 29439,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me3/epigenetic_marks_prediction_H3K4me3_train.csv.gz",
+                    "sha256": "ba5c78627327b28a2d6ef73208e77e3d312691c3016c18c87d356423bae31e2b"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3680,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me3/epigenetic_marks_prediction_H3K4me3_val.csv.gz",
+                    "sha256": "1d94ed267065096b74964b1a592117ba2a0e3db340bea216714c1b1298d3e590"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3680,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K4me3/epigenetic_marks_prediction_H3K4me3_test.csv.gz",
+                    "sha256": "a0df21dc44a96a4ad2a02467dbd141c962974923a355cbb7015e04b05642233e"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": true
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K79me3",
+            "task_description": "Prediction of epigenetic marks (H3K79me3 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 310,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 23069,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K79me3/epigenetic_marks_prediction_H3K79me3_train.csv.gz",
+                    "sha256": "aaa5ca381f1a7e4cf616d9d56165cfa4b143bdc33a368c494421039eb6dd093a"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2884,
+                    "class_ratio": {
+                        "0": 0.46,
+                        "1": 0.54
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K79me3/epigenetic_marks_prediction_H3K79me3_val.csv.gz",
+                    "sha256": "7addab496f0c0fef4ae97bc2e1b1e836d9f2b3eca33bc62d33a2e5e129359e78"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2884,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K79me3/epigenetic_marks_prediction_H3K79me3_test.csv.gz",
+                    "sha256": "7a01944f22cbadb458db741f55826a10c6a37ffe6837a1ddcf9986e653756494"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H3K9ac",
+            "task_description": "Prediction of epigenetic marks (H3K9ac histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 22224,
+                    "class_ratio": {
+                        "0": 0.44,
+                        "1": 0.56
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K9ac/epigenetic_marks_prediction_H3K9ac_train.csv.gz",
+                    "sha256": "f92f3a36368932334fa2d72260a65df0fad717d25f97577f35d8da1561713158"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2779,
+                    "class_ratio": {
+                        "0": 0.45,
+                        "1": 0.55
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K9ac/epigenetic_marks_prediction_H3K9ac_val.csv.gz",
+                    "sha256": "bf147cf6ab54a60e8d5a7a7ff712588a010e7bfd5e374a1e3a94945ea8df65a0"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2779,
+                    "class_ratio": {
+                        "0": 0.45,
+                        "1": 0.55
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H3K9ac/epigenetic_marks_prediction_H3K9ac_test.csv.gz",
+                    "sha256": "d260e3b76821f5ea0087602581e0eef4b6d987afd453646343e2a2517f566098"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H4",
+            "task_description": "Prediction of epigenetic marks (H4 histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 310,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 11679,
+                    "class_ratio": {
+                        "0": 0.56,
+                        "1": 0.44
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H4/epigenetic_marks_prediction_H4_train.csv.gz",
+                    "sha256": "f2d6d4cbf4c96ade965925a4caad84faf5e5baca3ed6194fc3962017f3bfc4c2"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1461,
+                    "class_ratio": {
+                        "0": 0.56,
+                        "1": 0.44
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H4/epigenetic_marks_prediction_H4_val.csv.gz",
+                    "sha256": "635918fbbe6ccad0fb5338b85003b7ba0471827f54259ad2694c7fd54084ae8e"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 1461,
+                    "class_ratio": {
+                        "0": 0.56,
+                        "1": 0.44
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H4/epigenetic_marks_prediction_H4_test.csv.gz",
+                    "sha256": "86ff8550326271c65b0047ebac5ea065f3ade5be138965245e4ee5ddf8152424"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "epigenetic_marks_prediction_H4ac",
+            "task_description": "Prediction of epigenetic marks (H4ac histone modifications) in yeast",
+            "dataset_doi": "collection_doi",
+            "species": "Saccharomyces cerevisiae",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "sequence"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 290,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 27275,
+                    "class_ratio": {
+                        "0": 0.46,
+                        "1": 0.54
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H4ac/epigenetic_marks_prediction_H4ac_train.csv.gz",
+                    "sha256": "065f20c1c2546e844c56c3fd8cab8a43358d041768985b5b45ce82f035b6e2ea"
+                },
+                "val": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 449,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3410,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H4ac/epigenetic_marks_prediction_H4ac_val.csv.gz",
+                    "sha256": "9214e76a1d85acb4a021aeb16c4ff4f452bfd9135c79a7e5a79aadc698444413"
+                },
+                "test": {
+                    "seq_length": {
+                        "sequence": {
+                            "min": 500,
+                            "max": 500,
+                            "median": 500
+                        }
+                    },
+                    "seq_alphabet": {
+                        "sequence": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 3410,
+                    "class_ratio": {
+                        "0": 0.47,
+                        "1": 0.53
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "sequence",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/epigenetic_marks_prediction_H4ac/epigenetic_marks_prediction_H4ac_test.csv.gz",
+                    "sha256": "a046dd5d7ec977f343756274055bf7383a7ed3bd6576be29817cc2612983ca0c"
+                }
+            },
+            "task_category": "Epigenomic Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "enhancer_promoter_interaction_GM12878",
+            "task_description": "Prediction of enhancer-promoter interactions (GM12878 cell line)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "enhancer",
+                "promoter"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 10000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_GM12878/enhancer_promoter_interaction_GM12878_train.csv.gz",
+                    "sha256": "b213fe93394c31e666832d42cd9d74c36a3a3068982bfe57c725981e14a3b786"
+                },
+                "val": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_GM12878/enhancer_promoter_interaction_GM12878_val.csv.gz",
+                    "sha256": "c38b2a77b56ee59ac9ea1f40807edc4483b95f9ca961179557681574ddb59fb9"
+                },
+                "test": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.54,
+                        "1": 0.46
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_GM12878/enhancer_promoter_interaction_GM12878_test.csv.gz",
+                    "sha256": "b0c10b82c722fc2ff6c5ea63f7e3a980287ef8ea05ea13252f00385159991406"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "enhancer_promoter_interaction_HeLa_S3",
+            "task_description": "Prediction of enhancer-promoter interactions (HeLa-S3 cell line)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "enhancer",
+                "promoter"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 10000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_HeLa_S3/enhancer_promoter_interaction_HeLa_S3_train.csv.gz",
+                    "sha256": "0aef47db2b8d0871e1c4fa6425f7322dc3ec552aff68a34d1d29b236e23d1111"
+                },
+                "val": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_HeLa_S3/enhancer_promoter_interaction_HeLa_S3_val.csv.gz",
+                    "sha256": "5078cb0d79816694dbe8200ffd5fd0746579f07c45cefbe331d1307e02bca8b7"
+                },
+                "test": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_HeLa_S3/enhancer_promoter_interaction_HeLa_S3_test.csv.gz",
+                    "sha256": "493fbc66e47c7691b43a169470c4e674144202f4063786fb802eb1cf33706e4d"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "enhancer_promoter_interaction_HUVEC",
+            "task_description": "Prediction of enhancer-promoter interactions (HUVEC cell line)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "enhancer",
+                "promoter"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 10000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_HUVEC/enhancer_promoter_interaction_HUVEC_train.csv.gz",
+                    "sha256": "73c75972d64e0e258978fe5896b9c2e82a005fb7477fe712bd32eba98d1ea434"
+                },
+                "val": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_HUVEC/enhancer_promoter_interaction_HUVEC_val.csv.gz",
+                    "sha256": "8ee4b922499c7167f0e8139af8ca274ca1ce845d37e5acee2a1be43658d30567"
+                },
+                "test": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_HUVEC/enhancer_promoter_interaction_HUVEC_test.csv.gz",
+                    "sha256": "53052200bcfbb3e30efd25ed27cd00d319629f5bd34177aefce9cfd61cefd080"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "enhancer_promoter_interaction_IMR90",
+            "task_description": "Prediction of enhancer-promoter interactions (IMR90 cell line)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "enhancer",
+                "promoter"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 10000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_IMR90/enhancer_promoter_interaction_IMR90_train.csv.gz",
+                    "sha256": "54ced0dba2021812820aeca5f514cc4b90a91e247a1c70d3e1944662ccaea443"
+                },
+                "val": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_IMR90/enhancer_promoter_interaction_IMR90_val.csv.gz",
+                    "sha256": "05b94f3a191a36079f115a66d14973c21f4100e8d315834c62a7316120bc501c"
+                },
+                "test": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_IMR90/enhancer_promoter_interaction_IMR90_test.csv.gz",
+                    "sha256": "9d872b5ebb88f5901e1852e8b7f507d3fc836472844f20973667ef3f13bb40c9"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "enhancer_promoter_interaction_K562",
+            "task_description": "Prediction of enhancer-promoter interactions (K562 cell line)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "enhancer",
+                "promoter"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 10000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_K562/enhancer_promoter_interaction_K562_train.csv.gz",
+                    "sha256": "dc86dce961bf247c2ae5233314f7b7dfc2d204611b324255e0299e9f398d5e7c"
+                },
+                "val": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_K562/enhancer_promoter_interaction_K562_val.csv.gz",
+                    "sha256": "8cbe86da7cbd887f86e76cf0dbf39ce5853e6721bdb25c1ae07f1e4f5a2fd50e"
+                },
+                "test": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.53,
+                        "1": 0.47
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_K562/enhancer_promoter_interaction_K562_test.csv.gz",
+                    "sha256": "7233483605c1b6193135cae8f08066fd7fcf2621b7bed49ab17a58a96af8f192"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "enhancer_promoter_interaction_NHEK",
+            "task_description": "Prediction of enhancer-promoter interactions (NHEK cell line)",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "enhancer",
+                "promoter"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train",
+                "val",
+                "test"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "N",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 10000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_NHEK/enhancer_promoter_interaction_NHEK_train.csv.gz",
+                    "sha256": "a8ecf81b2bd39ad1d9374e13808d491e626ba0a22fb0672ea8fe38b7eaaade45"
+                },
+                "val": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.51,
+                        "1": 0.49
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_NHEK/enhancer_promoter_interaction_NHEK_val.csv.gz",
+                    "sha256": "960d42ee8e64a14f56c775daf483200c01f533ee4acaa40378c90604e295b266"
+                },
+                "test": {
+                    "seq_length": {
+                        "enhancer": {
+                            "min": 3000,
+                            "max": 3000,
+                            "median": 3000
+                        },
+                        "promoter": {
+                            "min": 2000,
+                            "max": 2000,
+                            "median": 2000
+                        }
+                    },
+                    "seq_alphabet": {
+                        "enhancer": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "promoter": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2000,
+                    "class_ratio": {
+                        "0": 0.52,
+                        "1": 0.48
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "enhancer",
+                        "promoter",
+                        "label"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/GUE_v2/resolve/65fd0113aed550829fda21d9f1cbcd428b0f5a19/v1/enhancer_promoter_interaction_NHEK/enhancer_promoter_interaction_NHEK_test.csv.gz",
+                    "sha256": "55ad3b05d25117afd35e3be6e82e102c6ad737fa03b35494fd0d44dacf6ea917"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "DNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        }
+    ]
+}

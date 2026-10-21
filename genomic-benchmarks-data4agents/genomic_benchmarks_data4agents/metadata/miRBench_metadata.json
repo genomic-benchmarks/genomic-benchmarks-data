@@ -1,0 +1,196 @@
+{
+    "schema_version": "1.0",
+    "collection": "miRBench",
+    "collection_doi": "https://doi.org/10.1093/bioinformatics/btaf233",
+    "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "redistribution": "permitted",
+        "note": "Zenodo record 20540907 records cc-by-4.0. Attribution is required; the collection DOI carries it."
+    },
+    "datasets": [
+        {
+            "dataset_name": "AGO2_CLASH_Hejret2023",
+            "task_description": "Prediction of miRNA binding site",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "gene",
+                "noncodingRNA"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "gene": {
+                            "min": 50,
+                            "max": 50,
+                            "median": 50
+                        },
+                        "noncodingRNA": {
+                            "min": 17,
+                            "max": 26,
+                            "median": 22
+                        }
+                    },
+                    "seq_alphabet": {
+                        "gene": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "noncodingRNA": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 8140,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "noncodingRNA",
+                        "noncodingRNA_name",
+                        "noncodingRNA_fam",
+                        "feature",
+                        "label",
+                        "chr",
+                        "start",
+                        "end",
+                        "strand",
+                        "Nunique",
+                        "dominant_region",
+                        "regions_present",
+                        "read_start_in_sel_tx_1based",
+                        "read_end_in_sel_tx_1based",
+                        "gene_cluster_ID",
+                        "gene_phyloP",
+                        "gene_phastCons"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/miRBench/resolve/f3ef23e519a2c120bddb9e1a233f4636b751662a/v1/AGO2_CLASH_Hejret2023/AGO2_CLASH_Hejret2023_train.csv.gz",
+                    "sha256": "712436826349bae36f720bd16de717db6b18b8bcaadf2eb549425ba9f062e0b6"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": false
+        },
+        {
+            "dataset_name": "AGO2_eCLIP_Manakov2022",
+            "task_description": "Prediction of miRNA binding site",
+            "dataset_doi": "collection_doi",
+            "species": "Homo sapiens",
+            "task_type": "Binary classification",
+            "seq_col": [
+                "gene",
+                "noncodingRNA"
+            ],
+            "label_col": "label",
+            "label_categories": {
+                "0": "negative",
+                "1": "positive"
+            },
+            "splits": [
+                "train"
+            ],
+            "major_version": "v1",
+            "split_metadata": {
+                "train": {
+                    "seq_length": {
+                        "gene": {
+                            "min": 50,
+                            "max": 50,
+                            "median": 50
+                        },
+                        "noncodingRNA": {
+                            "min": 16,
+                            "max": 28,
+                            "median": 22
+                        }
+                    },
+                    "seq_alphabet": {
+                        "gene": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ],
+                        "noncodingRNA": [
+                            "A",
+                            "C",
+                            "G",
+                            "T"
+                        ]
+                    },
+                    "labels": [
+                        0,
+                        1
+                    ],
+                    "dataset_size": 2495535,
+                    "class_ratio": {
+                        "0": 0.5,
+                        "1": 0.5
+                    },
+                    "all_columns": [
+                        "id",
+                        "row_index",
+                        "gene",
+                        "noncodingRNA",
+                        "noncodingRNA_name",
+                        "noncodingRNA_fam",
+                        "feature",
+                        "label",
+                        "chr",
+                        "start",
+                        "end",
+                        "strand",
+                        "Nunique",
+                        "dominant_region",
+                        "regions_present",
+                        "read_start_in_sel_tx_1based",
+                        "read_end_in_sel_tx_1based",
+                        "gene_cluster_ID",
+                        "gene_phyloP",
+                        "gene_phastCons"
+                    ],
+                    "dataset_url": "https://huggingface.co/datasets/genomic-benchmarks/miRBench/resolve/f3ef23e519a2c120bddb9e1a233f4636b751662a/v1/AGO2_eCLIP_Manakov2022/AGO2_eCLIP_Manakov2022_train.csv.gz",
+                    "sha256": "775aaf9c1a6864753824d01ac24ee729a5e99d9ce4bd19d6d5593e4516c88675"
+                }
+            },
+            "task_category": "Molecular Interaction Prediction",
+            "molecular_level": "RNA",
+            "positive_label": "1",
+            "scoring_splits": [
+                "test",
+                "test_leftout"
+            ],
+            "scoring_metric": "Average precision score",
+            "core_set": true
+        }
+    ]
+}

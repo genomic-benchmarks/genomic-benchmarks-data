@@ -1,119 +1,108 @@
-import logging
-from pathlib import Path
-from urllib.parse import urlparse
+"""Shared class- and split-QC downloads, parsing, filtering, and plotting."""
 
+from __future__ import annotations
+
+import logging
+import shutil
+import zipfile
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
 import requests
 from platformdirs import user_cache_dir
 from tqdm import tqdm
-import shutil
-import zipfile
-import pandas as pd
-import matplotlib.pyplot as plt
 
 from .metadata import _get_dataset
 
 logger = logging.getLogger(__name__)
 
-
 _PACKAGE_NAME = __package__.split(".")[0]
+_CLASS_RESULTS_FILENAME = "combined_classes_results.csv"
+_SPLIT_RESULTS_FILENAME = "combined_splits_results.csv"
 
-
-_QC_ZENODO_RECORD_ID = "21915933"
-_QC_ZENODO_BASE_URL = (f"https://zenodo.org/records/{_QC_ZENODO_RECORD_ID}/files")
-_QC_CSV_URLS = {
-    "split": (
-        f"{_QC_ZENODO_BASE_URL}/"
-        "combined_qc_results_splits.csv?download=1"
-    ),
-    "class": (
-        f"{_QC_ZENODO_BASE_URL}/"
-        "combined_qc_results_classes.csv?download=1"
-    ),
+_FLAG_RANK = {
+    "Pass": 0,
+    "Warning": 1,
+    "Fail": 2,
+    "Unknown": 3,
+}
+_FLAG_COLORS = {
+    "Pass": "#2e7d32",
+    "Warning": "#f57f17",
+    "Fail": "#c62828",
+    "Unknown": "#757575",
 }
 
 
+def _zenodo_file_url(record_id: str, filename: str) -> str:
+    """Return the public download URL for a file in a Zenodo record."""
+    return f"https://zenodo.org/records/{record_id}/files/{filename}?download=1"
+
+
+def _qc_cache_root(record_id: str) -> Path:
+    """Return the package- and record-specific QC cache directory."""
+    return Path(user_cache_dir(_PACKAGE_NAME)) / "qc" / record_id
+
+
 def _download_qc_file(
-    url: str,
+    record_id: str,
+    filename: str,
     destination: Path,
     force: bool = False,
 ) -> Path:
-    """Download a QC file to the user cache and return its path."""
+    """Download one QC artifact to the package cache."""
     destination.parent.mkdir(parents=True, exist_ok=True)
 
     if destination.exists() and not force:
         return destination
 
+    url = _zenodo_file_url(record_id, filename)
     with requests.get(url, stream=True) as response:
         response.raise_for_status()
-
         total = int(response.headers.get("content-length", 0))
 
         with (
-            destination.open("wb") as f,
+            destination.open("wb") as output,
             tqdm(
                 total=total,
                 unit="B",
                 unit_scale=True,
-                desc=destination.name,
+                desc=filename,
             ) as progress,
         ):
             for chunk in response.iter_content(chunk_size=1024 * 1024):
                 if chunk:
-                    f.write(chunk)
+                    output.write(chunk)
                     progress.update(len(chunk))
 
     return destination
 
 
-def download_qc_csv(
-    qc_type: str,
+def _download_qc_csv(
+    record_id: str,
+    filename: str,
     force: bool = False,
 ) -> Path:
-    """Download a combined QC results CSV and return its local path."""
-    try:
-        url = _QC_CSV_URLS[qc_type]
-    except KeyError:
-        raise ValueError(
-            f"Unknown QC type {qc_type!r}. "
-            f"Expected one of {sorted(_QC_CSV_URLS)}."
-        ) from None
-
-    filename = Path(urlparse(url).path).name
-
-    destination = (
-        Path(user_cache_dir(_PACKAGE_NAME))
-        / "qc"
-        / "combined_results"
-        / filename
-    )
-
-    return _download_qc_file(
-        url=url,
-        destination=destination,
-        force=force,
-    )
+    """Download a combined QC CSV and return its cached path."""
+    destination = _qc_cache_root(record_id) / "combined_results" / filename
+    return _download_qc_file(record_id, filename, destination, force=force)
 
 
 def _get_qc_report_dir(
+    record_id: str,
     collection: str,
     dataset_name: str,
     force: bool = False,
 ) -> Path:
-    """Ensure dataset QC reports are cached and return their directory."""
+    """Ensure one dataset's report archive is extracted and return its root."""
     filename = f"{collection}-{dataset_name}.zip"
-    url = f"{_QC_ZENODO_BASE_URL}/{filename}?download=1"
-
-    cache_dir = (
-        Path(user_cache_dir(_PACKAGE_NAME))
-        / "qc"
-        / "reports"
-    )
+    cache_dir = _qc_cache_root(record_id) / "reports"
     cache_dir.mkdir(parents=True, exist_ok=True)
 
     archive_path = cache_dir / filename
-    report_dir = cache_dir / collection / dataset_name
+    report_dir = cache_dir / f"{collection}-{dataset_name}"
 
-    # Reuse already-extracted reports unless explicitly refreshed.
     if report_dir.exists() and not force:
         logger.debug("Using cached QC reports: %s", report_dir)
         return report_dir
@@ -122,26 +111,17 @@ def _get_qc_report_dir(
         shutil.rmtree(report_dir)
 
     if not archive_path.exists() or force:
-        logger.info(
-            "Downloading QC reports for %s/%s",
-            collection,
-            dataset_name,
-        )
-
+        logger.info("Downloading QC reports for %s/%s", collection, dataset_name)
         _download_qc_file(
-            url=url,
-            destination=archive_path,
+            record_id,
+            filename,
+            archive_path,
             force=force,
         )
 
-    logger.info(
-        "Extracting QC reports for %s/%s",
-        collection,
-        dataset_name,
-    )
-
-    with zipfile.ZipFile(archive_path, "r") as zip_ref:
-        zip_ref.extractall(cache_dir)
+    logger.info("Extracting QC reports for %s/%s", collection, dataset_name)
+    with zipfile.ZipFile(archive_path, "r") as archive:
+        archive.extractall(cache_dir)
 
     if not report_dir.exists():
         raise FileNotFoundError(
@@ -152,67 +132,36 @@ def _get_qc_report_dir(
     return report_dir
 
 
-def get_split_qc_report(
-    collection: str,
-    dataset_name: str,
-    split_a: str,
-    split_b: str,
+def download_class_qc_csv(
+    record_id: str,
     force: bool = False,
 ) -> Path:
-    """Return the QC report comparing two dataset splits."""
-    dataset = _get_dataset(collection, dataset_name)
-    available_splits = set(dataset.get("splits") or [])
-
-    if split_a not in available_splits:
-        raise KeyError(
-            f"Split {split_a!r} not found for dataset {dataset_name!r}."
-        )
-
-    if split_b not in available_splits:
-        raise KeyError(
-            f"Split {split_b!r} not found for dataset {dataset_name!r}."
-        )
-
-    report_dir = _get_qc_report_dir(
-        collection,
-        dataset_name,
-        force=force,
-    )
-
-    report = report_dir / "split" / f"{split_a}_{split_b}.html"
-
-    # Split-pair filenames may use either ordering.
-    if not report.exists():
-        report = report_dir / "split" / f"{split_b}_{split_a}.html"
-
-    if not report.exists():
-        raise FileNotFoundError(
-            f"No split QC report found for {split_a!r} and {split_b!r} "
-            f"in {collection!r}/{dataset_name!r}."
-        )
-
-    logger.info(
-        "QC report available at %s. Open it in a web browser to view it.",
-        report,
-    )
-
-    return report
+    """Download the combined class-QC results CSV."""
+    return _download_qc_csv(record_id, _CLASS_RESULTS_FILENAME, force=force)
 
 
 def get_class_qc_report(
+    record_id: str,
     collection: str,
     dataset_name: str,
     split: str,
     seq_col: str,
     force: bool = False,
+    allowed_report_splits: frozenset[str] | None = None,
 ) -> Path:
-    """Return the class QC report for a split and sequence column."""
+    """Return the class-QC HTML report for a split and sequence column."""
     dataset = _get_dataset(collection, dataset_name)
 
     available_splits = set(dataset.get("splits") or [])
     if split not in available_splits:
         raise KeyError(
             f"Split {split!r} not found for dataset {dataset_name!r}."
+        )
+
+    if allowed_report_splits is not None and split not in allowed_report_splits:
+        raise ValueError(
+            f"Class QC HTML reports for {_PACKAGE_NAME!r} are available only "
+            f"for splits {sorted(allowed_report_splits)}; got {split!r}."
         )
 
     available_seq_cols = set(dataset.get("seq_col") or [])
@@ -223,17 +172,12 @@ def get_class_qc_report(
         )
 
     report_dir = _get_qc_report_dir(
+        record_id,
         collection,
         dataset_name,
         force=force,
     )
-
-    report = (
-        report_dir
-        / "class"
-        / split
-        / f"{seq_col}.html"
-    )
+    report = report_dir / "class" / split / f"{seq_col}.html"
 
     if not report.exists():
         raise FileNotFoundError(
@@ -241,11 +185,7 @@ def get_class_qc_report(
             f"split {split!r}, sequence column {seq_col!r}."
         )
 
-    logger.info(
-        "QC report available at %s. Open it in a web browser to view it.",
-        report,
-    )
-
+    logger.info("QC report available at %s", report)
     return report
 
 
@@ -254,18 +194,17 @@ def _clean_qc_value(value):
     return None if pd.isna(value) else value
 
 
-def _parse_class_qc(df: pd.DataFrame) -> dict:
-    """Parse combined class QC results into a nested dictionary."""
+def _parse_class_qc(frame: pd.DataFrame) -> dict:
+    """Parse combined class-QC results into a nested dictionary."""
     results = {}
 
-    for row in df.itertuples(index=False):
+    for row in frame.itertuples(index=False):
         check_results = {
             "flag": _clean_qc_value(row.flag),
             "accuracy": _clean_qc_value(row.accuracy),
             "au_pr": _clean_qc_value(row.au_pr),
             "au_roc": _clean_qc_value(row.au_roc),
         }
-
         (
             results
             .setdefault(row.collection, {})
@@ -276,131 +215,85 @@ def _parse_class_qc(df: pd.DataFrame) -> dict:
     return results
 
 
-def _parse_split_qc(df: pd.DataFrame) -> dict:
-    """Parse combined split QC results into a nested dictionary."""
-    results = {}
-
-    for row in df.itertuples(index=False):
-        check_results = {
-            "flag": _clean_qc_value(row.flag),
-            "statistic": _clean_qc_value(row.statistic),
-            "percentage_of_leaked_queries": _clean_qc_value(
-                row.percentage_of_leaked_queries
-            ),
-            "percentage_of_leaked_targets": _clean_qc_value(
-                row.percentage_of_leaked_targets
-            ),
-        }
-
-        (
-            results
-            .setdefault(row.collection, {})
-            .setdefault(row.dataset_name, {})
-            .setdefault(row.train_split, {})
-            .setdefault(row.test_split, {})
-        )[row.check] = check_results
-
-    return results
-
-
-def load_qc_results(
-    qc_type: str,
+def load_class_qc_results(
+    record_id: str,
     force: bool = False,
 ) -> dict:
-    """Download and load combined QC results into a nested dictionary."""
-    path = download_qc_csv(qc_type, force=force)
-    df = pd.read_csv(path)
+    """Download and parse combined class-QC results."""
+    path = download_class_qc_csv(record_id, force=force)
+    return _parse_class_qc(pd.read_csv(path))
 
-    if qc_type == "class":
-        return _parse_class_qc(df)
 
-    if qc_type == "split":
-        return _parse_split_qc(df)
-
-    raise ValueError(
-        f"Unknown QC type {qc_type!r}. "
-        "Expected 'class' or 'split'."
-    )
-
-def _get_qc_metrics(
-    results: dict,
-    qc_type: str,
-) -> list[str]:
-    """Return available QC checks from already-loaded results."""
-    checks = set()
-
-    if qc_type == "class":
-        for collection in results.values():
-            for dataset in collection.values():
-                for split in dataset.values():
-                    checks.update(split.keys())
-
-    elif qc_type == "split":
-        for collection in results.values():
-            for dataset in collection.values():
-                for train_split in dataset.values():
-                    for test_split in train_split.values():
-                        checks.update(test_split.keys())
-
-    else:
-        raise ValueError(
-            f"Unknown QC type {qc_type!r}. "
-            "Expected 'class' or 'split'."
+def _select_qc_key(mapping: dict, key: str, what: str) -> dict:
+    """Select a QC result level with a useful missing-key error."""
+    if key not in mapping:
+        raise KeyError(
+            f"{what} {key!r} not found in QC results. "
+            f"Available values: {sorted(mapping)}."
         )
+    return mapping[key]
 
+
+def get_class_qc_results(
+    record_id: str,
+    collection: str,
+    dataset_name: str,
+    split: str,
+    force: bool = False,
+) -> dict:
+    """Return all class-QC checks for one dataset split."""
+    results = load_class_qc_results(record_id, force=force)
+    collection_results = _select_qc_key(
+        results,
+        collection,
+        "Collection",
+    )
+    dataset_results = _select_qc_key(
+        collection_results,
+        dataset_name,
+        "Dataset",
+    )
+    return _select_qc_key(dataset_results, split, "Split")
+
+
+def _get_class_qc_metrics(results: dict) -> list[str]:
+    """Return the class-QC check names present in parsed results."""
+    checks = set()
+    for collection in results.values():
+        for dataset in collection.values():
+            for split in dataset.values():
+                checks.update(split.keys())
     return sorted(checks)
 
 
-def list_qc_metrics(
-    qc_type: str,
+def list_class_qc_metrics(
+    record_id: str,
     force: bool = False,
 ) -> list[str]:
-    """Download QC results if needed and return available QC checks."""
-    results = load_qc_results(qc_type, force=force)
+    """Return available class-QC check names."""
+    return _get_class_qc_metrics(
+        load_class_qc_results(record_id, force=force)
+    )
 
-    return _get_qc_metrics(results, qc_type)
 
-
-def filter_datasets_by_qc(
-    qc_type: str,
+def filter_class_datasets_by_qc(
+    record_id: str,
     check: str | list[str] | None = None,
     flag: str | list[str] = "Pass",
     force: bool = False,
 ) -> dict[str, list[str]]:
-    """Return datasets matching the requested QC checks and flags.
+    """Return datasets whose selected class-QC results have allowed flags."""
+    results = load_class_qc_results(record_id, force=force)
+    selected_checks = (
+        None
+        if check is None
+        else {check} if isinstance(check, str) else set(check)
+    )
+    selected_flags = {flag} if isinstance(flag, str) else set(flag)
 
-    A dataset is returned only if all relevant QC results for the
-    requested checks have one of the requested flags.
-
-    Args:
-        qc_type: QC result type, either ``"class"`` or ``"split"``.
-        check: QC check or checks to filter on. If None, all available
-            checks are considered.
-        flag: Required QC flag or flags. Defaults to ``"Pass"``.
-        force: Force redownload of the combined QC results CSV.
-
-    Returns:
-        Dictionary mapping collection names to matching dataset names.
-    """
-    results = load_qc_results(qc_type, force=force)
-
-    if check is None:
-        selected_checks = None
-    elif isinstance(check, str):
-        selected_checks = {check}
-    else:
-        selected_checks = set(check)
-
-    if isinstance(flag, str):
-        selected_flags = {flag}
-    else:
-        selected_flags = set(flag)
-
-    # Validate requested checks using the already-loaded results.
     if selected_checks is not None:
-        available_checks = set(_get_qc_metrics(results, qc_type))
+        available_checks = set(_get_class_qc_metrics(results))
         unknown_checks = selected_checks - available_checks
-
         if unknown_checks:
             raise ValueError(
                 f"Unknown QC check(s): {sorted(unknown_checks)}. "
@@ -408,46 +301,16 @@ def filter_datasets_by_qc(
             )
 
     matching = {}
-
     for collection_name, collection_results in results.items():
         matching_datasets = []
-
         for dataset_name, dataset_results in collection_results.items():
-            result_flags = []
-
-            if qc_type == "class":
-                # Class QC is evaluated independently for each split.
-                for split_results in dataset_results.values():
-                    for check_name, values in split_results.items():
-                        if (
-                            selected_checks is None
-                            or check_name in selected_checks
-                        ):
-                            result_flags.append(values["flag"])
-
-            elif qc_type == "split":
-                # Split QC is evaluated for each pair of dataset splits.
-                for train_results in dataset_results.values():
-                    for test_results in train_results.values():
-                        for check_name, values in test_results.items():
-                            if (
-                                selected_checks is None
-                                or check_name in selected_checks
-                            ):
-                                result_flags.append(values["flag"])
-
-            else:
-                raise ValueError(
-                    f"Unknown QC type {qc_type!r}. "
-                    "Expected 'class' or 'split'."
-                )
-
-            # Require at least one matching QC result, and require every
-            # relevant result to have one of the requested flags.
-            if result_flags and all(
-                result_flag in selected_flags
-                for result_flag in result_flags
-            ):
+            flags = [
+                values["flag"]
+                for split_results in dataset_results.values()
+                for check_name, values in split_results.items()
+                if selected_checks is None or check_name in selected_checks
+            ]
+            if flags and all(value in selected_flags for value in flags):
                 matching_datasets.append(dataset_name)
 
         if matching_datasets:
@@ -455,62 +318,45 @@ def filter_datasets_by_qc(
 
     return matching
 
-_FLAG_RANK = {
-    "Pass": 0,
-    "Warning": 1,
-    "Fail": 2,
-}
 
-
-def _dataset_qc_flag(
-    dataset_results: dict,
-    qc_type: str,
-    check: str | None = None,
-) -> str | None:
-    """Return the worst QC flag for a dataset."""
-    flags = []
-
-    if qc_type == "class":
-        for split_results in dataset_results.values():
-            for check_name, values in split_results.items():
-                if check is None or check_name == check:
-                    flags.append(values["flag"])
-
-    elif qc_type == "split":
-        for train_results in dataset_results.values():
-            for test_results in train_results.values():
-                for check_name, values in test_results.items():
-                    if check is None or check_name == check:
-                        flags.append(values["flag"])
-
-    else:
-        raise ValueError(
-            f"Unknown QC type {qc_type!r}. "
-            "Expected 'class' or 'split'."
-        )
-
-    flags = [flag for flag in flags if flag is not None]
-
-    if not flags:
+def _worst_flag(flags) -> str | None:
+    """Return the worst non-null QC flag in an iterable."""
+    values = [flag for flag in flags if flag is not None]
+    if not values:
         return None
+    return max(values, key=lambda value: _FLAG_RANK[value])
 
-    return max(flags, key=lambda flag: _FLAG_RANK[flag])
 
-FAIL_COLOR = "#c62828"
-WARN_COLOR = "#f57f17"
-PASS_COLOR = "#2e7d32"
+def _plot_flag_summary(rows: list[dict], title: str, ylabel: str):
+    """Plot already-aggregated per-collection QC flag proportions."""
+    if not rows:
+        raise ValueError("No QC results available to plot.")
 
-def plot_qc_summary(
-    qc_type: str,
+    summary = pd.DataFrame(rows).set_index("collection")
+    columns = [flag for flag in _FLAG_RANK if flag in summary.columns]
+    axis = summary[columns].plot(
+        kind="bar",
+        stacked=True,
+        color={flag: _FLAG_COLORS[flag] for flag in columns},
+    )
+    axis.set_xlabel("Collection")
+    axis.set_ylabel(ylabel)
+    axis.set_ylim(0, 1)
+    axis.set_title(title)
+    axis.legend(title="QC flag")
+    return axis
+
+
+def plot_class_qc_summary(
+    record_id: str,
     check: str | None = None,
     force: bool = False,
 ):
-    """Plot the proportion of datasets by QC flag for each collection."""
-    results = load_qc_results(qc_type, force=force)
+    """Plot class-QC result proportions for each collection."""
+    results = load_class_qc_results(record_id, force=force)
 
     if check is not None:
-        available_checks = set(_get_qc_metrics(results, qc_type))
-
+        available_checks = set(_get_class_qc_metrics(results))
         if check not in available_checks:
             raise ValueError(
                 f"Unknown QC check {check!r}. "
@@ -518,60 +364,303 @@ def plot_qc_summary(
             )
 
     rows = []
-
     for collection_name, collection_results in results.items():
-        counts = {
-            "Pass": 0,
-            "Warning": 0,
-            "Fail": 0,
-        }
-
+        counts = {flag: 0 for flag in _FLAG_RANK}
         for dataset_results in collection_results.values():
-            flag = _dataset_qc_flag(
-                dataset_results,
-                qc_type,
-                check=check,
-            )
-
-            if flag is not None:
-                counts[flag] += 1
+            for split_results in dataset_results.values():
+                for check_name, values in split_results.items():
+                    if check is not None and check_name != check:
+                        continue
+                    flag = values["flag"]
+                    if flag is not None:
+                        counts[flag] += 1
 
         total = sum(counts.values())
+        if total:
+            rows.append({
+                "collection": collection_name,
+                **{flag: count / total for flag, count in counts.items()},
+            })
 
-        if total == 0:
-            continue
-
-        rows.append({
-            "collection": collection_name,
-            "Pass": counts["Pass"] / total,
-            "Warning": counts["Warning"] / total,
-            "Fail": counts["Fail"] / total,
-        })
-
-    if not rows:
-        raise ValueError("No QC results available to plot.")
-
-    summary = pd.DataFrame(rows).set_index("collection")
-
-    ax = summary.plot(
-        kind="bar",
-        stacked=True,
-        color={
-            "Pass": PASS_COLOR,
-            "Warning": WARN_COLOR,
-            "Fail": FAIL_COLOR,
-        },
-    )
-
-    ax.set_xlabel("Collection")
-    ax.set_ylabel("Proportion of datasets")
-    ax.set_ylim(0, 1)
-
-    title = f"{qc_type.capitalize()} QC summary"
+    title = "Class QC summary"
     if check is not None:
         title += f": {check}"
+    return _plot_flag_summary(
+        rows,
+        title,
+        "Proportion of class-QC results",
+    )
 
-    ax.set_title(title)
-    ax.legend(title="QC flag")
 
-    return ax
+def download_split_qc_csv(
+    record_id: str,
+    force: bool = False,
+) -> Path:
+    """Download the combined split-QC results CSV."""
+    return _download_qc_csv(record_id, _SPLIT_RESULTS_FILENAME, force=force)
+
+
+def get_split_qc_report(
+    record_id: str,
+    collection: str,
+    dataset_name: str,
+    split_a: str,
+    split_b: str,
+    force: bool = False,
+    allowed_report_pairs: frozenset[frozenset[str]] | None = None,
+) -> Path:
+    """Return the QC HTML report comparing two dataset splits."""
+    dataset = _get_dataset(collection, dataset_name)
+    available_splits = set(dataset.get("splits") or [])
+
+    if split_a not in available_splits:
+        raise KeyError(
+            f"Split {split_a!r} not found for dataset {dataset_name!r}."
+        )
+    if split_b not in available_splits:
+        raise KeyError(
+            f"Split {split_b!r} not found for dataset {dataset_name!r}."
+        )
+
+    pair = frozenset({split_a, split_b})
+    if allowed_report_pairs is not None and pair not in allowed_report_pairs:
+        allowed = sorted(
+            sorted(allowed_pair)
+            for allowed_pair in allowed_report_pairs
+        )
+        raise ValueError(
+            f"Split QC HTML reports for {_PACKAGE_NAME!r} are available only "
+            f"for split pairs {allowed}; got {sorted(pair)}."
+        )
+
+    report_dir = _get_qc_report_dir(
+        record_id,
+        collection,
+        dataset_name,
+        force=force,
+    )
+    report = report_dir / "split" / f"{split_a}_{split_b}.html"
+    if not report.exists():
+        report = report_dir / "split" / f"{split_b}_{split_a}.html"
+
+    if not report.exists():
+        raise FileNotFoundError(
+            f"No split QC report found for {split_a!r} and {split_b!r} "
+            f"in {collection!r}/{dataset_name!r}."
+        )
+
+    return report
+
+
+def _parse_split_qc(frame: pd.DataFrame) -> dict:
+    """Separate pair comparisons from overall dataset split-QC rows."""
+    results = {}
+
+    for row in frame.itertuples(index=False):
+        dataset_results = (
+            results
+            .setdefault(row.collection, {})
+            .setdefault(
+                row.dataset_name,
+                {"overall": None, "comparisons": {}},
+            )
+        )
+
+        if pd.notna(row.check):
+            comparison = {
+                "flag": _clean_qc_value(row.flag),
+                "percentage_of_leaked_queries": _clean_qc_value(
+                    row.percentage_of_leaked_queries
+                ),
+                "percentage_of_leaked_targets": _clean_qc_value(
+                    row.percentage_of_leaked_targets
+                ),
+            }
+            (
+                dataset_results["comparisons"]
+                .setdefault(row.train_split, {})
+                .setdefault(row.test_split, {})
+            )[row.check] = comparison
+
+        elif pd.notna(row.statistic):
+            dataset_results["overall"] = {
+                "statistic": row.statistic,
+                "flag": _clean_qc_value(row.flag),
+            }
+
+        else:
+            raise ValueError(
+                "Split-QC row has neither a check nor a statistic for "
+                f"{row.collection!r}/{row.dataset_name!r}."
+            )
+
+    return results
+
+
+def load_split_qc_results(
+    record_id: str,
+    force: bool = False,
+) -> dict:
+    """Download and parse combined split-QC results."""
+    path = download_split_qc_csv(record_id, force=force)
+    return _parse_split_qc(pd.read_csv(path))
+
+
+def get_split_qc_results(
+    record_id: str,
+    collection: str,
+    dataset_name: str,
+    split_a: str,
+    split_b: str,
+    force: bool = False,
+) -> dict:
+    """Return all detailed QC checks for one dataset split pair."""
+    results = load_split_qc_results(record_id, force=force)
+    collection_results = _select_qc_key(
+        results,
+        collection,
+        "Collection",
+    )
+    dataset_results = _select_qc_key(
+        collection_results,
+        dataset_name,
+        "Dataset",
+    )
+    comparisons = dataset_results["comparisons"]
+
+    if (
+        split_a in comparisons
+        and split_b in comparisons[split_a]
+    ):
+        return comparisons[split_a][split_b]
+    if (
+        split_b in comparisons
+        and split_a in comparisons[split_b]
+    ):
+        return comparisons[split_b][split_a]
+
+    available = sorted(
+        (first_split, second_split)
+        for first_split, first_results in comparisons.items()
+        for second_split in first_results
+    )
+    raise KeyError(
+        f"Split pair ({split_a!r}, {split_b!r}) not found in QC results "
+        f"for {collection!r}/{dataset_name!r}. "
+        f"Available pairs: {available}."
+    )
+
+
+def _get_split_qc_metrics(results: dict) -> list[str]:
+    """Return check names from detailed split comparisons."""
+    checks = set()
+    for collection in results.values():
+        for dataset in collection.values():
+            for first_split_results in dataset["comparisons"].values():
+                for second_split_results in first_split_results.values():
+                    checks.update(second_split_results.keys())
+    return sorted(checks)
+
+
+def list_split_qc_metrics(
+    record_id: str,
+    force: bool = False,
+) -> list[str]:
+    """Return available split-QC check names."""
+    return _get_split_qc_metrics(
+        load_split_qc_results(record_id, force=force)
+    )
+
+
+def _validate_split_checks(
+    results: dict,
+    check: str | list[str] | None,
+) -> None:
+    if check is None:
+        return
+
+    selected = {check} if isinstance(check, str) else set(check)
+    available = set(_get_split_qc_metrics(results))
+    unknown = selected - available
+    if unknown:
+        raise ValueError(
+            f"Unknown QC check(s): {sorted(unknown)}. "
+            f"Available checks: {sorted(available)}."
+        )
+
+
+def _overall_split_flag(dataset_results: dict) -> str | None:
+    """Return the supplied overall flag, falling back to detailed rows."""
+    overall = dataset_results["overall"]
+    if overall is not None:
+        return overall["flag"]
+
+    return _worst_flag(
+        values["flag"]
+        for first_split_results in dataset_results["comparisons"].values()
+        for second_split_results in first_split_results.values()
+        for values in second_split_results.values()
+    )
+
+
+def filter_split_datasets_by_qc(
+    record_id: str,
+    check: str | list[str] | None = None,
+    flag: str | list[str] = "Pass",
+    force: bool = False,
+) -> dict[str, list[str]]:
+    """Filter datasets using their supplied overall split-QC flag."""
+    results = load_split_qc_results(record_id, force=force)
+    _validate_split_checks(results, check)
+    selected_flags = {flag} if isinstance(flag, str) else set(flag)
+
+    matching = {}
+    for collection_name, collection_results in results.items():
+        datasets = [
+            dataset_name
+            for dataset_name, dataset_results in collection_results.items()
+            if _overall_split_flag(dataset_results) in selected_flags
+        ]
+        if datasets:
+            matching[collection_name] = sorted(datasets)
+
+    return matching
+
+
+def plot_split_qc_summary(
+    record_id: str,
+    check: str | None = None,
+    force: bool = False,
+):
+    """Plot detailed split-QC comparison proportions by collection."""
+    results = load_split_qc_results(record_id, force=force)
+    _validate_split_checks(results, check)
+
+    rows = []
+    for collection_name, collection_results in results.items():
+        counts = {flag: 0 for flag in _FLAG_RANK}
+        for dataset_results in collection_results.values():
+            for first_split_results in dataset_results["comparisons"].values():
+                for second_split_results in first_split_results.values():
+                    for check_name, values in second_split_results.items():
+                        if check is not None and check_name != check:
+                            continue
+                        flag = values["flag"]
+                        if flag is not None:
+                            counts[flag] += 1
+
+        total = sum(counts.values())
+        if total:
+            rows.append({
+                "collection": collection_name,
+                **{flag: count / total for flag, count in counts.items()},
+            })
+
+    title = "Split QC summary"
+    if check is not None:
+        title += f": {check}"
+    return _plot_flag_summary(
+        rows,
+        title,
+        "Proportion of split-QC comparisons",
+    )

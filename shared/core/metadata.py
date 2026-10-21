@@ -8,15 +8,9 @@ def load_metadata() -> dict:
 
     collections = {}
 
-    for path in sorted(metadata_dir.glob("*.json")):
+    for path in sorted(metadata_dir.glob("*_metadata.json")):
         with path.open(encoding="utf-8") as f:
             metadata = json.load(f)
-
-        metadata["datasets"] = [
-            dataset
-            for dataset in metadata["datasets"]
-            if dataset.get("excluded") is None
-        ]
 
         collections[metadata["collection"]] = metadata
 
@@ -39,9 +33,22 @@ def list_datasets(
     task_category: str | None = None,
     task_type: str | None = None,
     species: str | None = None,
-    golden_set: bool | None = None,
+    core_set: bool | None = None,
 ) -> dict[str, dict[str, str]]:
-    """Return datasets, optionally filtered by collection and metadata."""
+    """Return datasets, optionally filtered by collection and metadata.
+
+    Args:
+        collection: Collection name, or ``None`` to search all collections.
+        molecular_level: Exact molecular-level value to match.
+        task_category: Exact task-category value to match.
+        task_type: Exact task-type value to match.
+        species: Exact species value to match.
+        core_set: ``True`` for core datasets, ``False`` for non-core datasets,
+            or ``None`` to include both.
+
+    Use :func:`list_dataset_filters` to discover the currently available
+    values for these filters.
+    """
     metadata = load_metadata()
 
     collections = (
@@ -55,7 +62,7 @@ def list_datasets(
         "task_category": task_category,
         "task_type": task_type,
         "species": species,
-        "golden_set": golden_set,
+        "core_set": core_set,
     }
 
     # TODO: Support matching individual species in multi-species values
@@ -76,6 +83,47 @@ def list_datasets(
             result[collection_name] = datasets
 
     return result
+
+
+def list_dataset_filters(
+    collection: str | None = None,
+) -> dict[str, list[str] | list[bool]]:
+    """Return values accepted by each ``list_datasets`` filter.
+
+    Args:
+        collection: Limit metadata-derived values to one collection. If
+            omitted, values are gathered across all available collections.
+
+    Returns:
+        Filter names mapped to their available values. ``core_set`` always
+        contains the two Boolean choices.
+    """
+    metadata = load_metadata()
+    selected = (
+        {collection: metadata[collection]}
+        if collection is not None
+        else metadata
+    )
+    fields = (
+        "molecular_level",
+        "task_category",
+        "task_type",
+        "species",
+    )
+
+    return {
+        "collection": sorted(selected),
+        **{
+            field: sorted({
+                dataset[field]
+                for collection_data in selected.values()
+                for dataset in collection_data["datasets"]
+                if dataset.get(field) is not None
+            })
+            for field in fields
+        },
+        "core_set": [True, False],
+    }
 
 
 def _list_unique_values(collection: str, field: str) -> list[str]:
@@ -123,16 +171,14 @@ def get_dataset_info(collection: str, dataset_name: str) -> dict:
     """Return dataset-level metadata."""
     dataset = _get_dataset(collection, dataset_name)
 
-    excluded_fields = {
+    private_fields = {
         "split_metadata",
-        "split_qc_reports",
-        "excluded",
     }
 
     return {
         key: value
         for key, value in dataset.items()
-        if key not in excluded_fields
+        if key not in private_fields
     }
 
 def get_split_info(
